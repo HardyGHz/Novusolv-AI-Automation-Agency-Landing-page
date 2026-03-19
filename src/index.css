@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors extracted from rocket.new */
+  --color-heading: #1a1a1a;
+  --color-body: #6b7280;
+  --color-link: #3b82f6;
+  --color-surface-default: #ffffff;
+  --color-surface-card: #f5f5f5;
+  --color-surface-button-default: #1a1a1a;
+  --color-surface-button-default-hover: #333333;
+  --color-surface-button-oncolor: #ffffff;
+  --color-surface-button-oncolor-hover: #e5e5e5;
+  --color-oncolor-heading: #ffffff;
+  --color-oncolor-body: rgba(255, 255, 255, 0.7);
+  --color-oncolor-revers: #ffffff;
+  --color-outline-default: #e5e7eb;
+  --color-emphasis-low: #e5e7eb;
+  --color-disabled-default: #9ca3af;
+  --color-accent-pink: #f4c7f2;
+
+  /* Animations */
+  --animate-marquee-left: marquee-left 40s linear infinite;
+  --animate-marquee-right: marquee-right 40s linear infinite;
+}
+
+@keyframes marquee-left {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+@keyframes text-rotate {
+  0%, 20% { opacity: 1; transform: rotateX(0deg); }
+  25%, 45% { opacity: 0; transform: rotateX(90deg); }
+  50%, 70% { opacity: 1; transform: rotateX(0deg); }
+  75%, 95% { opacity: 0; transform: rotateX(-90deg); }
+  100% { opacity: 1; transform: rotateX(0deg); }
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--color-heading);
+  background-color: var(--color-surface-default);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Frosted glass effect for testimonial cards */
+.bg-blur {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Dark overlay gradient for sections with background images */
+.overlay-bg {
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a0a2e 50%, #0a0a0a 100%);
+}
+
+.overlay-bg-top {
+  background: linear-gradient(180deg, #1a0a2e 0%, #0a0a0a 60%);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 3px;
+}
+
+/* Container */
+.container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
