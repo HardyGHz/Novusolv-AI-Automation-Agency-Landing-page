@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand colors extracted from rocket.new */
+  /* Brand colors for Novusolv */
   --color-heading: #1a1a1a;
   --color-body: #6b7280;
   --color-link: #3b82f6;
