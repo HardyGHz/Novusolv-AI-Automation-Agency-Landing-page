@@ -191,7 +191,7 @@ export default function Testimonials() {
 
         {/* CTA */}
         <div className="flex justify-center z-[2]">
-          <a href="/?unauthenticated=true">
+          <a href="#contact">
             <button className="font-medium flex items-center justify-center cursor-pointer bg-white text-black hover:bg-gray-100 py-2 px-3 h-[40px] rounded-xl transition-colors group">
               <span className="text-[14px] leading-[150%]">Book a free automation audit</span>
               <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />

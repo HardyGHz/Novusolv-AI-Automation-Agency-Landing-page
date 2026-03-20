@@ -138,10 +138,12 @@ function FeatureCard({ section, onInView }: { section: FeatureSection; onInView:
         </div>
 
         <div className="flex">
-          <button className="font-medium flex w-max items-center justify-center cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700 py-2 px-4 h-[40px] rounded-xl transition-all shadow-md shadow-purple-500/20 group">
-            <span className="text-[14px] leading-[150%]">{section.cta}</span>
-            <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
-          </button>
+          <a href="#contact" className="w-max">
+            <button className="font-medium flex w-full items-center justify-center cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700 py-2 px-4 h-[40px] rounded-xl transition-all shadow-md shadow-purple-500/20 group">
+              <span className="text-[14px] leading-[150%]">{section.cta}</span>
+              <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </a>
         </div>
       </div>
     </motion.section>

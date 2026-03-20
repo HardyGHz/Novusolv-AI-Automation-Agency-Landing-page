@@ -114,7 +114,7 @@ export default function FAQ() {
               </a>
               {' '}or{' '}
               <a
-                href="#"
+                href="#contact"
                 className="text-link hover:underline"
               >
                 book a discovery call
