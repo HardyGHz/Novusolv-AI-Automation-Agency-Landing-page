@@ -74,7 +74,7 @@ export default function Footer() {
         <div className="py-6 flex max-sm:flex-col max-sm:gap-4 justify-between items-center border-t border-white/10">
           {/* Logo */}
           <a href="/" className="flex items-center cursor-pointer">
-            <img src="/logo-white.png" alt="Novusolv Logo" className="h-8 w-auto object-contain" />
+            <img src="/logo-white.png" alt="Novusolv Logo" className="h-12 w-auto object-contain" />
           </a>
 
           {/* Social links */}

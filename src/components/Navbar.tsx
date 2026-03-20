@@ -29,7 +29,7 @@ export default function Navbar() {
             <img
               src={scrolled ? "/logo-black.png" : "/logo-white.png"}
               alt="Novusolv Logo"
-              className="h-10 max-sm:h-8 w-auto object-contain transition-all duration-300"
+              className="h-14 max-sm:h-10 w-auto object-contain transition-all duration-300"
             />
           </a>
         </div>
