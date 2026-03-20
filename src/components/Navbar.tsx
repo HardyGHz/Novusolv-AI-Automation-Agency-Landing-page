@@ -27,9 +27,9 @@ export default function Navbar() {
         <div className="w-[30%] max-sm:w-auto">
           <a href="/" aria-label="Novusolv Home" className="relative flex items-center gap-2">
             <img
-              src="/logo.png"
+              src={scrolled ? "/logo-black.png" : "/logo-white.png"}
               alt="Novusolv Logo"
-              className={`h-10 max-sm:h-8 w-auto object-contain transition-all duration-300 ${scrolled ? '' : 'brightness-0 invert'}`}
+              className="h-10 max-sm:h-8 w-auto object-contain transition-all duration-300"
             />
           </a>
         </div>
