@@ -7,7 +7,11 @@ if (!supabaseUrl || !supabaseAnonKey) {
   console.warn('Supabase environment variables are missing. Forms will not work.')
 }
 
-export const supabase = createClient(supabaseUrl || '', supabaseAnonKey || '')
+// Provide valid dummy strings to prevent createClient from crashing the app
+const apiUrl = supabaseUrl || 'https://dummy.supabase.co'
+const apiKey = supabaseAnonKey || 'dummy-anon-key'
+
+export const supabase = createClient(apiUrl, apiKey)
 
 // Lead submission
 export async function submitLead(data: {
