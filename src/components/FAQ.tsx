@@ -9,32 +9,32 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: 'What is Novusolv?',
-    answer: "Novusolv is a specialized AI automation agency. We partner with growing businesses to identify bottlenecks in their workflows and build custom AI-driven solutions that automate repetitive tasks, enhance customer support, and uncover data insights.",
+    question: 'What exactly does Novusolv do?',
+    answer: "Novusolv is an AI automation agency based in Cluj-Napoca. We partner with growing businesses to map their existing workflows, identify where time and money are being lost, and build custom AI-driven systems that handle the repetitive work — so your team can focus on what actually moves the needle.",
   },
   {
-    question: "How long does it take to implement an AI solution?",
-    answer: "Most of our core automation setups (like custom CRM integrations or support bots) are deployed within 2 to 4 weeks. Deep, customized LLM training for specific internal data may take 6 to 8 weeks depending on the complexity.",
+    question: "How quickly can I see results?",
+    answer: "For most engagements, the first automations go live within 2 to 4 weeks. Simpler setups like support bots or CRM integrations can often be done faster. Deep custom AI model training takes 6 to 8 weeks depending on data complexity — but we always aim to show you a working prototype in the first two weeks.",
   },
   {
-    question: 'Is our company data secure?',
-    answer: "Absolutely. We build all our AI agents and models within your secure environment or using enterprise-grade secure APIs with zero data-retention policies. Your data is never used to train public models.",
+    question: 'Is our data safe with you?',
+    answer: "Absolutely. We build within your secure environment and use zero data-retention APIs. Your data is never used to train public AI models. We sign NDAs from day one and treat security as a non-negotiable, not an afterthought.",
   },
   {
-    question: 'What kind of ROI can we expect?',
-    answer: "While it varies by industry, our clients typically see a 30-40% reduction in manual data entry time within the first month. Our AI sales outreach agents frequently increase qualified lead volume by 2x to 3x.",
+    question: 'What ROI can we realistically expect?',
+    answer: "Our clients typically reclaim 100+ hours per month in manual labour within the first 30 days — time that gets redirected to growth activities. On the revenue side, AI-powered lead systems have helped clients double their qualified pipeline. Your mileage will vary, which is why we start every project with a free audit to set realistic expectations together.",
   },
   {
-    question: 'Do we need technical knowledge to use the automations?',
-    answer: "Not at all. We design the automations to work seamlessly in the background or within the tools you already use daily (like Slack, Teams, Salesforce, or your email inbox). We handle the complexity so you don't have to.",
+    question: 'Do we need a technical team to work with you?',
+    answer: "No. We plug the automations into the tools you already use — Slack, email, your CRM, or whatever's in your stack. Everything is designed to run in the background. If you can click a button, you can use what we build.",
   },
   {
-    question: 'Can you work with our custom legacy software?',
-    answer: "Yes. If your software has an API, we can connect to it. If it doesn't, we can often deploy secure RPA (Robotic Process Automation) bots to interact with the software interface exactly like a human would.",
+    question: 'What if our software is old or doesn\'t have an API?',
+    answer: "That\'s actually where we shine. If there\'s no API, we deploy RPA bots that interact with the interface exactly like a human would — clicking, reading, and filling in data — with zero need for software upgrades.",
   },
   {
     question: 'How do we get started?',
-    answer: "It starts with a free 30-minute discovery call where we audit your current workflows. If we see a right fit, we'll present a customized AI implementation roadmap for your business.",
+    answer: "It starts with a free 30-minute discovery call. We\'ll audit your current workflows, identify the highest-leverage automation opportunities, and if we\'re a good fit, deliver a clear implementation roadmap. No commitment required.",
   },
 ]
 

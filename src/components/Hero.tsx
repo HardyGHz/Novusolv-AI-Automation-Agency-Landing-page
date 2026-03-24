@@ -36,10 +36,10 @@ export default function Hero() {
                   className="group w-max px-4 max-sm:px-3 py-2 rounded-full mx-auto text-white bg-white/10 hover:bg-white/20 transition-all duration-200 backdrop-blur-[80px] flex gap-2 items-center mb-6 border border-white/10"
                 >
                   <div className="bg-gradient-to-r from-purple-500 to-indigo-500 px-2.5 py-0.5 rounded-full mr-1">
-                    <p className="text-[11px] leading-[150%] font-semibold text-white">NEW</p>
+                    <p className="text-[11px] leading-[150%] font-semibold text-white">FREE</p>
                   </div>
                   <p className="text-[13px] leading-[150%] font-medium text-white/90 max-sm:text-[11px]">
-                    Novusolv is now accepting new clients
+                    Get a free automation audit — no strings attached
                   </p>
                   <ArrowRight size={13} className="text-white/70 group-hover:translate-x-0.5 transition-transform" />
                 </motion.a>
@@ -52,10 +52,10 @@ export default function Hero() {
                     transition={{ duration: 0.6 }}
                     className="text-[56px] leading-[115%] max-sm:text-[36px] font-bold"
                   >
-                    <span className="text-white">Automate Your Business.</span>
+                    <span className="text-white">Stop Doing It Manually.</span>
                     <br />
                     <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
-                      Scale with AI.
+                      Let AI Handle It.
                     </span>
                   </motion.h1>
                 </div>
@@ -69,7 +69,7 @@ export default function Hero() {
                 >
                   <div className="flex flex-wrap justify-center">
                     <h2 className="text-[20px] leading-[140%] max-sm:text-[18px]">
-                      Scale 10x faster by automating{' '}
+                      We build AI systems that automate your{' '}
                     </h2>
                     <div className="relative overflow-hidden text-left w-[190px] ml-1 h-[28px] max-sm:h-[25px]">
                       <motion.div
@@ -118,15 +118,15 @@ export default function Hero() {
                 <div className="flex flex-col items-center gap-1">
                   <div className="flex items-center gap-2 text-white">
                     <Zap size={18} className="text-purple-400" />
-                    <span className="text-[28px] max-sm:text-[22px] font-bold">40%</span>
+                    <span className="text-[28px] max-sm:text-[22px] font-bold">20%</span>
                   </div>
-                  <span className="text-white/50 text-[13px] max-sm:text-[11px]">Cost Reduction</span>
+                  <span className="text-white/50 text-[13px] max-sm:text-[11px]">Avg. Cost Reduction</span>
                 </div>
                 <div className="w-px h-12 bg-white/10" />
                 <div className="flex flex-col items-center gap-1">
                   <div className="flex items-center gap-2 text-white">
                     <Clock size={18} className="text-indigo-400" />
-                    <span className="text-[28px] max-sm:text-[22px] font-bold">200+</span>
+                    <span className="text-[28px] max-sm:text-[22px] font-bold">100+</span>
                   </div>
                   <span className="text-white/50 text-[13px] max-sm:text-[11px]">Hours Saved / Month</span>
                 </div>
@@ -134,9 +134,9 @@ export default function Hero() {
                 <div className="flex flex-col items-center gap-1">
                   <div className="flex items-center gap-2 text-white">
                     <Users size={18} className="text-pink-400" />
-                    <span className="text-[28px] max-sm:text-[22px] font-bold">50+</span>
+                    <span className="text-[28px] max-sm:text-[22px] font-bold">25+</span>
                   </div>
-                  <span className="text-white/50 text-[13px] max-sm:text-[11px]">Businesses Scaled</span>
+                  <span className="text-white/50 text-[13px] max-sm:text-[11px]">Businesses Automated</span>
                 </div>
               </motion.div>
             </div>
