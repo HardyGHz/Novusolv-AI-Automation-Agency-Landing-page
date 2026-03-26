@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://novusolv.com/</loc>
+    <loc>https://novusolv.vercel.app/</loc>
     <lastmod>2026-03-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://novusolv.com/privacy</loc>
+    <loc>https://novusolv.vercel.app/privacy</loc>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://novusolv.com/terms</loc>
+    <loc>https://novusolv.vercel.app/terms</loc>
     <priority>0.3</priority>
   </url>
 </urlset>
