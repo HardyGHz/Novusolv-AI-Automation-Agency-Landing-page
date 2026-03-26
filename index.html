@@ -7,7 +7,7 @@
 
     <!-- Primary SEO -->
     <title>Novusolv | AI Automation Agency — Cluj-Napoca & Europe</title>
-    <meta name="description" content="Novusolv builds custom AI automation systems for growing businesses in Cluj-Napoca and across Europe. Automate workflows, support, and data analysis. Book a free audit." />
+    <meta name="description" content="Novusolv builds custom AI automation systems for growing businesses across Europe. Save 100+ hours/month on manual work. Book your free audit today." />
     <meta name="keywords" content="AI automation agency, Cluj-Napoca, Kolozsvár, Romania, workflow automation, AI chatbot, business automation, artificial intelligence" />
     <meta name="author" content="Novusolv SRL" />
     <link rel="canonical" href="https://novusolv.com" />
@@ -32,8 +32,82 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "name": "Novusolv",
+          "legalName": "Novusolv SRL",
+          "url": "https://novusolv.com",
+          "logo": "https://novusolv.com/logo.png",
+          "email": "hello@novusolv.com",
+          "foundingDate": "2024",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Cluj-Napoca",
+            "addressCountry": "RO"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/company/novusolv",
+            "https://x.com/novusolv",
+            "https://www.instagram.com/novusolv/"
+          ],
+          "description": "Novusolv is an AI automation agency based in Cluj-Napoca, Romania, building custom AI systems for growing businesses across Europe."
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What exactly does Novusolv do?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Novusolv is an AI automation agency based in Cluj-Napoca. We partner with growing businesses to map their existing workflows, identify where time and money are being lost, and build custom AI-driven systems that handle the repetitive work." }
+            },
+            {
+              "@type": "Question",
+              "name": "How quickly can I see results?",
+              "acceptedAnswer": { "@type": "Answer", "text": "For most engagements, the first automations go live within 2 to 4 weeks. Simpler setups like support bots or CRM integrations can often be done faster. Custom AI model training takes 6 to 8 weeks." }
+            },
+            {
+              "@type": "Question",
+              "name": "Is our data safe with you?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. We build within your secure environment and use zero data-retention APIs. Your data is never used to train public AI models. We sign NDAs from day one." }
+            },
+            {
+              "@type": "Question",
+              "name": "What ROI can we realistically expect?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Our clients typically reclaim 100+ hours per month in manual labour within the first 30 days. AI-powered lead systems have helped clients double their qualified pipeline." }
+            },
+            {
+              "@type": "Question",
+              "name": "Do we need a technical team to work with you?",
+              "acceptedAnswer": { "@type": "Answer", "text": "No. We plug the automations into the tools you already use — Slack, email, your CRM, or whatever's in your stack. Everything is designed to run in the background." }
+            },
+            {
+              "@type": "Question",
+              "name": "What if our software is old or doesn't have an API?",
+              "acceptedAnswer": { "@type": "Answer", "text": "If there's no API, we deploy RPA bots that interact with the interface exactly like a human would — with zero need for software upgrades." }
+            },
+            {
+              "@type": "Question",
+              "name": "How do we get started?",
+              "acceptedAnswer": { "@type": "Answer", "text": "It starts with a free 30-minute discovery call. We'll audit your current workflows, identify the highest-leverage automation opportunities, and deliver a clear implementation roadmap. No commitment required." }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
+    <noscript>
+      <h1>Novusolv — AI Automation Agency</h1>
+      <p>We build custom AI systems that automate your workflows, customer support, and data operations. Based in Cluj-Napoca, serving businesses across Europe.</p>
+      <p>Contact us: <a href="mailto:hello@novusolv.com">hello@novusolv.com</a></p>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

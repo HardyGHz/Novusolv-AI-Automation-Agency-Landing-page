@@ -52,10 +52,10 @@ export default function Hero() {
                     transition={{ duration: 0.6 }}
                     className="text-[56px] leading-[115%] max-sm:text-[36px] font-bold"
                   >
-                    <span className="text-white">Stop Doing It Manually.</span>
+                    <span className="text-white">AI Automation Agency</span>
                     <br />
                     <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
-                      Let AI Handle It.
+                      for Growing Businesses.
                     </span>
                   </motion.h1>
                 </div>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Audit — Novusolv</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#0a0a0f;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.09);--bh:rgba(255,255,255,.16);
+    --text:#e8e8ed;--muted:#7b7b8e;--accent:#6366f1;--green:#22c55e;--gbg:rgba(34,197,94,.12);--gbr:rgba(34,197,94,.25);
+    --yellow:#eab308;--ybg:rgba(234,179,8,.12);--ybr:rgba(234,179,8,.25);
+    --red:#ef4444;--rbg:rgba(239,68,68,.12);--rbr:rgba(239,68,68,.25);
+    --orange:#f97316;--obg:rgba(249,115,22,.12);--obr:rgba(249,115,22,.25);
+  }
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 40%,rgba(99,102,241,.07) 0%,transparent 55%),radial-gradient(ellipse at 80% 70%,rgba(139,92,246,.04) 0%,transparent 55%);z-index:-1}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+
+  /* Header */
+  .hdr{padding:48px 0 0;text-align:center}
+  .badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;background:var(--card);border:1px solid var(--border);border-radius:100px;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1.4px;margin-bottom:18px}
+  .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .hdr h1{font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:700;line-height:1.15;margin-bottom:10px;background:linear-gradient(135deg,#fff 0%,#9090b0 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .hdr p{color:var(--muted);font-size:15px;margin-bottom:32px}
+
+  /* Score bar */
+  .score-bar{display:flex;align-items:center;gap:32px;padding:32px 36px;background:var(--card);border:1px solid var(--border);border-radius:20px;margin-bottom:32px}
+  .score-circle{position:relative;width:140px;height:140px;flex-shrink:0}
+  .score-circle svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .score-circle svg circle{fill:none;stroke-width:8;stroke-linecap:round}
+  .bg-ring{stroke:rgba(255,255,255,.06)}
+  .prog{stroke:var(--accent);stroke-dasharray:376;stroke-dashoffset:132;filter:drop-shadow(0 0 6px rgba(99,102,241,.5));transition:stroke-dashoffset 1.5s}
+  .score-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .score-num span:first-child{font-family:'Space Grotesk',sans-serif;font-size:42px;font-weight:700;color:#fff}
+  .score-num span:last-child{font-size:11px;color:var(--muted);margin-top:2px}
+  .score-meta{flex:1}
+  .score-meta h2{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;margin-bottom:8px}
+  .score-meta p{color:var(--muted);font-size:14px;margin-bottom:18px}
+  .sub-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .sub{padding:12px 14px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px}
+  .sub-lbl{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:4px}
+  .sub-val{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:700}
+  .sub-bar{height:3px;border-radius:2px;background:rgba(255,255,255,.06);margin-top:6px}
+  .sub-fill{height:100%;border-radius:2px}
+
+  /* Tabs */
+  .tabs{position:sticky;top:0;z-index:50;background:rgba(10,10,15,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);margin-bottom:32px}
+  .tabs-inner{display:flex;overflow-x:auto;scrollbar-width:none}
+  .tabs-inner::-webkit-scrollbar{display:none}
+  .tab{padding:14px 22px;font-size:14px;font-weight:500;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;transition:all .2s}
+  .tab:hover{color:var(--text)}
+  .tab.on{color:var(--text);border-bottom-color:var(--accent)}
+  .cnt{display:none;padding-bottom:80px}.cnt.on{display:block}
+
+  /* Section heading */
+  .sec-title{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:600;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+
+  /* Stats row */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+  .stat{padding:22px;background:var(--card);border:1px solid var(--border);border-radius:16px;text-align:center;transition:.2s}
+  .stat:hover{border-color:var(--bh)}
+  .stat-v{font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700;color:#fff;margin-bottom:4px}
+  .stat-l{font-size:12px;color:var(--muted)}
+
+  /* Finding cards */
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 24px;margin-bottom:14px;transition:.2s}
+  .card:hover{border-color:var(--bh)}
+  .card-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;cursor:pointer}
+  .card-title{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:600;display:flex;align-items:center;gap:10px}
+  .icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+  .caret{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--muted);transition:.3s}
+  .open .caret{transform:rotate(180deg)}
+
+  /* Badges */
+  .bdg{display:inline-flex;align-items:center;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600}
+  .bdg-crit{background:var(--rbg);color:var(--red);border:1px solid var(--rbr)}
+  .bdg-high{background:var(--obg);color:var(--orange);border:1px solid var(--obr)}
+  .bdg-med{background:var(--ybg);color:var(--yellow);border:1px solid var(--ybr)}
+  .bdg-low{background:var(--gbg);color:var(--green);border:1px solid var(--gbr)}
+  .bdg-pass{background:var(--gbg);color:var(--green);border:1px solid var(--gbr)}
+  .bdg-warn{background:var(--ybg);color:var(--yellow);border:1px solid var(--ybr)}
+  .bdg-fail{background:var(--rbg);color:var(--red);border:1px solid var(--rbr)}
+
+  /* Body of collapsible */
+  .body{overflow:hidden;max-height:0;transition:max-height .35s ease}
+  .open .body{max-height:1500px}
+
+  /* Finding rows */
+  .frow{display:grid;grid-template-columns:10px 1fr auto;gap:14px;align-items:start;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+  .frow:last-child{border:none}
+  .fdot{width:8px;height:8px;border-radius:50%;margin-top:8px;flex-shrink:0}
+  .fdot.pass{background:var(--green);box-shadow:0 0 6px rgba(34,197,94,.4)}
+  .fdot.warn{background:var(--yellow);box-shadow:0 0 6px rgba(234,179,8,.4)}
+  .fdot.fail{background:var(--red);box-shadow:0 0 6px rgba(239,68,68,.4)}
+  .ftitle{font-size:14px;font-weight:600;margin-bottom:3px}
+  .fdesc{font-size:13px;color:var(--muted);line-height:1.55}
+  .frec{margin-top:8px;padding:9px 12px;background:rgba(99,102,241,.07);border-left:3px solid var(--accent);border-radius:0 7px 7px 0;font-size:13px;color:var(--text);line-height:1.5}
+
+  /* Code block */
+  pre{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:16px;font-size:12px;line-height:1.7;overflow-x:auto;margin-top:10px;color:#a5f3fc;font-family:'JetBrains Mono',monospace}
+
+  /* Table */
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}
+  th{text-align:left;padding:10px 14px;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);border-bottom:1px solid var(--border);font-weight:600}
+  td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.04)}
+  tr:last-child td{border:none}
+  tr:hover td{background:rgba(255,255,255,.02)}
+
+  /* Priority list */
+  .plist{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:8px}
+  .plist li{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px}
+  .pnum{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:var(--muted);flex-shrink:0;width:30px}
+  .ptxt strong{display:block;font-size:14px;margin-bottom:2px}
+  .ptxt span{font-size:12px;color:var(--muted)}
+
+  @media(max-width:700px){
+    .score-bar{flex-direction:column}.sub-grid{grid-template-columns:repeat(2,1fr)}
+    .stats{grid-template-columns:repeat(2,1fr)}.hdr h1{font-size:28px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="hdr">
+    <div class="badge"><span class="dot"></span> SEO Full Audit</div>
+    <h1>Novusolv — SEO Audit Report</h1>
+    <p>novusolv.vercel.app · Audit date: March 26, 2026</p>
+  </div>
+
+  <!-- Score -->
+  <div class="score-bar">
+    <div class="score-circle">
+      <svg viewBox="0 0 120 120">
+        <circle class="bg-ring" cx="60" cy="60" r="54"/>
+        <circle class="prog" cx="60" cy="60" r="54"/>
+      </svg>
+      <div class="score-num">
+        <span>65</span>
+        <span>/ 100</span>
+      </div>
+    </div>
+    <div class="score-meta">
+      <h2>Needs Improvement</h2>
+      <p>A strong foundation exists (meta tags, OG, Twitter Cards, structured content) but several critical gaps — missing sitemap, robots.txt, structured data, and weak keyword density — are limiting Google visibility. With targeted fixes this score can reach 85+.</p>
+      <div class="sub-grid">
+        <div class="sub"><div class="sub-lbl">Technical</div><div class="sub-val" style="color:#f97316">55</div><div class="sub-bar"><div class="sub-fill" style="width:55%;background:#f97316"></div></div></div>
+        <div class="sub"><div class="sub-lbl">On-Page</div><div class="sub-val" style="color:#eab308">68</div><div class="sub-bar"><div class="sub-fill" style="width:68%;background:#eab308"></div></div></div>
+        <div class="sub"><div class="sub-lbl">Content</div><div class="sub-val" style="color:#eab308">72</div><div class="sub-bar"><div class="sub-fill" style="width:72%;background:#eab308"></div></div></div>
+        <div class="sub"><div class="sub-lbl">Authority</div><div class="sub-val" style="color:#ef4444">45</div><div class="sub-bar"><div class="sub-fill" style="width:45%;background:#ef4444"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tabs-inner wrap">
+      <button class="tab on" onclick="show('t1',this)">🔧 Technical <span style="font-size:11px;opacity:.6">(7)</span></button>
+      <button class="tab" onclick="show('t2',this)">📄 On-Page <span style="font-size:11px;opacity:.6">(6)</span></button>
+      <button class="tab" onclick="show('t3',this)">✍️ Content <span style="font-size:11px;opacity:.6">(5)</span></button>
+      <button class="tab" onclick="show('t4',this)">🔑 Keywords</button>
+      <button class="tab" onclick="show('t5',this)">⚡ Quick Wins</button>
+      <button class="tab" onclick="show('t6',this)">💻 Code Fixes</button>
+    </div>
+  </div>
+
+  <!-- TAB 1: TECHNICAL -->
+  <div id="t1" class="cnt on">
+    <div class="sec-title">Technical SEO</div>
+    <div class="stats">
+      <div class="stat"><div class="stat-v" style="color:var(--red)">✗</div><div class="stat-l">sitemap.xml</div></div>
+      <div class="stat"><div class="stat-v" style="color:var(--red)">✗</div><div class="stat-l">robots.txt</div></div>
+      <div class="stat"><div class="stat-v" style="color:var(--red)">✗</div><div class="stat-l">Structured Data</div></div>
+      <div class="stat"><div class="stat-v" style="color:var(--green)">✓</div><div class="stat-l">Canonical Tag</div></div>
+    </div>
+
+    <!-- card 1 -->
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--rbg)">🗺️</span> Sitemap &amp; Robots Missing</div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="bdg bdg-crit">CRITICAL</span><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <div class="frow"><div class="fdot fail"></div><div><div class="ftitle">No sitemap.xml found</div><div class="fdesc">GET /sitemap.xml → 404. Google cannot efficiently discover and index all pages. For a new domain, this can delay indexing by weeks.</div><div class="frec">Create a <code>sitemap.xml</code> at the root and submit it to Google Search Console. Vite plugin <code>vite-plugin-sitemap</code> can auto-generate this at build time.</div></div><span class="bdg bdg-fail">Missing</span></div>
+        <div class="frow"><div class="fdot fail"></div><div><div class="ftitle">No robots.txt found</div><div class="fdesc">GET /robots.txt → 404. Without this file Google crawlers have no guidance on how to traverse the site.</div><div class="frec">Create a <code>public/robots.txt</code> file (see Code Fixes tab for ready-to-paste content).</div></div><span class="bdg bdg-fail">Missing</span></div>
+      </div>
+    </div>
+
+    <!-- card 2 -->
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--rbg)">🧩</span> No Structured Data (Schema.org)</div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="bdg bdg-crit">CRITICAL</span><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <div class="frow"><div class="fdot fail"></div><div><div class="ftitle">Missing Organization schema</div><div class="fdesc">No JSON-LD found in the page. Google can't surface rich results (business name, logo, social, contact info) in search.</div><div class="frec">Add Organization + LocalBusiness + FAQPage schema (see Code Fixes tab for full snippet).</div></div><span class="bdg bdg-fail">Missing</span></div>
+        <div class="frow"><div class="fdot fail"></div><div><div class="ftitle">FAQ accordion has no FAQPage schema</div><div class="fdesc">The 7 FAQ items are perfect for Google's "People Also Ask" featured snippets, but there is no FAQPage JSON-LD — a missed ranking opportunity.</div><div class="frec">Wrap each question/answer in FAQPage schema to trigger snippet eligibility.</div></div><span class="bdg bdg-fail">Missing</span></div>
+      </div>
+    </div>
+
+    <!-- card 3 -->
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--ybg)">⚙️</span> SPA / JavaScript Rendering</div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="bdg bdg-high">HIGH</span><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <div class="frow"><div class="fdot warn"></div><div><div class="ftitle">React SPA — all content is JS-rendered</div><div class="fdesc">The HTML served to crawlers is nearly empty (<code>&lt;div id="root"&gt;&lt;/div&gt;</code>). Googlebot can render JS but takes longer (days to weeks delay vs. static HTML).</div><div class="frec">Consider adding <strong>SSR or pre-rendering</strong> (e.g., via <code>vite-plugin-ssr</code> or migrating to Next.js). At minimum add <code>react-helmet-async</code> for robust meta tag management per route.</div></div><span class="bdg bdg-warn">Warning</span></div>
+        <div class="frow"><div class="fdot warn"></div><div><div class="ftitle">No &lt;noscript&gt; fallback</div><div class="fdesc">Users and bots with JS disabled see a blank page. A &lt;noscript&gt; fallback improves accessibility and crawl reliability.</div><div class="frec">Add a &lt;noscript&gt; block inside &lt;body&gt; with a short text summary of the page.</div></div><span class="bdg bdg-warn">Warning</span></div>
+      </div>
+    </div>
+
+    <!-- card 4 -->
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--gbg)">✅</span> Passing Technical Checks</div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="bdg bdg-pass">PASS</span><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <div class="frow"><div class="fdot pass"></div><div><div class="ftitle">Canonical URL set correctly</div><div class="fdesc"><code>&lt;link rel="canonical" href="https://novusolv.com"&gt;</code> present in &lt;head&gt;.</div></div><span class="bdg bdg-pass">Pass</span></div>
+        <div class="frow"><div class="fdot pass"></div><div><div class="ftitle">Charset &amp; viewport meta tags present</div><div class="fdesc">UTF-8 charset and responsive viewport correctly declared.</div></div><span class="bdg bdg-pass">Pass</span></div>
+        <div class="frow"><div class="fdot pass"></div><div><div class="ftitle">Font preconnect hints</div><div class="fdesc">Google Fonts preconnect links reduce font load latency.</div></div><span class="bdg bdg-pass">Pass</span></div>
+        <div class="frow"><div class="fdot warn"></div><div><div class="ftitle">Missing og:image actual file</div><div class="fdesc"><code>og:image</code> points to <code>https://novusolv.com/og-image.png</code> — verify this file exists and is at least 1200×630 px.</div></div><span class="bdg bdg-warn">Check</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: ON-PAGE -->
+  <div id="t2" class="cnt">
+    <div class="sec-title">On-Page SEO</div>
+    <table>
+      <tr><th>Element</th><th>Current Value</th><th>Status</th><th>Issue</th></tr>
+      <tr><td><strong>Title Tag</strong></td><td>Novusolv | AI Automation Agency — Cluj-Napoca &amp; Europe</td><td><span class="bdg bdg-pass">Pass</span></td><td>65 chars — within limit. "Cluj-Napoca" is good for local SEO.</td></tr>
+      <tr><td><strong>Meta Description</strong></td><td>174 chars</td><td><span class="bdg bdg-warn">Too Long</span></td><td>Google truncates at ~160 chars. Rewrite to ≤155 chars.</td></tr>
+      <tr><td><strong>H1</strong></td><td>"Stop Doing It Manually. / Let AI Handle It."</td><td><span class="bdg bdg-warn">Weak</span></td><td>Catchy but missing the primary keyword "AI automation". Google weighs H1 heavily.</td></tr>
+      <tr><td><strong>H2 Structure</strong></td><td>4 service H2s + section headers</td><td><span class="bdg bdg-pass">Good</span></td><td>Logical hierarchy, but two adjacent H2 tags in Hero used as subheading (should be H2 + p).</td></tr>
+      <tr><td><strong>Image Alt Text</strong></td><td>hero-bg: empty, feature-1.png: "AI Automation Dashboard"</td><td><span class="bdg bdg-warn">Partial</span></td><td>Hero background alt is empty (ok for decorative), but all content images need descriptive alts.</td></tr>
+      <tr><td><strong>Internal Linking</strong></td><td>Anchor links (#contact, #custom-models)</td><td><span class="bdg bdg-warn">Minimal</span></td><td>All CTAs link to same page anchors. No links to blog, case studies, or sub-pages.</td></tr>
+    </table>
+
+    <div class="card" style="margin-top:24px">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--obg)">📝</span> H1 Keyword Optimization</div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="bdg bdg-high">HIGH</span><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <div class="frow"><div class="fdot warn"></div><div><div class="ftitle">H1 doesn't contain target keyword</div><div class="fdesc">Current H1: <em>"Stop Doing It Manually. Let AI Handle It."</em> — Great copy, but Google's algorithm weights the H1 as a primary topic signal. No mention of "AI automation" in the H1.</div><div class="frec">Option A (minimal change): Add a keyword-rich H1 visually hidden for SEO, keeping the visible headline as-is.<br>Option B (recommended): Rewrite H1 to e.g. <strong>"AI Automation for Growing Businesses"</strong> and keep the punchy copy as an H2 subheading.</div></div><span class="bdg bdg-warn">Needs Fix</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--ybg)">📏</span> Meta Description Too Long</div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="bdg bdg-med">MEDIUM</span><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <div class="frow"><div class="fdot warn"></div><div><div class="ftitle">Current: 174 characters (limit: ~155)</div><div class="fdesc">Current: "Novusolv builds custom AI automation systems for growing businesses in Cluj-Napoca and across Europe. Automate workflows, support, and data analysis. Book a free audit." (174 chars)</div><div class="frec">Suggested (154 chars): <em>"Novusolv builds custom AI automation systems for growing businesses across Europe. Save 100+ hours/month. Book your free audit today."</em></div></div><span class="bdg bdg-warn">Fix</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--rbg)">🔗</span> No Blog / Case Studies Linked</div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="bdg bdg-high">HIGH</span><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <div class="frow"><div class="fdot fail"></div><div><div class="ftitle">Single-page site with no content cluster</div><div class="fdesc">All CTAs are anchor links on the same page. Google rewards sites with rich internal link structures and fresh content. A single-page site has virtually no topical depth signal.</div><div class="frec">Add a <strong>/blog</strong> section with 3-5 articles targeting long-tail keywords like "workflow automation for small businesses", "AI chatbot ROI", "how to automate invoices with AI". Each article = a new indexed page = more traffic entry points.</div></div><span class="bdg bdg-fail">Missing</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: CONTENT -->
+  <div id="t3" class="cnt">
+    <div class="sec-title">Content Quality &amp; E-E-A-T</div>
+
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--rbg)">🏆</span> E-E-A-T: Authority Signals Weak</div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="bdg bdg-crit">CRITICAL</span><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <div class="frow"><div class="fdot fail"></div><div><div class="ftitle">Testimonials lack verifiable details</div><div class="fdesc">Names like "Sarah Jenkins, COO @ TechFlow" with no company URL, LinkedIn link, or photo. Google's E-E-A-T guidelines flag unverifiable testimonials as low-trust signals.</div><div class="frec">Add real LinkedIn profile links to testimonials. Even 2-3 real, verifiable testimonials outweigh 10 fake-looking ones.</div></div><span class="bdg bdg-fail">Low Trust</span></div>
+        <div class="frow"><div class="fdot fail"></div><div><div class="ftitle">No "About" or team section</div><div class="fdesc">Google values knowing who is behind the business (Expertise, Authoritativeness). There is no About page or founder bio on the site.</div><div class="frec">Add an About section or /about page with your name, background, and company registration details (CUI, SRL info).</div></div><span class="bdg bdg-fail">Missing</span></div>
+        <div class="frow"><div class="fdot warn"></div><div><div class="ftitle">Stats look unsubstantiated</div><div class="fdesc">"25+ Businesses Automated", "100+ Hours Saved/Month", "20% Cost Reduction" — great social proof, but without source citations or case study links, Google's quality raters flag these.</div><div class="frec">Link "25+ businesses" to a case studies page. Even a short case study PDF counts as evidence.</div></div><span class="bdg bdg-warn">Improve</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--obg)">📊</span> Content Depth vs. Competitors</div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="bdg bdg-high">HIGH</span><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <div class="frow"><div class="fdot warn"></div><div><div class="ftitle">Competitor pages average 2,000–4,000 words</div><div class="fdesc">Top-ranking AI automation agency pages (10clouds.com, aisuperior.com, pearllemonai.com) have deep service pages with case studies, pricing frameworks, and industry-specific content. Novusolv's single page is ~800 words of readable content — well below competitive threshold.</div><div class="frec">Expand each service (Custom AI, Workflow Automation, Support, Analytics) into its own dedicated sub-page with 800–1200 words each. This unlocks 4 new indexable pages.</div></div><span class="bdg bdg-warn">Thin</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--gbg)">✅</span> Content Strengths</div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="bdg bdg-pass">PASS</span><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <div class="frow"><div class="fdot pass"></div><div><div class="ftitle">FAQ section is excellent for SEO</div><div class="fdesc">7 well-written Q&amp;As directly addressing pain points. These match common "People Also Ask" queries around AI automation. Only missing: FAQPage JSON-LD markup.</div></div><span class="bdg bdg-pass">Great</span></div>
+        <div class="frow"><div class="fdot pass"></div><div><div class="ftitle">Service descriptions are specific</div><div class="fdesc">Each of the 4 service sections (Custom AI, Workflows, Support, Analytics) has clear step-by-step breakdowns — good topical depth signals within the section.</div></div><span class="bdg bdg-pass">Good</span></div>
+        <div class="frow"><div class="fdot pass"></div><div><div class="ftitle">Local SEO signal present</div><div class="fdesc">"Cluj-Napoca" is mentioned in the title tag, description, and FAQ answer. This helps for local European market searches.</div></div><span class="bdg bdg-pass">Good</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--ybg)">🌍</span> Missing: Privacy Policy &amp; Terms Pages</div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="bdg bdg-high">HIGH</span><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <div class="frow"><div class="fdot warn"></div><div><div class="ftitle">Footer links to /terms and /privacy — but pages 404</div><div class="fdesc">Footer has links to <code>/terms</code> and <code>/privacy</code> but these routes don't exist in the app. Google uses Privacy Policy as a trust signal, and GDPR requires it for EU businesses.</div><div class="frec">Create <code>/privacy</code> and <code>/terms</code> routes (or pages) immediately. Critical for both SEO trust and GDPR compliance as a Romanian company.</div></div><span class="bdg bdg-warn">Fix</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: KEYWORDS -->
+  <div id="t4" class="cnt">
+    <div class="sec-title">Keyword Strategy</div>
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--accent)" style="opacity:.2">🎯</span> Primary Keyword Analysis</div>
+        <div style="display:flex;gap:8px;align-items:center"><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <table>
+          <tr><th>Keyword</th><th>Current Usage</th><th>Recommended</th><th>Priority</th></tr>
+          <tr><td><strong>AI automation agency</strong></td><td>Title, meta desc only</td><td>H1, intro paragraph, 2× in body</td><td><span class="bdg bdg-crit">Critical</span></td></tr>
+          <tr><td><strong>workflow automation</strong></td><td>H2 in HowItWorks</td><td>Meta desc, FAQ heading</td><td><span class="bdg bdg-high">High</span></td></tr>
+          <tr><td><strong>business automation Romania</strong></td><td>Not present</td><td>About section, LocalBusiness schema</td><td><span class="bdg bdg-high">High</span></td></tr>
+          <tr><td><strong>custom AI models</strong></td><td>H2 in services</td><td>Good — keep + add to meta keywords</td><td><span class="bdg bdg-pass">Good</span></td></tr>
+          <tr><td><strong>AI chatbot for business</strong></td><td>Not present</td><td>Add to Support section description</td><td><span class="bdg bdg-med">Medium</span></td></tr>
+          <tr><td><strong>automate customer support</strong></td><td>Implied, not explicit</td><td>FAQ answer, Support H2</td><td><span class="bdg bdg-med">Medium</span></td></tr>
+          <tr><td><strong>RPA automation</strong></td><td>FAQ answer only</td><td>Surface in service list</td><td><span class="bdg bdg-low">Low</span></td></tr>
+          <tr><td><strong>AI automation Cluj-Napoca</strong></td><td>Title tag only</td><td>Add to About/footer, LocalBusiness schema</td><td><span class="bdg bdg-high">High</span></td></tr>
+        </table>
+        <div class="frec" style="margin-top:16px">💡 <strong>LSI terms to weave in naturally:</strong> process automation, intelligent automation, n8n, Make.com, Zapier, LLM fine-tuning, AI agents, invoice processing, CRM automation, lead qualification, predictive analytics, GDPR compliant AI, no-code AI, digital transformation, AI ROI</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--ybg)">📈</span> Recommended Long-Tail Blog Keywords</div>
+        <div style="display:flex;gap:8px;align-items:center"><span class="bdg bdg-high">Quick Wins</span><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <table>
+          <tr><th>Article Title</th><th>Target Keyword</th><th>Est. Intent</th></tr>
+          <tr><td>"How to Automate Invoice Processing with AI"</td><td>automate invoice processing AI</td><td>Informational</td></tr>
+          <tr><td>"AI Chatbot ROI: What to Realistically Expect"</td><td>AI chatbot ROI small business</td><td>Commercial</td></tr>
+          <tr><td>"Workflow Automation for SMEs in Europe"</td><td>workflow automation SME Europe</td><td>Informational</td></tr>
+          <tr><td>"How We Saved a Client 100 Hours/Month"</td><td>AI automation case study</td><td>Commercial</td></tr>
+          <tr><td>"n8n vs Zapier vs Make: Which is Best?"</td><td>n8n vs Zapier vs Make comparison</td><td>Commercial Investigation</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: QUICK WINS -->
+  <div id="t5" class="cnt">
+    <div class="sec-title">⚡ Top Priority Action List</div>
+    <p style="color:var(--muted);font-size:14px;margin-bottom:22px">Ordered by impact. Fix these in sequence for the fastest score improvement.</p>
+    <ul class="plist">
+      <li><div class="pnum">1</div><div class="ptxt"><strong>Add robots.txt + sitemap.xml</strong><span>~30 min effort · CRITICAL · Unlocks Google crawling immediately. See Code Fixes tab.</span></div></li>
+      <li><div class="pnum">2</div><div class="ptxt"><strong>Add JSON-LD Schema (Organization + FAQPage)</strong><span>~1 hr effort · CRITICAL · Enables rich results for FAQ "People Also Ask" and brand knowledge panel. See Code Fixes tab.</span></div></li>
+      <li><div class="pnum">3</div><div class="ptxt"><strong>Submit sitemap to Google Search Console</strong><span>~15 min · After creating sitemap, submit via GSC to accelerate indexing.</span></div></li>
+      <li><div class="pnum">4</div><div class="ptxt"><strong>Fix H1 to include "AI automation agency"</strong><span>~20 min · HIGH impact ranking signal. Change to "AI Automation Agency for Growing Businesses".</span></div></li>
+      <li><div class="pnum">5</div><div class="ptxt"><strong>Shorten meta description to ≤155 chars</strong><span>~5 min · Prevents truncation in Google search results.</span></div></li>
+      <li><div class="pnum">6</div><div class="ptxt"><strong>Create /privacy and /terms pages</strong><span>~2 hrs · HIGH for trust + GDPR compliance as Romanian EU company.</span></div></li>
+      <li><div class="pnum">7</div><div class="ptxt"><strong>Write 2 blog articles targeting long-tail keywords</strong><span>~1 day · Creates new indexed entry points. "AI automation case study" + "workflow automation SME Europe".</span></div></li>
+      <li><div class="pnum">8</div><div class="ptxt"><strong>Add About section with founder bio</strong><span>~2 hrs · E-E-A-T boost. Real author = more trust from Google quality raters.</span></div></li>
+      <li><div class="pnum">9</div><div class="ptxt"><strong>Add LocalBusiness schema with address</strong><span>~30 min · Critical for local "AI automation agency Cluj-Napoca" searches.</span></div></li>
+      <li><div class="pnum">10</div><div class="ptxt"><strong>Verify og:image file exists at path</strong><span>~10 min · Ensure https://novusolv.com/og-image.png is deployed and 1200×630px.</span></div></li>
+    </ul>
+  </div>
+
+  <!-- TAB 6: CODE FIXES -->
+  <div id="t6" class="cnt">
+    <div class="sec-title">💻 Ready-to-Paste Code Fixes</div>
+
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--rbg)">📄</span> public/robots.txt</div>
+        <div><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:8px">Create this file at <code>d:\NotesAgents\Websites\novusolv-site\public\robots.txt</code></p>
+        <pre>User-agent: *
+Allow: /
+
+Sitemap: https://novusolv.com/sitemap.xml</pre>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--rbg)">🗺️</span> public/sitemap.xml</div>
+        <div><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:8px">Create this file at <code>d:\NotesAgents\Websites\novusolv-site\public\sitemap.xml</code></p>
+        <pre>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://novusolv.com/&lt;/loc&gt;
+    &lt;lastmod&gt;2026-03-26&lt;/lastmod&gt;
+    &lt;changefreq&gt;monthly&lt;/changefreq&gt;
+    &lt;priority&gt;1.0&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://novusolv.com/privacy&lt;/loc&gt;
+    &lt;priority&gt;0.3&lt;/priority&gt;
+  &lt;/url&gt;
+  &lt;url&gt;
+    &lt;loc&gt;https://novusolv.com/terms&lt;/loc&gt;
+    &lt;priority&gt;0.3&lt;/priority&gt;
+  &lt;/url&gt;
+&lt;/urlset&gt;</pre>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--rbg)">🧩</span> JSON-LD Schema — paste into index.html &lt;head&gt;</div>
+        <div><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <pre>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "Novusolv",
+      "legalName": "Novusolv SRL",
+      "url": "https://novusolv.com",
+      "logo": "https://novusolv.com/logo.png",
+      "email": "hello@novusolv.com",
+      "foundingDate": "2024",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Cluj-Napoca",
+        "addressCountry": "RO"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/novusolv",
+        "https://x.com/novusolv",
+        "https://www.instagram.com/novusolv/"
+      ],
+      "description": "Novusolv is an AI automation agency based in Cluj-Napoca, Romania, building custom AI systems for growing businesses across Europe."
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What exactly does Novusolv do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Novusolv is an AI automation agency based in Cluj-Napoca. We partner with growing businesses to map their existing workflows, identify where time and money are being lost, and build custom AI-driven systems that handle the repetitive work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How quickly can I see results?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For most engagements, the first automations go live within 2 to 4 weeks. Simpler setups like support bots or CRM integrations can often be done faster."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is our data safe with you?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. We build within your secure environment and use zero data-retention APIs. Your data is never used to train public AI models. We sign NDAs from day one."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What ROI can we realistically expect?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our clients typically reclaim 100+ hours per month in manual labour within the first 30 days. AI-powered lead systems have helped clients double their qualified pipeline."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do we need a technical team to work with you?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. We plug the automations into the tools you already use — Slack, email, your CRM, or whatever's in your stack. Everything is designed to run in the background."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if our software is old or doesn't have an API?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If there's no API, we deploy RPA bots that interact with the interface exactly like a human would — clicking, reading, and filling in data — with zero need for software upgrades."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do we get started?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It starts with a free 30-minute discovery call. We'll audit your current workflows, identify the highest-leverage automation opportunities, and deliver a clear implementation roadmap."
+          }
+        }
+      ]
+    }
+  ]
+}
+&lt;/script&gt;</pre>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--ybg)">🏷️</span> Improved index.html head (meta desc + H1 suggestion)</div>
+        <div><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:8px">Replace the meta description in <code>index.html</code>:</p>
+        <pre>&lt;!-- Replace current meta description (174 chars → 137 chars) --&gt;
+&lt;meta name="description" content="Novusolv builds custom AI automation systems for growing businesses across Europe. Save 100+ hours/month. Book your free audit today." /&gt;</pre>
+        <p style="font-size:13px;color:var(--muted);margin:14px 0 8px">Suggested H1 change in <code>Hero.tsx</code> (SEO-friendly + still punchy):</p>
+        <pre>&lt;!-- Before --&gt;
+&lt;span className="text-white"&gt;Stop Doing It Manually.&lt;/span&gt;
+&lt;span ...&gt;Let AI Handle It.&lt;/span&gt;
+
+&lt;!-- After: add a visually-hidden SEO h1 above, or change to: --&gt;
+&lt;span className="text-white"&gt;AI Automation for Growing Businesses.&lt;/span&gt;
+&lt;span ...&gt;Stop doing it manually.&lt;/span&gt;</pre>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-hd" onclick="tog(this)">
+        <div class="card-title"><span class="icon" style="background:var(--ybg)">🔒</span> &lt;noscript&gt; fallback — paste into index.html &lt;body&gt;</div>
+        <div><div class="caret">▼</div></div>
+      </div>
+      <div class="body">
+        <pre>&lt;body&gt;
+  &lt;noscript&gt;
+    &lt;h1&gt;Novusolv — AI Automation Agency&lt;/h1&gt;
+    &lt;p&gt;We build custom AI systems that automate your workflows, customer support, and data operations. Based in Cluj-Napoca, serving businesses across Europe.&lt;/p&gt;
+    &lt;p&gt;Contact us: &lt;a href="mailto:hello@novusolv.com"&gt;hello@novusolv.com&lt;/a&gt;&lt;/p&gt;
+  &lt;/noscript&gt;
+  &lt;div id="root"&gt;&lt;/div&gt;
+  ...
+&lt;/body&gt;</pre>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function show(id, btn) {
+    document.querySelectorAll('.cnt').forEach(c => c.classList.remove('on'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+    document.getElementById(id).classList.add('on');
+    btn.classList.add('on');
+  }
+  function tog(hd) {
+    hd.parentElement.classList.toggle('open');
+  }
+  // Open all cards by default
+  document.querySelectorAll('.card').forEach(c => c.classList.add('open'));
+</script>
+</body>
+</html>
