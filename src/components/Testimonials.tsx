@@ -139,7 +139,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 
 export default function Testimonials() {
   return (
-    <div className="relative py-20 max-sm:py-10 overflow-hidden overlay-bg-top max-w-[1920px] mx-auto">
+    <div id="testimonials" className="relative py-20 max-sm:py-10 overflow-hidden overlay-bg-top max-w-[1920px] mx-auto">
       {/* Background image placeholder */}
       <div className="absolute inset-0 w-full h-full max-h-full bg-gradient-to-b from-purple-950 via-indigo-950 to-gray-950" />
 

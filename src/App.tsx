@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import LogoMarquee from './components/LogoMarquee'
@@ -9,9 +10,27 @@ import Footer from './components/Footer'
 import Privacy from './components/Privacy'
 import Terms from './components/Terms'
 
+function ScrollToHash() {
+  const { hash } = useLocation()
+
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '')
+      const element = document.getElementById(id)
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 100)
+      }
+    }
+  }, [hash])
+
+  return null
+}
+
 function Home() {
   return (
-    <div className="relative">
+    <div className="relative" id="contact">
       <Navbar />
       <main id="landing-hero-section">
         <Hero />
@@ -28,6 +47,7 @@ function Home() {
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToHash />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/privacy" element={<Privacy />} />

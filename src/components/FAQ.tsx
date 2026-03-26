@@ -77,7 +77,7 @@ function FAQAccordion({ item }: { item: FAQItem }) {
 
 export default function FAQ() {
   return (
-    <section className="w-full max-w-4xl mx-auto py-20 max-sm:py-10 relative z-[3]">
+    <section id="faq" className="w-full max-w-4xl mx-auto py-20 max-sm:py-10 relative z-[3]">
       <div className="container flex flex-col gap-16 max-sm:gap-8">
         {/* Header */}
         <motion.div

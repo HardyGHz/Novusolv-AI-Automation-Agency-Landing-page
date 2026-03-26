@@ -53,17 +53,17 @@ export default function Navbar() {
                     exit={{ opacity: 0, y: -10 }}
                     className="absolute top-full mt-2 left-0 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 min-w-[220px] z-50"
                   >
-                    <a href="#custom-models" className="block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors font-medium">Custom AI Models</a>
-                    <a href="#workflow-automation" className="block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors font-medium">Workflow Automation</a>
-                    <a href="#customer-support" className="block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors font-medium">AI Customer Support</a>
-                    <a href="#data-insights" className="block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors font-medium">Data & Analytics</a>
+                    <a href="/#custom-models" className="block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors font-medium">Custom AI Models</a>
+                    <a href="/#workflow-automation" className="block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors font-medium">Workflow Automation</a>
+                    <a href="/#customer-support" className="block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors font-medium">AI Customer Support</a>
+                    <a href="/#data-insights" className="block px-4 py-2.5 text-sm hover:bg-gray-50 transition-colors font-medium">Data & Analytics</a>
                   </motion.div>
                 )}
               </AnimatePresence>
             </li>
             <li>
               <a
-                href="#testimonials"
+                href="/#testimonials"
                 className={`text-[14px] leading-[150%] opacity-70 hover:opacity-100 font-medium cursor-pointer transition-opacity ${scrolled ? 'text-heading' : 'text-white'}`}
               >
                 Case Studies
@@ -71,7 +71,7 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="#faq"
+                href="/#faq"
                 className={`text-[14px] leading-[150%] opacity-70 hover:opacity-100 font-medium cursor-pointer transition-opacity ${scrolled ? 'text-heading' : 'text-white'}`}
               >
                 FAQ
@@ -82,7 +82,7 @@ export default function Navbar() {
 
         {/* CTA Button */}
         <div className="max-sm:hidden flex items-center gap-3 justify-end w-[30%]">
-          <a href="#contact">
+          <a href="/#contact">
             <button className="font-medium flex items-center justify-center cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700 py-2.5 px-5 h-[42px] rounded-xl transition-all shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40">
               <span className="text-[14px] leading-[150%]">Book a Call</span>
             </button>
@@ -109,10 +109,10 @@ export default function Navbar() {
             className="sm:hidden absolute top-full left-0 w-full bg-white shadow-lg border-t z-50"
           >
             <div className="container py-4 flex flex-col gap-4">
-              <a href="#custom-models" className="text-[14px] font-medium py-2">Services</a>
-              <a href="#testimonials" className="text-[14px] font-medium py-2">Case Studies</a>
-              <a href="#faq" className="text-[14px] font-medium py-2">FAQ</a>
-              <a href="#contact">
+              <a href="/#custom-models" className="text-[14px] font-medium py-2">Services</a>
+              <a href="/#testimonials" className="text-[14px] font-medium py-2">Case Studies</a>
+              <a href="/#faq" className="text-[14px] font-medium py-2">FAQ</a>
+              <a href="/#contact">
                 <button className="font-medium bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-2.5 px-5 h-[42px] rounded-xl text-[14px] w-full">
                   Book a Call
                 </button>

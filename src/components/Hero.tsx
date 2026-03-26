@@ -17,7 +17,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="min-h-[108vh] max-w-[1920px] mx-auto max-sm:min-h-[auto] flex flex-col w-full relative pb-8 justify-center">
+    <section id="contact" className="min-h-[108vh] max-w-[1920px] mx-auto max-sm:min-h-[auto] flex flex-col w-full relative pb-8 justify-center">
       {/* Background - AI generated image */}
       <img src="/hero-bg.png" alt="" className="absolute top-0 left-0 w-full object-cover opacity-40 pointer-events-none" style={{ height: '120%' }} />
       <div className="absolute inset-0 w-full h-[120%] max-h-full overlay-bg" />
