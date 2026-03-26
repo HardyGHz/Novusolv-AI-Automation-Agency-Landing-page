@@ -2,6 +2,7 @@ import { useState, FormEvent } from 'react'
 import { ArrowRight, Check, Loader2, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { submitLead } from '../lib/supabase'
+import { useTranslation } from 'react-i18next'
 
 interface ContactFormProps {
   source?: string
@@ -10,6 +11,7 @@ interface ContactFormProps {
 }
 
 export default function ContactForm({ source = 'contact_form', onClose, isModal = false }: ContactFormProps) {
+  const { t } = useTranslation()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
@@ -24,7 +26,7 @@ export default function ContactForm({ source = 'contact_form', onClose, isModal 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
       setStatus('error')
-      setErrorMsg('Please enter a valid email address.')
+      setErrorMsg(t('contact_form.error_email'))
       return
     }
 
@@ -37,7 +39,7 @@ export default function ContactForm({ source = 'contact_form', onClose, isModal 
       setMessage('')
     } catch (err: any) {
       setStatus('error')
-      setErrorMsg(err?.message || 'Something went wrong. Please try again.')
+      setErrorMsg(t('contact_form.error_general'))
     }
   }
 
@@ -69,10 +71,10 @@ export default function ContactForm({ source = 'contact_form', onClose, isModal 
               <Check size={32} className="text-green-600" />
             </div>
             <h3 className={`text-[24px] font-bold ${isModal ? 'text-heading' : 'text-white'}`}>
-              Thank you!
+              {t('contact_form.success_title')}
             </h3>
             <p className={`text-center ${isModal ? 'text-body' : 'text-white/70'}`}>
-              We'll get back to you within 24 hours. Get ready to automate!
+              {t('contact_form.success_desc')}
             </p>
           </motion.div>
         ) : (
@@ -83,8 +85,8 @@ export default function ContactForm({ source = 'contact_form', onClose, isModal 
           >
             {isModal && (
               <div className="mb-2">
-                <h3 className="text-[24px] font-bold text-heading">Book a Free Audit</h3>
-                <p className="text-body text-[14px]">Tell us about your business and we'll show you what AI can do.</p>
+                <h3 className="text-[24px] font-bold text-heading">{t('contact_form.book_audit_title')}</h3>
+                <p className="text-body text-[14px]">{t('contact_form.book_audit_desc')}</p>
               </div>
             )}
 
@@ -93,7 +95,7 @@ export default function ContactForm({ source = 'contact_form', onClose, isModal 
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                placeholder="Your name"
+                placeholder={t('contact_form.placeholder_name')}
                 required
                 className={`flex-1 px-4 py-3 rounded-xl text-[14px] outline-none transition-all ${
                   isModal
@@ -105,7 +107,7 @@ export default function ContactForm({ source = 'contact_form', onClose, isModal 
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Your email"
+                placeholder={t('contact_form.placeholder_email')}
                 required
                 className={`flex-1 px-4 py-3 rounded-xl text-[14px] outline-none transition-all ${
                   isModal
@@ -118,7 +120,7 @@ export default function ContactForm({ source = 'contact_form', onClose, isModal 
             <textarea
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Tell us about your business and what you'd like to automate..."
+              placeholder={t('contact_form.placeholder_message')}
               rows={3}
               className={`w-full px-4 py-3 rounded-xl text-[14px] outline-none resize-none transition-all ${
                 isModal
@@ -140,7 +142,7 @@ export default function ContactForm({ source = 'contact_form', onClose, isModal 
                 <Loader2 size={18} className="animate-spin" />
               ) : (
                 <>
-                  Send Message
+                  {t('contact_form.btn_send')}
                   <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </>
               )}

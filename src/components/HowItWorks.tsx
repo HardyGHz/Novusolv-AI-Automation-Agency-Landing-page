@@ -1,8 +1,10 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { useInView } from '../hooks/useInView'
 import clsx from 'clsx'
+import { useTranslation } from 'react-i18next'
+import { TFunction } from 'i18next'
 
 interface FeatureSection {
   id: string
@@ -15,71 +17,67 @@ interface FeatureSection {
   cta: string
 }
 
-const sections: FeatureSection[] = [
+const getSections = (t: TFunction): FeatureSection[] => [
   {
     id: 'custom-models',
-    navLabel: 'Custom AI',
-    title: 'Custom AI Models',
-    titleBold: 'Trained on your data.',
-    description:
-      "We build tailored AI models that understand your specific business context, terminology, and procedures. No generic answers, just highly accurate assistance.",
-    stepsLabel: 'How we do it:',
+    navLabel: t('nav.custom_models'),
+    title: t('how_it_works.custom_models_title'),
+    titleBold: t('how_it_works.custom_models_bold'),
+    description: t('how_it_works.custom_models_desc'),
+    stepsLabel: t('how_it_works.custom_models_steps_label'),
     steps: [
-      { number: '1.1', text: 'Deep dive into your business operations' },
-      { number: '1.2', text: 'Gather and securely process your training data' },
-      { number: '1.3', text: 'Fine-tune LLMs specifically for your use case' },
-      { number: '1.4', text: 'Rigorous testing against your quality standards' },
-      { number: '', text: "Deploy a model that thinks like your best employee!", isSpecial: true },
+      { number: '1.1', text: t('how_it_works.custom_models_step_1') },
+      { number: '1.2', text: t('how_it_works.custom_models_step_2') },
+      { number: '1.3', text: t('how_it_works.custom_models_step_3') },
+      { number: '1.4', text: t('how_it_works.custom_models_step_4') },
+      { number: '', text: t('how_it_works.custom_models_step_special'), isSpecial: true },
     ],
-    cta: 'Discuss custom AI',
+    cta: t('how_it_works.custom_models_cta'),
   },
   {
     id: 'workflow-automation',
-    navLabel: 'Workflows',
-    title: 'Workflow Automation',
-    titleBold: 'End repetitive tasks.',
-    description:
-      'Connect your favorite tools and let AI handle the routine data entry, email sorting, and reporting. Free up your human talent for creative problem solving.',
-    stepsLabel: 'Automated processes:',
+    navLabel: t('nav.workflow'),
+    title: t('how_it_works.workflow_title'),
+    titleBold: t('how_it_works.workflow_bold'),
+    description: t('how_it_works.workflow_desc'),
+    stepsLabel: t('how_it_works.workflow_steps_label'),
     steps: [
-      { number: '2.1', text: 'Invoice processing and data extraction' },
-      { number: '2.2', text: 'CRM updates and lead enrichment' },
-      { number: '2.3', text: 'Automated email drafting and sorting' },
-      { number: '2.4', text: 'Daily and weekly performance reporting' },
+      { number: '2.1', text: t('how_it_works.workflow_step_1') },
+      { number: '2.2', text: t('how_it_works.workflow_step_2') },
+      { number: '2.3', text: t('how_it_works.workflow_step_3') },
+      { number: '2.4', text: t('how_it_works.workflow_step_4') },
     ],
-    cta: 'Automate your work',
+    cta: t('how_it_works.workflow_cta'),
   },
   {
     id: 'customer-support',
-    navLabel: '24/7 Support',
-    title: 'Intelligent Support',
-    titleBold: 'Never miss a lead.',
-    description:
-      'Deploy smart chatbots and email assistants that resolve 80% of tier 1 support tickets instantly, across all your communication channels.',
-    stepsLabel: 'Support features:',
+    navLabel: t('nav.customer_support'),
+    title: t('how_it_works.support_title'),
+    titleBold: t('how_it_works.support_bold'),
+    description: t('how_it_works.support_desc'),
+    stepsLabel: t('how_it_works.support_steps_label'),
     steps: [
-      { number: '3.1', text: 'Multi-language instant response' },
-      { number: '3.2', text: 'Seamless human handoff when needed' },
-      { number: '3.3', text: 'Integration with Zendesk, Intercom, etc.' },
-      { number: '3.4', text: 'Continuous learning from past tickets' },
+      { number: '3.1', text: t('how_it_works.support_step_1') },
+      { number: '3.2', text: t('how_it_works.support_step_2') },
+      { number: '3.3', text: t('how_it_works.support_step_3') },
+      { number: '3.4', text: t('how_it_works.support_step_4') },
     ],
-    cta: 'Upgrade your support',
+    cta: t('how_it_works.support_cta'),
   },
   {
     id: 'data-insights',
-    navLabel: 'Analytics',
-    title: 'Data Insights',
-    titleBold: 'Predict the future.',
-    description:
-      'Turn overwhelming spreadsheets into actionable insights. Our AI models identify trends, forecast sales, and find revenue opportunities hidden in your data.',
-    stepsLabel: 'Analytics capabilities:',
+    navLabel: t('nav.data_insights'),
+    title: t('how_it_works.data_title'),
+    titleBold: t('how_it_works.data_bold'),
+    description: t('how_it_works.data_desc'),
+    stepsLabel: t('how_it_works.data_steps_label'),
     steps: [
-      { number: '4.1', text: 'Predictive sales and inventory forecasting' },
-      { number: '4.2', text: 'Customer churn risk analysis' },
-      { number: '4.3', text: 'Natural language database querying' },
-      { number: '4.4', text: 'Real-time anomaly detection' },
+      { number: '4.1', text: t('how_it_works.data_step_1') },
+      { number: '4.2', text: t('how_it_works.data_step_2') },
+      { number: '4.3', text: t('how_it_works.data_step_3') },
+      { number: '4.4', text: t('how_it_works.data_step_4') },
     ],
-    cta: 'Unlock your data',
+    cta: t('how_it_works.data_cta'),
   },
 ]
 
@@ -151,6 +149,9 @@ function FeatureCard({ section, onInView }: { section: FeatureSection; onInView:
 }
 
 export default function HowItWorks() {
+  const { t } = useTranslation()
+  const sections = useMemo(() => getSections(t), [t])
+
   const [activeSection, setActiveSection] = useState('custom-models')
   const activeSectionRef = useRef(activeSection)
 
@@ -184,18 +185,18 @@ export default function HowItWorks() {
               <div className="w-full h-full absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900" />
               <div className="relative flex flex-col gap-4 lg:gap-6 z-[1]">
                 <div>
-                  <p className="text-purple-300 font-semibold text-[14px] uppercase tracking-wider mb-3">Our Services</p>
+                  <p className="text-purple-300 font-semibold text-[14px] uppercase tracking-wider mb-3">{t('how_it_works.our_services')}</p>
                   <h2 className="text-[48px] leading-[120%] max-sm:text-[32px] text-white">
-                    How Novusolv helps you
+                    {t('how_it_works.title_1')}
                   </h2>
                   <h2 className="text-[48px] leading-[120%] max-sm:text-[32px] text-white font-bold">
-                    Manual work in{' '}
+                    {t('how_it_works.title_2_manual')}{' '}
                     <ArrowRight className="inline-block" size={32} strokeWidth={1.5} color="#ADB5BD" />{' '}
-                    Automated scalability out
+                    {t('how_it_works.title_2_auto')}
                   </h2>
                 </div>
                 <p className="text-[16px] leading-[150%] text-white/80 w-full lg:w-6/12 font-medium">
-                  We analyze your current operations, identify bottlenecks, and deploy custom AI solutions that save you hundreds of hours per month. Focus on growth, let AI handle the rest.
+                  {t('how_it_works.description')}
                 </p>
               </div>
             </motion.div>

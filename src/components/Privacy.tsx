@@ -1,11 +1,14 @@
 import { ArrowLeft } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 
 export default function Privacy() {
+  const { t } = useTranslation()
+
   return (
     <div className="min-h-screen bg-white py-20 px-4">
       <div className="max-w-3xl mx-auto">
         <a href="/" className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 mb-10 font-medium">
-          <ArrowLeft size={16} /> Back to home
+          <ArrowLeft size={16} /> {t('common.back_to_home')}
         </a>
         <h1 className="text-4xl font-bold text-gray-900 mb-2">Privacy Policy</h1>
         <p className="text-gray-500 text-sm mb-10">Last updated: March 26, 2026</p>

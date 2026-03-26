@@ -1,11 +1,20 @@
 import { useState, useEffect } from 'react'
 import { ArrowRight, Zap, Users, Clock } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import ContactForm from './ContactForm'
 
-const rotatingWords = ['customer support.', 'lead generation.', 'data analysis.', 'internal workflows.', 'operations.']
 
 export default function Hero() {
+  const { t } = useTranslation()
+  const rotatingWords = [
+    t('hero.rotating_1'),
+    t('hero.rotating_2'),
+    t('hero.rotating_3'),
+    t('hero.rotating_4'),
+    t('hero.rotating_5')
+  ]
+
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [showContactForm, setShowContactForm] = useState(false)
 
@@ -28,21 +37,21 @@ export default function Hero() {
             <div className="flex flex-col gap-8 w-full overflow-hidden">
               <div className="flex flex-col grow gap-4 text-center">
                 {/* Announcement banner */}
-                <motion.a
-                  href="#contact"
+                <motion.button
+                  onClick={() => setShowContactForm(true)}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="group w-max px-4 max-sm:px-3 py-2 rounded-full mx-auto text-white bg-white/10 hover:bg-white/20 transition-all duration-200 backdrop-blur-[80px] flex gap-2 items-center mb-6 border border-white/10"
+                  className="group w-max px-4 max-sm:px-3 py-2 rounded-full mx-auto text-white bg-gray-900/40 hover:bg-gray-900/60 transition-all duration-200 backdrop-blur-xl flex gap-2 items-center mb-6 border border-white/10 cursor-pointer shadow-lg shadow-black/20"
                 >
                   <div className="bg-gradient-to-r from-purple-500 to-indigo-500 px-2.5 py-0.5 rounded-full mr-1">
                     <p className="text-[11px] leading-[150%] font-semibold text-white">FREE</p>
                   </div>
-                  <p className="text-[13px] leading-[150%] font-medium text-white/90 max-sm:text-[11px]">
-                    Get a free automation audit — no strings attached
+                  <p className="text-[13px] leading-[150%] font-semibold text-white max-sm:text-[11px]">
+                    {t('hero.free_audit')}
                   </p>
                   <ArrowRight size={13} className="text-white/70 group-hover:translate-x-0.5 transition-transform" />
-                </motion.a>
+                </motion.button>
 
                 {/* Main heading with gradient */}
                 <div className="w-8/12 mx-auto max-sm:w-full flex flex-col gap-3">
@@ -52,10 +61,10 @@ export default function Hero() {
                     transition={{ duration: 0.6 }}
                     className="text-[56px] leading-[115%] max-sm:text-[36px] font-bold"
                   >
-                    <span className="text-white">AI Automation Agency</span>
+                    <span className="text-white">{t('hero.title_1')}</span>
                     <br />
                     <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
-                      for Growing Businesses.
+                      {t('hero.title_2')}
                     </span>
                   </motion.h1>
                 </div>
@@ -69,7 +78,7 @@ export default function Hero() {
                 >
                   <div className="flex flex-wrap justify-center">
                     <h2 className="text-[20px] leading-[140%] max-sm:text-[18px]">
-                      We build AI systems that automate your{' '}
+                      {t('hero.subtitle_prefix')}
                     </h2>
                     <div className="relative overflow-hidden text-left w-[190px] ml-1 h-[28px] max-sm:h-[25px]">
                       <motion.div
@@ -97,12 +106,12 @@ export default function Hero() {
                   <button
                     onClick={() => setShowContactForm(true)}
                     className="font-semibold flex items-center justify-center cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700 py-3 px-8 h-[52px] rounded-2xl transition-all shadow-xl shadow-purple-500/30 hover:shadow-purple-500/50 hover:scale-[1.02] group text-[16px]">
-                      Book a Free Audit
+                      {t('hero.book_audit_btn')}
                       <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </button>
                   <a href="#custom-models">
                     <button className="font-semibold flex items-center justify-center cursor-pointer bg-white/10 text-white hover:bg-white/20 py-3 px-8 h-[52px] rounded-2xl transition-all border border-white/20 backdrop-blur-sm hover:border-white/40 text-[16px]">
-                      See Our Work
+                      {t('hero.see_work_btn')}
                     </button>
                   </a>
                 </motion.div>
@@ -115,28 +124,28 @@ export default function Hero() {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="flex justify-center gap-12 max-sm:gap-6 mt-4"
               >
-                <div className="flex flex-col items-center gap-1">
+                <div className="flex flex-col items-center gap-1 text-center">
                   <div className="flex items-center gap-2 text-white">
                     <Zap size={18} className="text-purple-400" />
-                    <span className="text-[28px] max-sm:text-[22px] font-bold">20%</span>
+                    <span className="text-[28px] max-sm:text-[22px] font-bold">{t('hero.stat_1_val')}</span>
                   </div>
-                  <span className="text-white/50 text-[13px] max-sm:text-[11px]">Avg. Cost Reduction</span>
+                  <span className="text-white/50 text-[13px] max-sm:text-[11px]">{t('hero.stat_1_label')}</span>
                 </div>
                 <div className="w-px h-12 bg-white/10" />
-                <div className="flex flex-col items-center gap-1">
+                <div className="flex flex-col items-center gap-1 text-center">
                   <div className="flex items-center gap-2 text-white">
                     <Clock size={18} className="text-indigo-400" />
-                    <span className="text-[28px] max-sm:text-[22px] font-bold">100+</span>
+                    <span className="text-[28px] max-sm:text-[22px] font-bold">{t('hero.stat_2_val')}</span>
                   </div>
-                  <span className="text-white/50 text-[13px] max-sm:text-[11px]">Hours Saved / Month</span>
+                  <span className="text-white/50 text-[13px] max-sm:text-[11px]">{t('hero.stat_2_label')}</span>
                 </div>
                 <div className="w-px h-12 bg-white/10" />
-                <div className="flex flex-col items-center gap-1">
+                <div className="flex flex-col items-center gap-1 text-center">
                   <div className="flex items-center gap-2 text-white">
                     <Users size={18} className="text-pink-400" />
-                    <span className="text-[28px] max-sm:text-[22px] font-bold">25+</span>
+                    <span className="text-[28px] max-sm:text-[22px] font-bold">{t('hero.stat_3_val')}</span>
                   </div>
-                  <span className="text-white/50 text-[13px] max-sm:text-[11px]">Businesses Automated</span>
+                  <span className="text-white/50 text-[13px] max-sm:text-[11px]">{t('hero.stat_3_label')}</span>
                 </div>
               </motion.div>
             </div>

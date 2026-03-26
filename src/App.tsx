@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import LogoMarquee from './components/LogoMarquee'
@@ -9,6 +10,7 @@ import FAQ from './components/FAQ'
 import Footer from './components/Footer'
 import Privacy from './components/Privacy'
 import Terms from './components/Terms'
+import CookieBanner from './components/CookieBanner'
 
 function ScrollToHash() {
   const { hash } = useLocation()
@@ -45,6 +47,12 @@ function Home() {
 }
 
 function App() {
+  const { i18n } = useTranslation()
+
+  useEffect(() => {
+    document.documentElement.lang = i18n.language
+  }, [i18n.language])
+
   return (
     <BrowserRouter>
       <ScrollToHash />
@@ -53,6 +61,7 @@ function App() {
         <Route path="/privacy" element={<Privacy />} />
         <Route path="/terms" element={<Terms />} />
       </Routes>
+      <CookieBanner />
     </BrowserRouter>
   )
 }

@@ -2,8 +2,10 @@ import { useState, FormEvent } from 'react'
 import { ArrowRight, Check, Loader2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { subscribeNewsletter } from '../lib/supabase'
+import { useTranslation } from 'react-i18next'
 
 export default function NewsletterSignup() {
+  const { t } = useTranslation()
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
@@ -15,7 +17,7 @@ export default function NewsletterSignup() {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
       setStatus('error')
-      setErrorMsg('Please enter a valid email address.')
+      setErrorMsg(t('newsletter.error_email'))
       return
     }
 
@@ -26,7 +28,7 @@ export default function NewsletterSignup() {
       setEmail('')
     } catch (err: any) {
       setStatus('error')
-      setErrorMsg(err?.message || 'Something went wrong.')
+      setErrorMsg(err?.message || t('newsletter.error_general'))
     }
   }
 
@@ -43,7 +45,7 @@ export default function NewsletterSignup() {
             <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
               <Check size={16} className="text-green-400" />
             </div>
-            <p className="text-white font-medium text-[14px]">You're subscribed! Welcome aboard 🎉</p>
+            <p className="text-white font-medium text-[14px]">{t('newsletter.success')}</p>
           </motion.div>
         ) : (
           <motion.form
@@ -55,7 +57,7 @@ export default function NewsletterSignup() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder={t('newsletter.placeholder')}
               required
               className="flex-1 px-4 py-3 rounded-xl text-[14px] bg-white/10 border border-white/20 focus:border-purple-400 text-white placeholder:text-white/50 outline-none transition-all"
             />
@@ -68,7 +70,7 @@ export default function NewsletterSignup() {
                 <Loader2 size={16} className="animate-spin" />
               ) : (
                 <>
-                  Subscribe
+                  {t('newsletter.btn')}
                   <ArrowRight size={14} className="ml-1.5 group-hover:translate-x-0.5 transition-transform" />
                 </>
               )}

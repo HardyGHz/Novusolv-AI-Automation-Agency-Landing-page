@@ -1,5 +1,8 @@
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import { TFunction } from 'i18next'
 
 type Platform = 'discord' | 'twitter' | 'linkedin' | 'youtube' | 'email'
 
@@ -10,68 +13,68 @@ interface Testimonial {
   platform: Platform
 }
 
-const testimonialsRow1: Testimonial[] = [
+const getTestimonialsRow1 = (t: TFunction): Testimonial[] => [
   {
     name: 'Sarah Jenkins',
     handle: 'COO @ TechFlow',
-    quote: "Novusolv completely transformed our operations. We're saving 40+ hours a week on manual data entry alone. The ROI was visible in the first month.",
+    quote: t('testimonials.row1_quote1'),
     platform: 'linkedin',
   },
   {
     name: 'Michael Chen',
     handle: '@mchen_startup',
-    quote: "I was skeptical about AI automation until Novusolv built our lead qualification system. Our sales team is closing 3x more deals because they only talk to qualified leads now.",
+    quote: t('testimonials.row1_quote2'),
     platform: 'twitter',
   },
   {
     name: 'David Rossi',
     handle: 'Founder & CEO',
-    quote: "The custom customer support bot resolves 85% of our tickets instantly. It's like having a senior support rep working 24/7 without taking breaks.",
+    quote: t('testimonials.row1_quote3'),
     platform: 'linkedin',
   },
   {
     name: 'Emma Larson',
     handle: '',
-    quote: 'Absolutely brilliant team. They understood our messy internal processes and streamlined everything into a single, automated airtable workflow.',
+    quote: t('testimonials.row1_quote4'),
     platform: 'email',
   },
   {
     name: 'Alex Rivera',
     handle: '@arivera_dev',
-    quote: "Working with Novusolv is a breath of fresh air. They don't just sell hype, they build actual infrastructure that moves the needle. Best investment we made this year.",
+    quote: t('testimonials.row1_quote5'),
     platform: 'twitter',
   },
 ]
 
-const testimonialsRow2: Testimonial[] = [
+const getTestimonialsRow2 = (t: TFunction): Testimonial[] => [
   {
     name: 'Dr. James Hughes',
     handle: 'Clinic Director',
-    quote: "We used to drown in patient scheduling and follow-ups. Novusolv's automated booking and SMS reminder AI practically eliminated our no-shows.",
+    quote: t('testimonials.row2_quote1'),
     platform: 'email',
   },
   {
     name: 'Priya Patel',
     handle: 'Head of Growth',
-    quote: "The personalized cold outreach AI they built for us generates so many meetings we had to hire two more account executives. Phenomenal work.",
+    quote: t('testimonials.row2_quote2'),
     platform: 'linkedin',
   },
   {
     name: 'Tom Baker',
     handle: '@tombaker_ecom',
-    quote: "Our e-com logistics were a nightmare. Novusolv hooked up our Shopify to our warehouse via AI agents and now everything routes flawlessly.",
+    quote: t('testimonials.row2_quote3'),
     platform: 'twitter',
   },
   {
     name: 'Lisa Wong',
     handle: 'VP of Operations',
-    quote: "If you're still doing manual copy-pasting between your CRM and accounting software, you need to call Novusolv yesterday. Literal lifesavers.",
+    quote: t('testimonials.row2_quote4'),
     platform: 'linkedin',
   },
   {
     name: 'Marcus Thorne',
     handle: '',
-    quote: "What impressed me most wasn't just the AI tech, but how deeply they understood our business model before writing a single line of code.",
+    quote: t('testimonials.row2_quote5'),
     platform: 'email',
   },
 ]
@@ -138,6 +141,10 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
 }
 
 export default function Testimonials() {
+  const { t } = useTranslation()
+  const row1 = useMemo(() => getTestimonialsRow1(t), [t])
+  const row2 = useMemo(() => getTestimonialsRow2(t), [t])
+
   return (
     <div id="testimonials" className="relative py-20 max-sm:py-10 overflow-hidden overlay-bg-top max-w-[1920px] mx-auto">
       {/* Background image placeholder */}
@@ -153,12 +160,10 @@ export default function Testimonials() {
         >
           <div className="text-center">
             <h2 className="text-[48px] leading-[120%] max-sm:text-[32px] font-semibold text-white mb-4">
-              Results that speak
+              {t('testimonials.title')}
             </h2>
-            <p className="text-[20px] leading-[140%] max-sm:text-[18px] text-white">
-              What founders, executives, and operators have to say about
-              <br className="max-sm:hidden" />
-              scaling their businesses with Novusolv automation.
+            <p className="text-[20px] leading-[140%] max-sm:text-[18px] text-white whitespace-pre-line">
+              {t('testimonials.subtitle')}
             </p>
           </div>
         </motion.div>
@@ -168,10 +173,10 @@ export default function Testimonials() {
           <div className="overflow-hidden relative">
             <div
               className="flex gap-0 animate-marquee-left"
-              style={{ width: `calc(400px * ${testimonialsRow1.length * 2})` }}
+              style={{ width: `calc(400px * ${row1.length * 2})` }}
             >
-              {[...testimonialsRow1, ...testimonialsRow1].map((t, i) => (
-                <TestimonialCard key={`row1-${i}`} testimonial={t} />
+              {[...row1, ...row1].map((testimonial, i) => (
+                <TestimonialCard key={`row1-${i}`} testimonial={testimonial} />
               ))}
             </div>
           </div>
@@ -180,10 +185,10 @@ export default function Testimonials() {
           <div className="overflow-hidden relative">
             <div
               className="flex gap-0 animate-marquee-right"
-              style={{ width: `calc(400px * ${testimonialsRow2.length * 2})` }}
+              style={{ width: `calc(400px * ${row2.length * 2})` }}
             >
-              {[...testimonialsRow2, ...testimonialsRow2].map((t, i) => (
-                <TestimonialCard key={`row2-${i}`} testimonial={t} />
+              {[...row2, ...row2].map((testimonial, i) => (
+                <TestimonialCard key={`row2-${i}`} testimonial={testimonial} />
               ))}
             </div>
           </div>
@@ -192,8 +197,8 @@ export default function Testimonials() {
         {/* CTA */}
         <div className="flex justify-center z-[2]">
           <a href="#contact">
-            <button className="font-medium flex items-center justify-center cursor-pointer bg-white text-black hover:bg-gray-100 py-2 px-3 h-[40px] rounded-xl transition-colors group">
-              <span className="text-[14px] leading-[150%]">Book a free automation audit</span>
+            <button className="font-medium flex items-center justify-center cursor-pointer bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white py-2 px-4 h-[40px] rounded-xl transition-all shadow-lg shadow-purple-500/30 group">
+              <span className="text-[14px] leading-[150%]">{t('testimonials.cta')}</span>
               <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
             </button>
           </a>

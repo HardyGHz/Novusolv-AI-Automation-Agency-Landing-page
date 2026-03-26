@@ -2,8 +2,10 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import ContactForm from './ContactForm'
 import NewsletterSignup from './NewsletterSignup'
+import { useTranslation } from 'react-i18next'
 
 export default function Footer() {
+  const { t } = useTranslation()
   const bgRef = useRef<HTMLImageElement>(null)
 
   useEffect(() => {
@@ -44,16 +46,16 @@ export default function Footer() {
           className="flex flex-col gap-10 w-full items-center py-16"
         >
           <div className="flex flex-col gap-4 text-center max-sm:px-4">
-            <p className="text-purple-400 font-semibold text-[14px] uppercase tracking-wider">Ready to transform?</p>
+            <p className="text-purple-400 font-semibold text-[14px] uppercase tracking-wider">{t('footer.ready')}</p>
             <h2 className="text-[48px] leading-[115%] max-sm:text-[32px] font-bold text-white">
-              Let's automate your
+              {t('footer.title_1')}
               <br />
               <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
-                business together
+                {t('footer.title_2_gradient')}
               </span>
             </h2>
             <p className="text-[16px] leading-[150%] text-white/70 max-w-[500px] mx-auto">
-              Fill out the form below and we'll get back to you within 24 hours with a free automation audit.
+              {t('footer.desc')}
             </p>
           </div>
 
@@ -63,7 +65,7 @@ export default function Footer() {
           {/* Newsletter */}
           <div className="flex flex-col items-center gap-3 mt-4 w-full">
             <div className="w-16 h-px bg-white/10" />
-            <p className="text-white/50 text-[13px]">Or just stay in the loop:</p>
+            <p className="text-white/50 text-[13px]">{t('footer.stay_in_loop')}</p>
             <NewsletterSignup />
           </div>
         </motion.div>
@@ -106,9 +108,9 @@ export default function Footer() {
 
           {/* Legal */}
           <div className="flex items-center gap-4 text-white/50 text-[13px]">
-            <a href="/terms" className="hover:text-white transition-colors">Terms</a>
-            <a href="/privacy" className="hover:text-white transition-colors">Privacy</a>
-            <span>&copy; 2026 Novusolv SRL</span>
+            <a href="/terms" className="hover:text-white transition-colors">{t('footer.terms')}</a>
+            <a href="/privacy" className="hover:text-white transition-colors">{t('footer.privacy')}</a>
+            <span>{t('footer.copyright')}</span>
           </div>
         </div>
       </div>

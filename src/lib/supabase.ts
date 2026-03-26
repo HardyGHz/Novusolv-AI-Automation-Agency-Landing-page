@@ -37,3 +37,16 @@ export async function subscribeNewsletter(email: string) {
   }
   return true
 }
+
+// Book a Call submission
+export async function submitBookCall(data: {
+  name: string
+  company: string
+  phone: string
+  email?: string
+  source: string
+}) {
+  const { error } = await supabase.from('call_bookings').insert([data])
+  if (error) throw error
+  return true
+}
