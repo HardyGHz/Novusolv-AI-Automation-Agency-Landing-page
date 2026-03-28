@@ -11,6 +11,7 @@ import Footer from './components/Footer'
 import Privacy from './components/Privacy'
 import Terms from './components/Terms'
 import CookieBanner from './components/CookieBanner'
+import WebsiteBuilderCTA from './components/WebsiteBuilderCTA'
 
 function ScrollToHash() {
   const { hash } = useLocation()
@@ -39,6 +40,7 @@ function Home() {
         <LogoMarquee />
         <HowItWorks />
         <Testimonials />
+        <WebsiteBuilderCTA />
         <FAQ />
       </main>
       <Footer />

@@ -164,5 +164,10 @@
     "privacy_link": "Privacy Policy",
     "accept": "Accept",
     "decline": "Decline"
+  },
+  "website_builder": {
+    "title": "Need a stunning website first?",
+    "subtitle": "Before we automate your workflows, make sure your digital storefront converts. Plan and build with Site Crafter — our dedicated website planning tool.",
+    "cta": "Open Site Crafter"
   }
 }
