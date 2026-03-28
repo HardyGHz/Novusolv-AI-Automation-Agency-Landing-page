@@ -13,7 +13,7 @@ const tools = [
   { name: 'Shopify', icon: '🛒' },
   { name: 'Zendesk', icon: '🎧' },
   { name: 'Stripe', icon: '💳' },
-  { name: 'Intercom', icon: '💬' },
+  { name: 'n8n', icon: '🔗' },
   { name: 'Make', icon: '🔧' },
   { name: 'GitHub', icon: '🐙' },
 ]

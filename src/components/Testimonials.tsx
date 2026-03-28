@@ -15,65 +15,65 @@ interface Testimonial {
 
 const getTestimonialsRow1 = (t: TFunction): Testimonial[] => [
   {
-    name: 'Sarah Jenkins',
-    handle: 'COO @ TechFlow',
+    name: 'Mark',
+    handle: 'Director of Operations @ JoySilver',
     quote: t('testimonials.row1_quote1'),
     platform: 'linkedin',
   },
   {
     name: 'Michael Chen',
-    handle: '@mchen_startup',
+    handle: 'Head of Growth @ StartupX',
     quote: t('testimonials.row1_quote2'),
-    platform: 'twitter',
-  },
-  {
-    name: 'David Rossi',
-    handle: 'Founder & CEO',
-    quote: t('testimonials.row1_quote3'),
     platform: 'linkedin',
   },
   {
+    name: 'David Rossi',
+    handle: 'CEO @ Fintech Partners',
+    quote: t('testimonials.row1_quote3'),
+    platform: 'email',
+  },
+  {
     name: 'Emma Larson',
-    handle: '',
+    handle: 'Operations Manager',
     quote: t('testimonials.row1_quote4'),
     platform: 'email',
   },
   {
     name: 'Alex Rivera',
-    handle: '@arivera_dev',
+    handle: '@alex_systems',
     quote: t('testimonials.row1_quote5'),
-    platform: 'twitter',
+    platform: 'linkedin',
   },
 ]
 
 const getTestimonialsRow2 = (t: TFunction): Testimonial[] => [
   {
-    name: 'Dr. James Hughes',
-    handle: 'Clinic Director',
+    name: 'Dr. Jonás',
+    handle: 'Founder @ MartonVet',
     quote: t('testimonials.row2_quote1'),
-    platform: 'email',
+    platform: 'linkedin',
   },
   {
     name: 'Priya Patel',
-    handle: 'Head of Growth',
+    handle: 'VP of Growth @ SaaS Co',
     quote: t('testimonials.row2_quote2'),
     platform: 'linkedin',
   },
   {
     name: 'Tom Baker',
-    handle: '@tombaker_ecom',
+    handle: 'Shopify Merchant',
     quote: t('testimonials.row2_quote3'),
-    platform: 'twitter',
+    platform: 'email',
   },
   {
     name: 'Lisa Wong',
-    handle: 'VP of Operations',
+    handle: 'COO @ Global Logistics',
     quote: t('testimonials.row2_quote4'),
     platform: 'linkedin',
   },
   {
     name: 'Marcus Thorne',
-    handle: '',
+    handle: 'Digital Transformation Lead',
     quote: t('testimonials.row2_quote5'),
     platform: 'email',
   },
