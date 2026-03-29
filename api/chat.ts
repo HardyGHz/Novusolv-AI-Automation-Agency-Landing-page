@@ -101,7 +101,11 @@ export default async function handler(req: Request) {
     const model = genAI.getGenerativeModel({ 
       model: 'gemini-1.5-flash',
       tools: [{ functionDeclarations: [calculateRoiDeclaration, saveLeadDeclaration] }],
-      generationConfig: { temperature: 0.35, topP: 0.8 },
+      generationConfig: { 
+        temperature: 0.35, 
+        topP: 0.8,
+        maxOutputTokens: 1000
+      },
       safetySettings: [
         { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
         { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
@@ -112,7 +116,7 @@ export default async function handler(req: Request) {
       history: [
         { role: 'user', parts: [{ text: SYSTEM_INSTRUCTIONS }] },
         { role: 'model', parts: [{ text: "Understood. I am Novu. I will drive leads through the funnel and use the tools provided." }] },
-        ...history,
+        ...history.slice(-10),
       ],
     });
 
