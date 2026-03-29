@@ -36,7 +36,7 @@ export default function WebsiteBuilderCTA() {
 
             <div className="md:w-1/3 flex justify-start md:justify-end w-full">
               <a 
-                href="https://gladiator.novusolv.com" 
+                href="https://sitecrafter-novusolv.vercel.app/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="group w-max px-6 py-4 rounded-xl text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 flex items-center justify-center gap-2 font-medium shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 hover:-translate-y-1"

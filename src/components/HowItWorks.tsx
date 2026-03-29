@@ -202,7 +202,7 @@ export default function HowItWorks() {
             </motion.div>
 
             {/* Content area with sidebar nav */}
-            <div className="flex max-lg:flex-col gap-4">
+            <div className="flex max-lg:flex-col gap-8 lg:gap-16">
               {/* Sidebar navigation */}
               <div className="max-sm:hidden w-full lg:w-[160px] flex-shrink-0 sticky top-[160px] lg:bg-transparent h-fit z-10">
                 <div className="flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible max-sm:gap-4">
@@ -256,9 +256,9 @@ export default function HowItWorks() {
               {/* Feature cards with image */}
               <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
                 {/* Sticky image */}
-                <div className="max-sm:hidden relative flex justify-center items-center w-[558px] max-xl:w-[300px] h-[300px] lg:h-[600px] lg:sticky lg:top-32 order-2 lg:order-1">
+                <div className="max-sm:hidden relative flex justify-center items-center w-[558px] max-xl:w-[300px] h-[300px] lg:h-[600px] lg:sticky lg:top-[18vh] order-2 lg:order-1">
                   <div className="w-full max-lg:max-w-[300px] max-w-[500px] h-full relative rounded-2xl overflow-hidden shadow-2xl shadow-purple-500/10">
-                    <img src="/feature-1.png" alt="AI Automation Dashboard" className="w-full h-full object-cover" />
+                    <img src="/feature-1.2.png" alt="AI Automation Dashboard" className="w-full h-full object-cover" />
                     {/* Subtle gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                   </div>

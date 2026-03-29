@@ -28,6 +28,11 @@
     "stat_3_val": "25+",
     "stat_3_label": "Afaceri Ajutate"
   },
+  "integrations": {
+    "title": "Integrări",
+    "heading": "Ne conectăm la instrumentele tale preferate",
+    "subtitle": "Integrare fără probleme cu peste 50 de platforme"
+  },
   "how_it_works": {
     "our_services": "Serviciile Noastre",
     "title_1": "Cum te ajută Novusolv",

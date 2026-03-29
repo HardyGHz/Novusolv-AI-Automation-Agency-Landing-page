@@ -28,6 +28,11 @@
     "stat_3_val": "25+",
     "stat_3_label": "Businesses Automated"
   },
+  "integrations": {
+    "title": "Integrations",
+    "heading": "We connect with the tools you already use",
+    "subtitle": "Seamless integration with 50+ platforms and growing"
+  },
   "how_it_works": {
     "our_services": "Our Services",
     "title_1": "How Novusolv helps you",

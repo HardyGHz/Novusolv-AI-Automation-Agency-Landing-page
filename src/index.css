@@ -20,8 +20,8 @@
   --color-accent-pink: #f4c7f2;
 
   /* Animations */
-  --animate-marquee-left: marquee-left 40s linear infinite;
-  --animate-marquee-right: marquee-right 40s linear infinite;
+  --animate-marquee-left: marquee-left 35s linear infinite;
+  --animate-marquee-right: marquee-right 35s linear infinite;
 }
 
 @keyframes marquee-left {
@@ -56,6 +56,7 @@ body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   color: var(--color-heading);
   background-color: var(--color-surface-default);
+  letter-spacing: 0.05em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -129,6 +130,24 @@ html.dark ::-webkit-scrollbar-thumb {
 
 .overlay-bg-top {
   background: linear-gradient(180deg, #1a0a2e 0%, #0a0a0a 60%);
+}
+
+/* Marquee mask for smooth edge fading */
+.marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
 }
 
 /* Custom scrollbar */
