@@ -88,9 +88,11 @@ export default async function handler(req: Request) {
       return new Response(JSON.stringify({ error: 'Security violation.' }), { status: 403 });
     }
 
-    // @ts-ignore
     const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) return new Response(JSON.stringify({ error: 'API Key missing.' }), { status: 500 });
+    if (!apiKey) {
+      console.error('CRITICAL: GEMINI_API_KEY is undefined in environment variables.');
+      return new Response(JSON.stringify({ error: 'Novu requires a GEMINI_API_KEY. Please set it in Vercel Settings > Environment Variables.' }), { status: 500 });
+    }
     
     // @ts-ignore
     const supabaseUrl = process.env.VITE_SUPABASE_URL || '';
