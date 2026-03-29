@@ -174,5 +174,25 @@
     "title": "Need a stunning website first?",
     "subtitle": "Before we automate your workflows, make sure your digital storefront converts. Plan and build with Site Crafter — our dedicated website planning tool.",
     "cta": "Open Site Crafter"
+  },
+  "ai_assistant": {
+    "name": "Novu",
+    "status": "AI Strategist Online",
+    "initial_greeting": "Hello! I'm Novu, your Novusolv AI Strategist. How can I optimize your business today?",
+    "thinking": "Novu is thinking...",
+    "placeholder": "Ask about AI ROI, security, or strategy...",
+    "minimal_placeholder": "Ask me anything...",
+    "reset": "Reset Chat",
+    "book_call_cta": "Book Discovery Call",
+    "section_title": "Meet Novu",
+    "section_subtitle": "Your AI Growth Strategist. Test our system live.",
+    "thinking_messages": [
+      "Crunching your ROI numbers...",
+      "Consulting the neural network...",
+      "Analyzing workflow bottlenecks...",
+      "Calculating automation potential...",
+      "Synthesizing strategy...",
+      "Loading business logic..."
+    ]
   }
 }

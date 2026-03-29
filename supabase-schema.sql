@@ -6,10 +6,14 @@
 -- 1. Leads table (Book a Call / Contact Form)
 CREATE TABLE public.leads (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  name TEXT NOT NULL,
-  email TEXT NOT NULL,
+  name TEXT,
+  email TEXT,
+  company TEXT,
+  industry TEXT,
+  pain_point TEXT,
   message TEXT,
-  source TEXT NOT NULL DEFAULT 'contact_form', -- 'hero_cta', 'footer_cta', 'contact_form'
+  source TEXT NOT NULL DEFAULT 'contact_form', -- 'hero_cta', 'footer_cta', 'contact_form', 'ai_strategist'
+  intent_score TEXT, -- 'LOW', 'MID', 'HIGH'
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 

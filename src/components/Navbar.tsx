@@ -64,9 +64,9 @@ export default function Navbar() {
         <div className="w-[30%] max-sm:w-auto">
           <a href="/" aria-label="Novusolv Home" className="relative flex items-center gap-2">
             <img
-              src={(scrolled && theme === 'light') ? "/logo-black.png" : "/logo-white.png"}
+              src={(scrolled && theme === 'light') ? "/cropped Black transparent.png" : "/cropped White transparent.png"}
               alt="Novusolv Logo"
-              className="h-28 max-sm:h-20 w-auto object-contain transition-all duration-300"
+              className="h-[97px] w-auto object-contain transition-all duration-300"
             />
           </a>
         </div>

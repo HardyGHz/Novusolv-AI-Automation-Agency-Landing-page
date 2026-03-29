@@ -12,6 +12,7 @@ import Privacy from './components/Privacy'
 import Terms from './components/Terms'
 import CookieBanner from './components/CookieBanner'
 import WebsiteBuilderCTA from './components/WebsiteBuilderCTA'
+import AIStrategistSection from './components/AIStrategistSection'
 
 function ScrollToHash() {
   const { hash } = useLocation()
@@ -37,6 +38,7 @@ function Home() {
       <Navbar />
       <main id="landing-hero-section">
         <Hero />
+        <AIStrategistSection />
         <LogoMarquee />
         <HowItWorks />
         <Testimonials />
