@@ -12,8 +12,10 @@
     "scrape-competitors": "npx tsx scripts/scrape-competitors.ts"
   },
   "dependencies": {
+    "@ai-sdk/google": "^3.0.53",
     "@google/generative-ai": "^0.24.1",
     "@supabase/supabase-js": "^2.99.3",
+    "ai": "^6.0.141",
     "clsx": "^2.1.1",
     "framer-motion": "^11.15.0",
     "i18next": "^25.10.10",
@@ -22,7 +24,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-i18next": "^16.6.6",
-    "react-router-dom": "^7.13.2"
+    "react-router-dom": "^7.13.2",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.0",
