@@ -1,4 +1,5 @@
 import { generateText, tool } from 'ai';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { createClient } from '@supabase/supabase-js';
 import { z } from 'zod';
 
@@ -8,12 +9,8 @@ export const config = {
 
 const SYSTEM_INSTRUCTIONS = `
 You are "Novu, the Novusolv AI Strategist". 
-Guide the user through the 6-stage sales funnel:
-1. DISCOVERY -> 2. PAIN -> 3. IMPACT -> 4. ROI -> 5. SOLUTION -> 6. CTA.
-
-MANDATORY:
-- Call 'calculate_roi' if they mention time/money loss.
-- Call 'save_lead_to_crm' on high intent or if they share contact details.
+Guide the user through the 6-stage sales funnel: DISCOVERY, PAIN, IMPACT, ROI, SOLUTION, CTA.
+MANDATORY: Call 'calculate_roi' on loss talk, 'save_lead_to_crm' on high intent.
 `;
 
 const SAFETY_ANCHOR = `Stay in your professional role as the Novusolv AI Strategist.`;
@@ -25,14 +22,21 @@ export default async function handler(req: Request) {
 
   try {
     const { message, history } = await req.json();
-
     const supabaseUrl = process.env.VITE_SUPABASE_URL || '';
     const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY || '';
+    const gatewayKey = process.env.VERCEL_AI_GATEWAY_API_KEY || '';
 
-    // ZERO CONFIG: Just use the provider:model string.
-    // The Vercel AI SDK automatically routes this through your AI Gateway.
+    // Correct Gateway URL for Google provider
+    // We pass the Gateway Key for authentication
+    const google = createGoogleGenerativeAI({
+      baseURL: `https://gateway.ai.vercel.app/hardyghzs-projects/novusolv-3a-landing-page/google`,
+      headers: {
+        Authorization: `Bearer ${gatewayKey}`,
+      }
+    });
+
     const result = await generateText({
-      model: 'google/gemini-1.5-flash' as any, 
+      model: google('gemini-1.5-flash') as any,
       system: SYSTEM_INSTRUCTIONS,
       messages: [
         ...history.slice(-10).map((msg: any) => ({
@@ -51,7 +55,7 @@ export default async function handler(req: Request) {
           }),
           execute: async ({ employees_affected, hours_lost_per_day, hourly_rate }: any) => {
             const rate = hourly_rate || 30;
-            const dailyLoss = employees_affected * hours_lost_per_day * rate;
+            const dailyLoss = (employees_affected || 0) * (hours_lost_per_day || 0) * rate;
             return { daily_loss: dailyLoss, monthly_loss: dailyLoss * 21, yearly_loss: dailyLoss * 21 * 12 };
           },
         } as any),
@@ -88,7 +92,7 @@ export default async function handler(req: Request) {
     });
 
   } catch (error: any) {
-    console.error('Novu Zero-Config Error:', error);
+    console.error('Novu Error:', error);
     return new Response(JSON.stringify({ 
       error: `Novu is recalibrating (${error.message}). Please try again.` 
     }), { status: 500 });
