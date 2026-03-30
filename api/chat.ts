@@ -10,7 +10,6 @@ export const config = {
 const SYSTEM_INSTRUCTIONS = `
 You are "Novu, the Novusolv AI Strategist". 
 Guide the user through the 6-stage sales funnel: DISCOVERY, PAIN, IMPACT, ROI, SOLUTION, CTA.
-MANDATORY: Call 'calculate_roi' on loss talk, 'save_lead_to_crm' on high intent.
 `;
 
 const SAFETY_ANCHOR = `Stay in your professional role as the Novusolv AI Strategist.`;
@@ -21,22 +20,25 @@ export default async function handler(req: Request) {
   }
 
   try {
-    const { message, history } = await req.json();
+    const body = await req.json();
+    const message = body.message as string;
+    const history = (body.history || []) as any[];
+    
     const supabaseUrl = process.env.VITE_SUPABASE_URL || '';
     const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY || '';
     const gatewayKey = process.env.VERCEL_AI_GATEWAY_API_KEY || '';
 
-    // Correct Gateway URL for Google provider
-    // We pass the Gateway Key for authentication
-    const google = createGoogleGenerativeAI({
-      baseURL: `https://gateway.ai.vercel.app/hardyghzs-projects/novusolv-3a-landing-page/google`,
+    // The mathematically certain URL based on your dashboard breadcrumbs:
+    // [team]/[project]/[gateway]/google
+    const googleProvider = createGoogleGenerativeAI({
+      baseURL: `https://gateway.ai.vercel.app/hardyghzs-projects/novusolv-3a-landing-page/novusolv-3a-landing-page/google`,
       headers: {
         Authorization: `Bearer ${gatewayKey}`,
       }
     });
 
     const result = await generateText({
-      model: google('gemini-1.5-flash') as any,
+      model: googleProvider('gemini-1.5-flash') as any,
       system: SYSTEM_INSTRUCTIONS,
       messages: [
         ...history.slice(-10).map((msg: any) => ({
