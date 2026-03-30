@@ -71,7 +71,7 @@ export default async function handler(req: Request) {
     // The baseURL points to your Vercel AI Gateway for Google
     const google = createGoogleGenerativeAI({
       apiKey: '', // Empty because we rely on the Gateway BYOK
-      baseURL: `https://gateway.ai.vercel.app/hardyghzs-projects/novusolv-3a-landing-page/novusolv-3a-landing-page/google`,
+      baseURL: `https://gateway.ai.vercel.app/hardyghzs-projects/novusolv-3a-landing-page/google`,
       headers: {
         Authorization: `Bearer ${gatewayKey}`,
       },
