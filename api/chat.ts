@@ -80,15 +80,15 @@ export default async function handler(req: Request) {
     const model = google('gemini-1.5-flash');
 
     const result = await generateText({
-      model,
+      model: model as any,
       system: SYSTEM_INSTRUCTIONS,
       messages: [
         ...history.slice(-10).map((msg: any) => ({
-          role: msg.role === 'model' ? 'assistant' : msg.role,
-          content: msg.parts[0].text,
+          role: (msg.role === 'model' || msg.role === 'assistant') ? 'assistant' : 'user',
+          content: msg.parts?.[0]?.text || msg.content || '',
         })),
         { role: 'user', content: `${message}\n\n${SAFETY_ANCHOR}` },
-      ],
+      ] as any,
       tools: {
         calculate_roi: tool({
           description: 'Calculates financial loss from manual labor. Call when user discusses time/money lost.',
@@ -97,12 +97,8 @@ export default async function handler(req: Request) {
             hours_lost_per_day: z.number().describe('Hours lost per employee/day'),
             hourly_rate: z.number().optional().default(30).describe('Avg hourly rate'),
           }),
-          execute: async ({ employees_affected, hours_lost_per_day, hourly_rate }: {
-            employees_affected: number;
-            hours_lost_per_day: number;
-            hourly_rate: number;
-          }) => {
-            const dailyLoss = employees_affected * hours_lost_per_day * hourly_rate;
+          execute: async ({ employees_affected, hours_lost_per_day, hourly_rate }: any) => {
+            const dailyLoss = (employees_affected || 0) * (hours_lost_per_day || 0) * (hourly_rate || 30);
             const monthlyLoss = dailyLoss * 21;
             const yearlyLoss = monthlyLoss * 12;
             return { daily_loss: dailyLoss, monthly_loss: monthlyLoss, yearly_loss: yearlyLoss };
@@ -130,7 +126,7 @@ export default async function handler(req: Request) {
             return { success: false, message: "CRM unavailable." };
           },
         }),
-      },
+      } as any,
       maxSteps: 5,
     });
 
