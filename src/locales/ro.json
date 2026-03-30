@@ -174,5 +174,25 @@
     "title": "Ai nevoie întâi de un website uimitor?",
     "subtitle": "Înainte să îți automatizăm procesele, asigură-te că prezența ta online convertește. Planifică și construiește cu Site Crafter — instrumentul nostru dedicat.",
     "cta": "Deschide Site Crafter"
+  },
+  "ai_assistant": {
+    "name": "Novu",
+    "status": "Strateg AI Online",
+    "initial_greeting": "Bună! Sunt Novu, Strategul tău AI Novusolv. Cum îți pot optimiza afacerea astăzi?",
+    "thinking": "Novu gândește...",
+    "placeholder": "Întreabă despre ROI, securitate sau strategie...",
+    "minimal_placeholder": "Întreabă-mă orice...",
+    "reset": "Resetează Chat-ul",
+    "book_call_cta": "Programează o Discuție",
+    "section_title": "Întâlnește-l pe Novu",
+    "section_subtitle": "Strategul tău AI pentru creștere. Testează sistemul live.",
+    "thinking_messages": [
+      "Calculez cifrele tale de ROI...",
+      "Consult rețeaua neuronală...",
+      "Analizez blocajele din fluxurile de lucru...",
+      "Estimez potențialul de automatizare...",
+      "Sintetizez strategia...",
+      "Încarc logica de business..."
+    ]
   }
 }
