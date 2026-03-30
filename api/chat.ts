@@ -91,28 +91,27 @@ export default async function handler(req: Request) {
       ] as any,
       tools: {
         calculate_roi: tool({
-          description: 'Calculates financial loss from manual labor. Call when user discusses time/money lost.',
+          description: 'Calculates financial loss from manual labor.',
           parameters: z.object({
-            employees_affected: z.number().describe('Number of employees'),
-            hours_lost_per_day: z.number().describe('Hours lost per employee/day'),
-            hourly_rate: z.number().optional().default(30).describe('Avg hourly rate'),
+            employees_affected: z.number(),
+            hours_lost_per_day: z.number(),
+            hourly_rate: z.number().optional(),
           }),
           execute: async ({ employees_affected, hours_lost_per_day, hourly_rate }: any) => {
-            const dailyLoss = (employees_affected || 0) * (hours_lost_per_day || 0) * (hourly_rate || 30);
-            const monthlyLoss = dailyLoss * 21;
-            const yearlyLoss = monthlyLoss * 12;
-            return { daily_loss: dailyLoss, monthly_loss: monthlyLoss, yearly_loss: yearlyLoss };
+            const rate = hourly_rate || 30;
+            const dailyLoss = (employees_affected || 0) * (hours_lost_per_day || 0) * rate;
+            return { daily_loss: dailyLoss, monthly_loss: dailyLoss * 21, yearly_loss: dailyLoss * 21 * 12 };
           },
-        }),
+        } as any),
         save_lead_to_crm: tool({
-          description: 'Saves high-qualified lead to CRM. Call on high intent or contact info shared.',
+          description: 'Saves high-qualified lead to CRM.',
           parameters: z.object({
             name: z.string().optional(),
             email: z.string().optional(),
             company: z.string().optional(),
             industry: z.string().optional(),
             pain_point: z.string().optional(),
-            intent_score: z.string().default('HIGH'),
+            intent_score: z.string().optional(),
           }),
           execute: async (leadData: any) => {
             if (supabaseUrl && supabaseKey) {
@@ -121,14 +120,14 @@ export default async function handler(req: Request) {
                 ...leadData,
                 source: 'ai_strategist' 
               });
-              return { success: true, message: "Lead captured. Move to pitch." };
+              return { success: true };
             }
-            return { success: false, message: "CRM unavailable." };
+            return { success: false };
           },
-        }),
-      } as any,
+        } as any),
+      },
       maxSteps: 5,
-    });
+    } as any);
 
     // Check if the save_lead_to_crm tool was called to flag 'HIGH' intent
     const wasLeadSaved = result.toolResults.some(tr => tr.toolName === 'save_lead_to_crm');
