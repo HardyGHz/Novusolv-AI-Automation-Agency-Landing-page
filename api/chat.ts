@@ -71,7 +71,7 @@ export default async function handler(req: Request) {
     // The baseURL points to your Vercel AI Gateway for Google
     const google = createGoogleGenerativeAI({
       apiKey: '', // Empty because we rely on the Gateway BYOK
-      baseURL: `https://gateway.ai.vercel.app/hardyghz/novusolv-3a-landing-page/novusolv-3a-landing-page/google/v1beta`,
+      baseURL: `https://gateway.ai.vercel.app/hardyghzs-projects/novusolv-3a-landing-page/novusolv-3a-landing-page/google/v1beta`,
       headers: {
         Authorization: `Bearer ${gatewayKey}`,
       },
@@ -142,7 +142,11 @@ export default async function handler(req: Request) {
     });
 
   } catch (error: any) {
-    console.error('Novu Gateway Error:', error);
-    return new Response(JSON.stringify({ error: 'Novu is currently recalibrating. Please try again.' }), { status: 500 });
+    console.error('Novu Gateway Error Details:', error);
+    // Return a more descriptive error for debugging (you can remove this once it works)
+    const errorMsg = error?.message || 'Unknown Gateway Error';
+    return new Response(JSON.stringify({ 
+      error: `Novu is recalibrating (${errorMsg}). Please try again.` 
+    }), { status: 500 });
   }
 }
