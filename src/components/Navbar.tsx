@@ -66,7 +66,7 @@ export default function Navbar() {
             <img
               src={(scrolled && theme === 'light') ? "/logo-black.png" : "/logo-white.png"}
               alt="Novusolv Logo"
-              className="h-28 max-sm:h-20 w-auto object-contain transition-all duration-300"
+              className="h-28 max-sm:h-40 w-auto object-contain transition-all duration-300"
             />
           </a>
         </div>
