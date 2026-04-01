@@ -117,7 +117,7 @@ function PlatformIcon({ platform }: { platform: Platform }) {
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <div className="bg-blur rounded-2xl p-6 max-sm:p-4 flex flex-col gap-4 max-sm:gap-3 transition-all duration-300 w-[400px] max-sm:w-[200px] flex-shrink-0 mx-3 max-sm:mx-1.5 relative">
+    <div className="bg-blur rounded-2xl p-6 max-sm:p-4 flex flex-col gap-4 max-sm:gap-3 transition-all duration-300 w-[400px] max-sm:w-[300px] flex-shrink-0 mx-3 max-sm:mx-1.5 relative">
       <div className="flex items-center gap-3">
         {/* Avatar placeholder */}
         <div className="w-12 h-12 rounded-xl overflow-hidden bg-white/20 flex-shrink-0 flex items-center justify-center">
@@ -130,7 +130,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
           )}
         </div>
       </div>
-      <p className="text-[14px] leading-[150%] text-white">
+      <p className="text-[14px] leading-[150%] text-white max-sm:line-clamp-4 max-sm:overflow-hidden">
         "{testimonial.quote}"
       </p>
       <div className="flex justify-end absolute right-5 top-5">
