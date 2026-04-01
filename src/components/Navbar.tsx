@@ -66,7 +66,7 @@ export default function Navbar() {
             <img
               src={(scrolled && theme === 'light') ? "/logo-black.png" : "/logo-white.png"}
               alt="Novusolv Logo"
-              className="h-28 max-sm:h-40 w-auto object-contain transition-all duration-300"
+              className="h-28 max-sm:h-25 w-auto object-contain transition-all duration-300"
             />
           </a>
         </div>
@@ -180,7 +180,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className={`sm:hidden absolute top-full left-0 w-full shadow-lg border-t z-50 transition-colors ${
+            className={`sm:hidden absolute top-full left-0 w-full shadow-lg border-t z-50 transition-colors rounded-b-2xl overflow-hidden ${
               theme === 'dark' ? 'bg-gray-950 border-white/10' : 'bg-white border-gray-100'
             }`}
           >
@@ -220,6 +220,19 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </nav>
+
+    {/* Mobile menu backdrop — tap outside to close */}
+    <AnimatePresence>
+      {mobileMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="sm:hidden fixed inset-0 bg-black/40 backdrop-blur-sm z-[99]"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+    </AnimatePresence>
 
     {/* Book a Call Modal */}
     <AnimatePresence>

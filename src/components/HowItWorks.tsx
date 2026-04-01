@@ -229,7 +229,7 @@ export default function HowItWorks() {
               </div>
 
               {/* Mobile horizontal nav */}
-              <div className="sm:hidden sticky top-[55px] border border-x-0 border-outline-default px-3 bg-white z-[1] -mx-4">
+              <div className="sm:hidden sticky top-[72px] border border-x-0 border-outline-default px-3 bg-surface-default z-[1] -mx-4">
                 <div className="flex flex-row overflow-x-auto gap-4">
                   {sections.map((section) => (
                     <div

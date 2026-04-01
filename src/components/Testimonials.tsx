@@ -117,7 +117,7 @@ function PlatformIcon({ platform }: { platform: Platform }) {
 
 function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
-    <div className="bg-blur rounded-2xl p-6 flex flex-col gap-4 transition-all duration-300 w-[400px] flex-shrink-0 mx-3 relative">
+    <div className="bg-blur rounded-2xl p-6 max-sm:p-4 flex flex-col gap-4 max-sm:gap-3 transition-all duration-300 w-[400px] max-sm:w-[200px] flex-shrink-0 mx-3 max-sm:mx-1.5 relative">
       <div className="flex items-center gap-3">
         {/* Avatar placeholder */}
         <div className="w-12 h-12 rounded-xl overflow-hidden bg-white/20 flex-shrink-0 flex items-center justify-center">

@@ -29,9 +29,9 @@ export default function Hero() {
     <section id="contact" className="min-h-[108vh] max-w-[1920px] mx-auto max-sm:min-h-[auto] flex flex-col w-full relative pb-8 justify-center">
       {/* Background - AI generated image */}
       <img src="/hero-bg.png" alt="" className="absolute top-0 left-0 w-full object-cover opacity-40 pointer-events-none" style={{ height: '120%' }} />
-      <div className="absolute inset-0 w-full h-[120%] max-h-full overlay-bg" />
+      <div className="absolute inset-0 w-full h-[120%] max-h-full overlay-bg pointer-events-none" />
 
-      <div className="my-auto w-full">
+      <div className="my-auto w-full relative z-10">
         <div className="justify-center items-center w-full max-sm:mt-[50px] relative my-[42px] pt-[88px]">
           <div className="flex flex-col gap-10 container">
             <div className="flex flex-col gap-8 w-full overflow-hidden">
@@ -67,7 +67,7 @@ export default function Hero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="text-[56px] leading-[115%] max-sm:text-[36px] font-bold"
+                    className="text-[56px] leading-[115%] max-sm:text-[24px] font-bold"
                   >
                     <span className="text-white">{t('hero.title_1')}</span>
                     <br />
@@ -117,11 +117,17 @@ export default function Hero() {
                       {t('hero.book_audit_btn')}
                       <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </button>
-                  <a href="#custom-models" className="max-sm:w-full">
-                    <button className="font-semibold flex items-center justify-center cursor-pointer bg-white/10 text-white hover:bg-white/20 py-3 px-8 h-[52px] rounded-2xl transition-all border border-white/20 backdrop-blur-sm hover:border-white/40 text-[16px] w-full">
+                  <a href="#custom-models" className="hidden sm:block">
+                    <button className="font-semibold flex items-center justify-center cursor-pointer bg-white/10 text-white hover:bg-white/20 py-3 px-8 h-[52px] rounded-2xl transition-all border border-white/20 backdrop-blur-sm hover:border-white/40 text-[16px]">
                       {t('hero.see_work_btn')}
                     </button>
                   </a>
+                  <button
+                    onClick={() => setShowContactForm(true)}
+                    className="sm:hidden font-semibold flex items-center justify-center cursor-pointer bg-white/10 text-white hover:bg-white/20 py-3 px-8 h-[52px] rounded-2xl transition-all border border-white/20 backdrop-blur-sm hover:border-white/40 text-[16px] w-full"
+                  >
+                    {t('nav.book_call')}
+                  </button>
                 </motion.div>
               </div>
 
