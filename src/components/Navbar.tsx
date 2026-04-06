@@ -64,7 +64,7 @@ export default function Navbar() {
         <div className="w-[30%] max-sm:w-auto">
           <a href="/" aria-label="Novusolv Home" className="relative flex items-center gap-2">
             <img
-              src={(scrolled && theme === 'light') ? "/logo-black.png" : "/logo-white.png"}
+              src={theme === 'light' ? "/logo-black.png" : "/logo-white.png"}
               alt="Novusolv Logo"
               className="h-28 max-sm:h-25 w-auto object-contain transition-all duration-300"
             />
@@ -118,7 +118,7 @@ export default function Navbar() {
             </li>
             <li>
               <a
-                href="/#testimonials"
+                href="/#results"
                 className={`text-[14px] leading-[150%] opacity-70 hover:opacity-100 font-medium cursor-pointer transition-opacity ${scrolled ? 'text-heading' : 'text-white'}`}
               >
                 {t('nav.case_studies')}
@@ -186,7 +186,7 @@ export default function Navbar() {
           >
             <div className="container py-4 flex flex-col gap-4">
               <a href="/#custom-models" className={`text-[15px] font-medium py-3 border-b border-gray-100/10 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'}`}>{t('nav.services')}</a>
-              <a href="/#testimonials" className={`text-[15px] font-medium py-3 border-b border-gray-100/10 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'}`}>{t('nav.case_studies')}</a>
+              <a href="/#results" className={`text-[15px] font-medium py-3 border-b border-gray-100/10 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'}`}>{t('nav.case_studies')}</a>
               <a href="/#faq" className={`text-[15px] font-medium py-3 border-b border-gray-100/10 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'}`}>{t('nav.faq')}</a>
               
               <div className="flex items-center justify-between py-2 border-t border-gray-100 mt-2 pt-4">

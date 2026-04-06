@@ -34,7 +34,7 @@ function ScrollToHash() {
 
 function Home() {
   return (
-    <div className="relative" id="contact">
+    <div className="relative">
       <Navbar />
       <main id="landing-hero-section">
         <Hero />

@@ -1,7 +1,7 @@
 {
   "nav": {
     "services": "Servicii",
-    "case_studies": "Proiecte realizate",
+    "case_studies": "Rezultate",
     "faq": "Întrebări frecvente",
     "book_call": "Programează o discuție",
     "custom_models": "Soluții AI adaptate",
@@ -25,8 +25,8 @@
     "stat_1_label": "Economisire Medie",
     "stat_2_val": "100+",
     "stat_2_label": "Ore Salvate / Lună",
-    "stat_3_val": "25+",
-    "stat_3_label": "Afaceri Ajutate"
+    "stat_3_val": "99.9%",
+    "stat_3_label": "Precizie Automatizată"
   },
   "integrations": {
     "title": "Integrări",

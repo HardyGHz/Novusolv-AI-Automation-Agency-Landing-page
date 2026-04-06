@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 interface UseInViewOptions {
   threshold?: number
   rootMargin?: string
+  once?: boolean
 }
 
 export function useInView<T extends HTMLElement>(options: UseInViewOptions = {}) {
@@ -15,7 +16,14 @@ export function useInView<T extends HTMLElement>(options: UseInViewOptions = {})
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsInView(entry.isIntersecting)
+        if (entry.isIntersecting) {
+          setIsInView(true)
+          if (options.once) {
+            observer.disconnect()
+          }
+        } else if (!options.once) {
+          setIsInView(false)
+        }
       },
       {
         threshold: options.threshold ?? 0.3,
@@ -25,7 +33,7 @@ export function useInView<T extends HTMLElement>(options: UseInViewOptions = {})
 
     observer.observe(element)
     return () => observer.disconnect()
-  }, [options.threshold, options.rootMargin])
+  }, [options.threshold, options.rootMargin, options.once])
 
   return { ref, isInView }
 }
