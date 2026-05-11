@@ -1,18 +1,19 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import LogoMarquee from './components/LogoMarquee'
-import HowItWorks from './components/HowItWorks'
-import BeforeAfter from './components/BeforeAfter'
-import ImpactAreas from './components/ImpactAreas'
-import FAQ from './components/FAQ'
-import Footer from './components/Footer'
-import Privacy from './components/Privacy'
-import Terms from './components/Terms'
-import CookieBanner from './components/CookieBanner'
-import WebsiteBuilderCTA from './components/WebsiteBuilderCTA'
+
+const HowItWorks = lazy(() => import('./components/HowItWorks'))
+const BeforeAfter = lazy(() => import('./components/BeforeAfter'))
+const ImpactAreas = lazy(() => import('./components/ImpactAreas'))
+const WebsiteBuilderCTA = lazy(() => import('./components/WebsiteBuilderCTA'))
+const FAQ = lazy(() => import('./components/FAQ'))
+const Footer = lazy(() => import('./components/Footer'))
+const Privacy = lazy(() => import('./components/Privacy'))
+const Terms = lazy(() => import('./components/Terms'))
+const CookieBanner = lazy(() => import('./components/CookieBanner'))
 
 function ScrollToHash() {
   const { hash } = useLocation()
@@ -39,13 +40,17 @@ function Home() {
       <main id="landing-hero-section">
         <Hero />
         <LogoMarquee />
-        <HowItWorks />
-        <BeforeAfter />
-        <ImpactAreas />
-        <WebsiteBuilderCTA />
-        <FAQ />
+        <Suspense fallback={null}>
+          <HowItWorks />
+          <BeforeAfter />
+          <ImpactAreas />
+          <WebsiteBuilderCTA />
+          <FAQ />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   )
 }
@@ -62,10 +67,12 @@ function App() {
       <ScrollToHash />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Suspense fallback={null}><Privacy /></Suspense>} />
+        <Route path="/terms" element={<Suspense fallback={null}><Terms /></Suspense>} />
       </Routes>
-      <CookieBanner />
+      <Suspense fallback={null}>
+        <CookieBanner />
+      </Suspense>
     </BrowserRouter>
   )
 }
