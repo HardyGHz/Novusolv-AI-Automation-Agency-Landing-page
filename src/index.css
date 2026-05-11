@@ -4,7 +4,7 @@
   /* Brand colors for Novusolv */
   --color-heading: #1a1a1a;
   --color-body: #6b7280;
-  --color-link: #3b82f6;
+  --color-link: #FFC300;
   --color-surface-default: #ffffff;
   --color-surface-card: #f5f5f5;
   --color-surface-button-default: #1a1a1a;
@@ -17,7 +17,11 @@
   --color-outline-default: #e5e7eb;
   --color-emphasis-low: #e5e7eb;
   --color-disabled-default: #9ca3af;
-  --color-accent-pink: #f4c7f2;
+  --color-brand-primary: #FFC300;
+  --color-brand-secondary: #FFD60A;
+  --color-navy-deep: #000814;
+  --color-navy-dark: #001D3D;
+  --color-navy: #003566;
 
   /* Animations */
   --animate-marquee-left: marquee-left 35s linear infinite;
@@ -68,14 +72,14 @@ body {
 html.dark {
   --color-heading: #e8e8e8;
   --color-body: #9ca3af;
-  --color-surface-default: #111827;
-  --color-surface-card: #1f2937;
-  --color-outline-default: #374151;
-  --color-emphasis-low: #374151;
+  --color-surface-default: #000814;
+  --color-surface-card: #001D3D;
+  --color-outline-default: #003566;
+  --color-emphasis-low: #003566;
   --color-surface-button-default: #e8e8e8;
   --color-surface-button-default-hover: #d1d5db;
-  --color-surface-button-oncolor: #111827;
-  --color-surface-button-oncolor-hover: #1f2937;
+  --color-surface-button-oncolor: #000814;
+  --color-surface-button-oncolor-hover: #001D3D;
 }
 
 html.dark body {
@@ -84,19 +88,19 @@ html.dark body {
 
 /* Dark mode: white-bg sections (Privacy, Terms, modals) */
 html.dark .bg-white {
-  background-color: #1f2937 !important;
+  background-color: #001D3D !important;
 }
 
 html.dark .bg-gray-50,
 html.dark .bg-gray-100,
 html.dark .bg-surface-card {
-  background-color: #1f2937 !important;
+  background-color: #001D3D !important;
 }
 
 /* Dark mode: light borders */
 html.dark .border-gray-100,
 html.dark .border-gray-200 {
-  border-color: #374151 !important;
+  border-color: #003566 !important;
 }
 
 /* Dark mode: text overrides for gray/slate utility classes */
@@ -112,7 +116,7 @@ html.dark .text-gray-500 {
 
 /* Dark scrollbar */
 html.dark ::-webkit-scrollbar-thumb {
-  background: #4b5563;
+  background: #003566;
 }
 
 /* Frosted glass effect for testimonial cards */
@@ -125,11 +129,11 @@ html.dark ::-webkit-scrollbar-thumb {
 
 /* Dark overlay gradient for sections with background images */
 .overlay-bg {
-  background: linear-gradient(180deg, #0a0a0a 0%, #1a0a2e 50%, #0a0a0a 100%);
+  background: linear-gradient(180deg, #000814 0%, #001D3D 50%, #000814 100%);
 }
 
 .overlay-bg-top {
-  background: linear-gradient(180deg, #1a0a2e 0%, #0a0a0a 60%);
+  background: linear-gradient(180deg, #001D3D 0%, #000814 60%);
 }
 
 /* Marquee mask for smooth edge fading */

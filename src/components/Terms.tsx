@@ -7,7 +7,7 @@ export default function Terms() {
   return (
     <div className="min-h-screen bg-white py-20 px-4">
       <div className="max-w-3xl mx-auto">
-        <a href="/" className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 mb-10 font-medium">
+        <a href="/" className="inline-flex items-center gap-2 text-[#FFC300] hover:text-[#FFD60A] mb-10 font-medium">
           <ArrowLeft size={16} /> {t('common.back_to_home')}
         </a>
         <h1 className="text-4xl font-bold text-gray-900 mb-2">Terms of Service</h1>
@@ -41,7 +41,7 @@ export default function Terms() {
 
           <section>
             <h2 className="text-xl font-semibold text-gray-900 mb-3">6. Contact</h2>
-            <p>For questions about these terms, contact us at <a href="mailto:hello@novusolv.com" className="text-purple-600 hover:underline">hello@novusolv.com</a>.</p>
+            <p>For questions about these terms, contact us at <a href="mailto:hello@novusolv.com" className="text-[#FFC300] hover:underline">hello@novusolv.com</a>.</p>
           </section>
         </div>
       </div>

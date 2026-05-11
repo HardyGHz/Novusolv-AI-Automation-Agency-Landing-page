@@ -18,8 +18,8 @@ export default function ImpactAreas() {
   const areas: ImpactArea[] = [
     {
       icon: <Megaphone size={20} />,
-      color: 'text-pink-500',
-      bgColor: 'bg-pink-500/10',
+      color: 'text-amber-400',
+      bgColor: 'bg-amber-400/10',
       area: t('impact.marketing_title'),
       examples: [
         t('impact.marketing_1'),
@@ -32,8 +32,8 @@ export default function ImpactAreas() {
     },
     {
       icon: <TrendingUp size={20} />,
-      color: 'text-purple-500',
-      bgColor: 'bg-purple-500/10',
+      color: 'text-yellow-400',
+      bgColor: 'bg-yellow-400/10',
       area: t('impact.sales_title'),
       examples: [
         t('impact.sales_1'),
@@ -46,8 +46,8 @@ export default function ImpactAreas() {
     },
     {
       icon: <Settings size={20} />,
-      color: 'text-indigo-500',
-      bgColor: 'bg-indigo-500/10',
+      color: 'text-blue-700',
+      bgColor: 'bg-blue-700/10',
       area: t('impact.ops_title'),
       examples: [
         t('impact.ops_1'),
@@ -86,7 +86,7 @@ export default function ImpactAreas() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12 max-sm:mb-8"
         >
-          <p className="text-indigo-500 font-semibold text-[13px] uppercase tracking-widest mb-3">
+          <p className="text-[#FFC300] font-semibold text-[13px] uppercase tracking-widest mb-3">
             {t('impact.eyebrow')}
           </p>
           <h2 className="text-[48px] leading-[115%] max-sm:text-[32px] font-bold text-heading">
@@ -106,7 +106,7 @@ export default function ImpactAreas() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="bg-surface-card border border-outline-default rounded-2xl p-6 flex flex-col gap-5 hover:border-purple-200 dark:hover:border-purple-800 hover:shadow-lg hover:shadow-purple-500/5 transition-all duration-300 group"
+              className="bg-surface-card border border-outline-default rounded-2xl p-6 flex flex-col gap-5 hover:border-[#FFC300]/30 dark:hover:border-[#FFC300]/30 hover:shadow-lg hover:shadow-[#FFC300]/5 transition-all duration-300 group"
             >
               {/* Icon + area */}
               <div className="flex items-center gap-3">
@@ -146,7 +146,7 @@ export default function ImpactAreas() {
           className="flex justify-center mt-10"
         >
           <a href="#contact">
-            <button className="flex items-center gap-2 font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700 py-3 px-8 h-[52px] rounded-2xl transition-all shadow-xl shadow-purple-500/25 hover:shadow-purple-500/40 hover:scale-[1.02] group text-[16px]">
+            <button className="flex items-center gap-2 font-semibold bg-gradient-to-r from-[#FFC300] to-[#FFD60A] text-[#000814] hover:from-[#E5AF00] hover:to-[#E5C009] py-3 px-8 h-[52px] rounded-2xl transition-all shadow-xl shadow-[#FFC300]/25 hover:shadow-[#FFC300]/40 hover:scale-[1.02] group text-[16px]">
               {t('impact.cta')}
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </button>

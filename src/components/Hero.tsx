@@ -47,7 +47,7 @@ function AnimatedCounter({
   return (
     <span
       ref={ref}
-      className="text-[28px] max-sm:text-[22px] font-bold tracking-tight bg-gradient-to-r from-purple-400 to-indigo-400 bg-clip-text text-transparent min-w-[100px] text-center block"
+      className="text-[28px] max-sm:text-[22px] font-bold tracking-tight bg-gradient-to-r from-[#FFC300] to-[#FFD60A] bg-clip-text text-transparent min-w-[100px] text-center block"
     >
       {count.toFixed(precision)}{suffix}
     </span>
@@ -128,8 +128,8 @@ export default function Hero() {
         className="min-h-screen max-w-[1920px] mx-auto flex flex-col w-full relative justify-center overflow-hidden pt-20 pb-10"
       >
       {/* Background ambience */}
-      <div className="absolute top-[-10%] right-[-5%] w-[55vw] h-[55vw] rounded-full blur-[160px] bg-purple-900/25 pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-5%] w-[45vw] h-[45vw] rounded-full blur-[160px] bg-indigo-900/20 pointer-events-none" />
+      <div className="absolute top-[-10%] right-[-5%] w-[55vw] h-[55vw] rounded-full blur-[160px] bg-[#001D3D]/40 pointer-events-none" />
+      <div className="absolute bottom-[-10%] left-[-5%] w-[45vw] h-[45vw] rounded-full blur-[160px] bg-[#003566]/30 pointer-events-none" />
       <div className="absolute inset-0 w-full h-full bg-[url('/noise.png')] opacity-[0.03] pointer-events-none mix-blend-overlay" />
 
       <div className="container relative z-10 my-auto py-10">
@@ -148,7 +148,7 @@ export default function Hero() {
               >
                 {t('hero.title_1')}
                 <br />
-                <span className="bg-gradient-to-r from-purple-500 via-pink-400 to-indigo-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#FFC300] via-[#FFD60A] to-[#FFC300] bg-clip-text text-transparent">
                   {t('hero.title_2')}
                 </span>
               </motion.h1>
@@ -173,7 +173,7 @@ export default function Hero() {
                       transition={{ duration: 0.3 }}
                       className="absolute inset-0"
                     >
-                      <span className="font-semibold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+                      <span className="font-semibold bg-gradient-to-r from-[#FFC300] to-[#FFD60A] bg-clip-text text-transparent">
                         {rotatingWords[currentWordIndex]}
                       </span>
                     </motion.div>
@@ -191,7 +191,7 @@ export default function Hero() {
             >
               <button
                 onClick={() => setShowContactForm(true)}
-                className="font-semibold flex items-center justify-center cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700 py-3 px-8 h-[52px] rounded-xl transition-all shadow-xl shadow-purple-500/25 hover:shadow-purple-500/40 hover:-translate-y-0.5 group text-[16px] max-sm:w-full"
+                className="font-semibold flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#FFC300] to-[#FFD60A] text-[#000814] hover:from-[#E5AF00] hover:to-[#E5C009] py-3 px-8 h-[52px] rounded-xl transition-all shadow-xl shadow-[#FFC300]/25 hover:shadow-[#FFC300]/40 hover:-translate-y-0.5 group text-[16px] max-sm:w-full"
               >
                 {t('hero.book_audit_btn')}
                 <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -235,8 +235,8 @@ export default function Hero() {
             className="relative hidden lg:flex items-center justify-center h-[560px]"
           >
             {/* Deep space background glow orbs */}
-            <div className="absolute w-72 h-72 rounded-full bg-purple-600/10 blur-[80px]" />
-            <div className="absolute w-48 h-48 rounded-full bg-indigo-600/10 blur-[60px] translate-x-20 translate-y-10" />
+            <div className="absolute w-72 h-72 rounded-full bg-[#FFC300]/10 blur-[80px]" />
+            <div className="absolute w-48 h-48 rounded-full bg-[#003566]/20 blur-[60px] translate-x-20 translate-y-10" />
 
             {/* Subtle star-field dots */}
             {[...Array(30)].map((_, i) => (
@@ -261,10 +261,10 @@ export default function Hero() {
 
             {/* ── Floating Cards ── */}
             <FloatingCard
-              icon={<Database size={18} className="text-indigo-300" />}
+              icon={<Database size={18} className="text-[#FFD60A]" />}
               label="Lead Captured"
               sub="CRM updated via Webhook"
-              color="bg-indigo-500/20"
+              color="bg-[#003566]/30"
               delay={0}
               x="5%"
               y="10%"
@@ -272,10 +272,10 @@ export default function Hero() {
             />
 
             <FloatingCard
-              icon={<BrainCircuit size={18} className="text-purple-300" />}
+              icon={<BrainCircuit size={18} className="text-[#FFC300]" />}
               label="AI Processing"
               sub="Intent scored — 0.4s"
-              color="bg-purple-500/20"
+              color="bg-[#FFC300]/20"
               delay={0.4}
               x="42%"
               y="30%"

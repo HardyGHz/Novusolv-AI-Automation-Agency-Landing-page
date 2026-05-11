@@ -148,7 +148,7 @@ export default function Testimonials() {
   return (
     <div id="testimonials" className="relative py-20 max-sm:py-10 overflow-hidden overlay-bg-top max-w-[1920px] mx-auto">
       {/* Background image placeholder */}
-      <div className="absolute inset-0 w-full h-full max-h-full bg-gradient-to-b from-purple-950 via-indigo-950 to-gray-950" />
+      <div className="absolute inset-0 w-full h-full max-h-full bg-gradient-to-b from-[#000814] via-[#001D3D] to-[#000814]" />
 
       <div className="flex flex-col gap-16 max-sm:gap-8">
         {/* Header */}
@@ -197,7 +197,7 @@ export default function Testimonials() {
         {/* CTA */}
         <div className="flex justify-center z-[2]">
           <a href="#contact">
-            <button className="font-medium flex items-center justify-center cursor-pointer bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white py-2 px-4 h-[40px] rounded-xl transition-all shadow-lg shadow-purple-500/30 group">
+            <button className="font-medium flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#FFC300] to-[#FFD60A] hover:from-[#E5AF00] hover:to-[#E5C009] text-[#000814] py-2 px-4 h-[40px] rounded-xl transition-all shadow-lg shadow-[#FFC300]/30 group">
               <span className="text-[14px] leading-[150%]">{t('testimonials.cta')}</span>
               <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
             </button>

@@ -40,7 +40,7 @@ export default function BookCallForm({ onClose }: BookCallFormProps) {
     }
   }
 
-  const inputClass = 'w-full px-4 py-3 rounded-xl text-[14px] bg-gray-50 border border-gray-200 focus:border-purple-400 focus:bg-white text-heading placeholder:text-gray-400 outline-none transition-all'
+  const inputClass = 'w-full px-4 py-3 rounded-xl text-[14px] bg-gray-50 border border-gray-200 focus:border-[#FFC300] focus:bg-white text-heading placeholder:text-gray-400 outline-none transition-all'
 
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
@@ -132,7 +132,7 @@ export default function BookCallForm({ onClose }: BookCallFormProps) {
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="mt-1 font-semibold flex items-center justify-center gap-2 cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700 py-3 px-6 rounded-xl transition-all shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 group disabled:opacity-60 text-[14px]"
+                  className="mt-1 font-semibold flex items-center justify-center gap-2 cursor-pointer bg-gradient-to-r from-[#FFC300] to-[#FFD60A] text-[#000814] hover:from-[#E5AF00] hover:to-[#E5C009] py-3 px-6 rounded-xl transition-all shadow-lg shadow-[#FFC300]/20 hover:shadow-[#FFC300]/40 group disabled:opacity-60 text-[14px]"
                 >
                   {status === 'loading' ? (
                     <Loader2 size={18} className="animate-spin" />

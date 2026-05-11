@@ -53,7 +53,7 @@ export default function Navbar() {
       className={`
         fixed z-[100] top-0 left-0 w-full transition-all duration-300 ease-out items-center flex max-sm:py-4 shrink-0
         ${scrolled
-          ? `py-1 min-h-[72px] ${theme === 'dark' ? 'bg-gray-950/90 backdrop-blur-xl border-b border-white/10' : 'bg-white/80 backdrop-blur-[80px]'}`
+          ? `py-1 min-h-[72px] ${theme === 'dark' ? 'bg-[#000814]/95 backdrop-blur-xl border-b border-white/10' : 'bg-white/80 backdrop-blur-[80px]'}`
           : 'py-5 min-h-[72px] bg-transparent'
         }
         ${hidden ? '-translate-y-full' : 'translate-y-0'}
@@ -74,7 +74,7 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <nav className={`px-5 py-[10px] rounded-2xl max-sm:hidden transition-all duration-300 ${
           scrolled
-            ? (theme === 'dark' ? 'bg-gray-800/80 border border-white/10' : 'bg-gray-100/80')
+            ? (theme === 'dark' ? 'bg-[#001D3D]/80 border border-white/10' : 'bg-gray-100/80')
             : 'bg-black/20 backdrop-blur-md border border-white/5'
         }`}>
           <ul className="flex gap-8 items-center">
@@ -92,7 +92,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     className={`absolute top-full mt-2 left-0 rounded-2xl shadow-xl border py-2 min-w-[220px] z-50 transition-colors ${
-                      theme === 'dark' ? 'bg-gray-900 border-white/10' : 'bg-white border-gray-100'
+                      theme === 'dark' ? 'bg-[#001D3D] border-white/10' : 'bg-white border-gray-100'
                     }`}
                   >
                     {[
@@ -157,7 +157,7 @@ export default function Navbar() {
             </button>
             <button
               onClick={() => setShowBookCall(true)}
-              className="font-medium flex items-center justify-center cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700 py-2.5 px-5 h-[42px] rounded-xl transition-all shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40"
+              className="font-medium flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#FFC300] to-[#FFD60A] text-[#000814] hover:from-[#E5AF00] hover:to-[#E5C009] py-2.5 px-5 h-[42px] rounded-xl transition-all shadow-lg shadow-[#FFC300]/20 hover:shadow-[#FFC300]/40"
             >
               <span className="text-[14px] leading-[150%]">{t('nav.book_call')}</span>
             </button>
@@ -181,7 +181,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             className={`sm:hidden absolute top-full left-0 w-full shadow-lg border-t z-50 transition-colors rounded-b-2xl overflow-hidden ${
-              theme === 'dark' ? 'bg-gray-950 border-white/10' : 'bg-white border-gray-100'
+              theme === 'dark' ? 'bg-[#000814] border-white/10' : 'bg-white border-gray-100'
             }`}
           >
             <div className="container py-4 flex flex-col gap-4">
@@ -211,7 +211,7 @@ export default function Navbar() {
 
               <button
                 onClick={() => { setShowBookCall(true); setMobileMenuOpen(false) }}
-                className="font-medium bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-2.5 px-5 h-[42px] rounded-xl text-[14px] w-full cursor-pointer"
+                className="font-medium bg-gradient-to-r from-[#FFC300] to-[#FFD60A] text-[#000814] py-2.5 px-5 h-[42px] rounded-xl text-[14px] w-full cursor-pointer"
               >
                 {t('nav.book_call')}
               </button>

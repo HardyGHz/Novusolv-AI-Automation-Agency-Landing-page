@@ -7,7 +7,7 @@ export default function Privacy() {
   return (
     <div className="min-h-screen bg-white py-20 px-4">
       <div className="max-w-3xl mx-auto">
-        <a href="/" className="inline-flex items-center gap-2 text-purple-600 hover:text-purple-700 mb-10 font-medium">
+        <a href="/" className="inline-flex items-center gap-2 text-[#FFC300] hover:text-[#FFD60A] mb-10 font-medium">
           <ArrowLeft size={16} /> {t('common.back_to_home')}
         </a>
         <h1 className="text-4xl font-bold text-gray-900 mb-2">Privacy Policy</h1>
@@ -16,7 +16,7 @@ export default function Privacy() {
         <div className="prose prose-gray max-w-none space-y-8 text-gray-700 leading-relaxed">
           <section>
             <h2 className="text-xl font-semibold text-gray-900 mb-3">1. Who We Are</h2>
-            <p>Novusolv SRL is an AI automation agency registered in Romania, Cluj-Napoca. We operate the website novusolv.com. For any privacy-related queries, contact us at: <a href="mailto:hello@novusolv.com" className="text-purple-600 hover:underline">hello@novusolv.com</a>.</p>
+            <p>Novusolv SRL is an AI automation agency registered in Romania, Cluj-Napoca. We operate the website novusolv.com. For any privacy-related queries, contact us at: <a href="mailto:hello@novusolv.com" className="text-[#FFC300] hover:underline">hello@novusolv.com</a>.</p>
           </section>
 
           <section>
@@ -52,7 +52,7 @@ export default function Privacy() {
 
           <section>
             <h2 className="text-xl font-semibold text-gray-900 mb-3">6. Your Rights</h2>
-            <p>Under GDPR you have the right to: access, correct, delete, or restrict the processing of your data. To exercise these rights, email <a href="mailto:hello@novusolv.com" className="text-purple-600 hover:underline">hello@novusolv.com</a>.</p>
+            <p>Under GDPR you have the right to: access, correct, delete, or restrict the processing of your data. To exercise these rights, email <a href="mailto:hello@novusolv.com" className="text-[#FFC300] hover:underline">hello@novusolv.com</a>.</p>
           </section>
 
           <section>

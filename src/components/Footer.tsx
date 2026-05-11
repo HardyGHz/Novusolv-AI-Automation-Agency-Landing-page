@@ -34,7 +34,7 @@ export default function Footer() {
         style={{ transform: 'translateY(0) scale(1.15)' }}
       />
       {/* Dark overlay gradient */}
-      <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-gray-950/80 via-purple-950/70 to-gray-950/90" />
+      <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-[#000814]/90 via-[#001D3D]/80 to-[#000814]/90" />
 
       {/* CTA + Contact Form Section */}
       <div className="container relative z-[2] flex-1 flex items-center justify-center">
@@ -46,11 +46,11 @@ export default function Footer() {
           className="flex flex-col gap-10 w-full items-center py-16"
         >
           <div className="flex flex-col gap-4 text-center max-sm:px-4">
-            <p className="text-purple-400 font-semibold text-[14px] uppercase tracking-wider">{t('footer.ready')}</p>
+            <p className="text-[#FFC300] font-semibold text-[14px] uppercase tracking-wider">{t('footer.ready')}</p>
             <h2 className="text-[48px] leading-[115%] max-sm:text-[32px] font-bold text-white">
               {t('footer.title_1')}
               <br />
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#FFC300] via-[#FFD60A] to-[#FFC300] bg-clip-text text-transparent">
                 {t('footer.title_2_gradient')}
               </span>
             </h2>

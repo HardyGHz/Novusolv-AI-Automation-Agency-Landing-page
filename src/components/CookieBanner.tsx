@@ -45,7 +45,7 @@ export default function CookieBanner() {
             <div className="flex-1 min-w-0">
               <p className="text-white text-[13px] leading-[160%]">
                 {t('cookie.text')}{' '}
-                <a href="/privacy" className="text-purple-400 hover:text-purple-300 underline underline-offset-2 transition-colors">
+                <a href="/privacy" className="text-[#FFC300] hover:text-[#FFD60A] underline underline-offset-2 transition-colors">
                   {t('cookie.privacy_link')}
                 </a>.
               </p>
@@ -61,7 +61,7 @@ export default function CookieBanner() {
               </button>
               <button
                 onClick={accept}
-                className="px-4 py-2 text-[13px] font-semibold bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white rounded-xl transition-all cursor-pointer shadow-md shadow-purple-500/20"
+                className="px-4 py-2 text-[13px] font-semibold bg-gradient-to-r from-[#FFC300] to-[#FFD60A] hover:from-[#E5AF00] hover:to-[#E5C009] text-[#000814] rounded-xl transition-all cursor-pointer shadow-md shadow-[#FFC300]/20"
               >
                 {t('cookie.accept')}
               </button>

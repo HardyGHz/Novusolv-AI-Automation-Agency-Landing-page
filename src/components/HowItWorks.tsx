@@ -122,7 +122,7 @@ function FeatureCard({ section, onInView }: { section: FeatureSection; onInView:
               >
                 <p className="text-[14px] leading-[150%] text-heading min-w-[2.5rem]">
                   {step.isSpecial ? (
-                    <Sparkles size={20} className="text-purple-500" />
+                    <Sparkles size={20} className="text-[#FFC300]" />
                   ) : (
                     step.number
                   )}
@@ -137,7 +137,7 @@ function FeatureCard({ section, onInView }: { section: FeatureSection; onInView:
 
         <div className="flex">
           <a href="#contact" className="w-max">
-            <button className="font-medium flex w-full items-center justify-center cursor-pointer bg-gradient-to-r from-purple-600 to-indigo-600 text-white hover:from-purple-700 hover:to-indigo-700 py-2 px-4 h-[40px] rounded-xl transition-all shadow-md shadow-purple-500/20 group">
+            <button className="font-medium flex w-full items-center justify-center cursor-pointer bg-gradient-to-r from-[#FFC300] to-[#FFD60A] text-[#000814] hover:from-[#E5AF00] hover:to-[#E5C009] py-2 px-4 h-[40px] rounded-xl transition-all shadow-md shadow-[#FFC300]/20 group">
               <span className="text-[14px] leading-[150%]">{section.cta}</span>
               <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
             </button>
@@ -182,10 +182,10 @@ export default function HowItWorks() {
               className="rounded-2xl p-8 max-sm:p-4 lg:p-16 flex-1 overflow-hidden relative"
             >
               {/* Background */}
-              <div className="w-full h-full absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900" />
+              <div className="w-full h-full absolute inset-0 rounded-2xl bg-gradient-to-br from-[#000814] via-[#001D3D] to-[#003566]" />
               <div className="relative flex flex-col gap-4 lg:gap-6 z-[1]">
                 <div>
-                  <p className="text-purple-300 font-semibold text-[14px] uppercase tracking-wider mb-3">{t('how_it_works.our_services')}</p>
+                  <p className="text-[#FFC300] font-semibold text-[14px] uppercase tracking-wider mb-3">{t('how_it_works.our_services')}</p>
                   <h2 className="text-[48px] leading-[120%] max-sm:text-[32px] text-white">
                     {t('how_it_works.title_1')}
                   </h2>
@@ -217,11 +217,11 @@ export default function HowItWorks() {
                     >
                       <div className={clsx(
                         'w-1.5 h-1.5 rounded-full shrink-0 transition-all duration-300',
-                        activeSection === section.id ? 'bg-purple-600 scale-125' : 'bg-heading'
+                        activeSection === section.id ? 'bg-[#FFC300] scale-125' : 'bg-heading'
                       )} />
                       <p className={clsx(
                         'text-[16px] leading-[150%] font-semibold grow transition-colors duration-300',
-                        activeSection === section.id ? 'text-purple-600' : 'text-heading'
+                        activeSection === section.id ? 'text-[#FFC300]' : 'text-heading'
                       )}>{section.navLabel}</p>
                     </div>
                   ))}
@@ -242,11 +242,11 @@ export default function HowItWorks() {
                     >
                       <div className={clsx(
                         'w-1.5 h-1.5 rounded-full shrink-0',
-                        activeSection === section.id ? 'bg-purple-600' : 'bg-heading'
+                        activeSection === section.id ? 'bg-[#FFC300]' : 'bg-heading'
                       )} />
                       <p className={clsx(
                         'text-[16px] leading-[150%] font-semibold',
-                        activeSection === section.id ? 'text-purple-600' : ''
+                        activeSection === section.id ? 'text-[#FFC300]' : ''
                       )}>{section.navLabel}</p>
                     </div>
                   ))}
@@ -257,7 +257,7 @@ export default function HowItWorks() {
               <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
                 {/* Sticky image */}
                 <div className="max-sm:hidden relative flex justify-center items-center w-[558px] max-xl:w-[300px] h-[300px] lg:h-[600px] lg:sticky lg:top-[18vh] order-2 lg:order-1">
-                  <div className="w-full max-lg:max-w-[300px] max-w-[500px] h-full relative rounded-2xl overflow-hidden shadow-2xl shadow-purple-500/10">
+                  <div className="w-full max-lg:max-w-[300px] max-w-[500px] h-full relative rounded-2xl overflow-hidden shadow-2xl shadow-[#FFC300]/10">
                     <img src="/feature-1 datapipeline.png" alt="AI Automation Dashboard" className="w-full h-full object-cover" />
                     {/* Subtle gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
