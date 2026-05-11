@@ -172,7 +172,7 @@ export default function HowItWorks() {
   return (
     <section className="w-full relative z-[3]">
       <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row gap-6 lg:gap-20 max-sm:pb-10 pb-20">
+        <div className="flex flex-col lg:flex-row gap-6 lg:gap-20 max-sm:pb-12 pb-28">
           <div className="flex flex-col flex-1 gap-6 lg:gap-12">
             {/* Header banner */}
             <motion.div

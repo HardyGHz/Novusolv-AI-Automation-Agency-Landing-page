@@ -75,7 +75,7 @@ export default function ImpactAreas() {
   ]
 
   return (
-    <section className="w-full py-4 max-sm:py-4 pb-20 max-sm:pb-12 relative z-[3]">
+    <section className="w-full py-20 max-sm:py-12 pb-28 max-sm:pb-16 relative z-[3]">
       <div className="container mx-auto px-4">
 
         {/* Header */}

@@ -100,7 +100,7 @@ export default function BeforeAfter() {
   const active = cases.find(c => c.id === activeCase) ?? cases[0]
 
   return (
-    <section id="results" className="w-full py-20 max-sm:py-12 relative z-[3] overflow-hidden">
+    <section id="results" className="w-full py-28 max-sm:py-16 relative z-[3] overflow-hidden">
       {/* Subtle bg glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full blur-[120px] bg-[#FFC300]/5 pointer-events-none" />
 
