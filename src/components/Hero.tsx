@@ -47,7 +47,7 @@ function AnimatedCounter({
   return (
     <span
       ref={ref}
-      className="text-[28px] max-sm:text-[22px] font-bold tracking-tight bg-gradient-to-r from-[#FFC300] to-[#FFD60A] bg-clip-text text-transparent min-w-[100px] text-center block"
+      className="text-[28px] max-sm:text-[22px] font-bold tracking-tight bg-gradient-to-r from-[#FFC300] to-[#FFD60A] bg-clip-text text-transparent min-w-[100px] max-sm:min-w-0 text-center block"
     >
       {count.toFixed(precision)}{suffix}
     </span>
@@ -208,21 +208,21 @@ export default function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex justify-start max-sm:justify-center gap-10 mt-6 pt-6 border-t border-outline-default/50"
+              className="flex justify-start max-sm:justify-between gap-10 max-sm:gap-0 w-full mt-6 pt-6 border-t border-outline-default/50"
             >
-              <div className="flex flex-col items-center gap-1 text-center">
+              <div className="flex flex-col items-center gap-1 text-center max-sm:flex-1">
                 <AnimatedCounter endValue={20} suffix="%" duration={2000} />
-                <span className="text-body text-[13px] font-medium">{t('hero.stat_1_label')}</span>
+                <span className="text-body text-[13px] max-sm:text-[11px] font-medium">{t('hero.stat_1_label')}</span>
               </div>
               <div className="w-px h-12 bg-outline-default/50" />
-              <div className="flex flex-col items-center gap-1 text-center">
+              <div className="flex flex-col items-center gap-1 text-center max-sm:flex-1">
                 <AnimatedCounter endValue={100} suffix="+" duration={2200} />
-                <span className="text-body text-[13px] font-medium">{t('hero.stat_2_label')}</span>
+                <span className="text-body text-[13px] max-sm:text-[11px] font-medium">{t('hero.stat_2_label')}</span>
               </div>
               <div className="w-px h-12 bg-outline-default/50" />
-              <div className="flex flex-col items-center gap-1 text-center">
+              <div className="flex flex-col items-center gap-1 text-center max-sm:flex-1">
                 <AnimatedCounter endValue={99.9} suffix="%" precision={1} duration={2500} />
-                <span className="text-body text-[13px] font-medium">{t('hero.stat_3_label')}</span>
+                <span className="text-body text-[13px] max-sm:text-[11px] font-medium">{t('hero.stat_3_label')}</span>
               </div>
             </motion.div>
           </div>
