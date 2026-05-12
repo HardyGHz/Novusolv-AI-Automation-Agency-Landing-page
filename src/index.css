@@ -4,7 +4,7 @@
   /* Brand colors for Novusolv */
   --color-heading: #1a1a1a;
   --color-body: #6b7280;
-  --color-link: #FFC300;
+  --color-link: #E8630A;
   --color-surface-default: #ffffff;
   --color-surface-card: #f5f5f5;
   --color-surface-button-default: #1a1a1a;
@@ -17,8 +17,8 @@
   --color-outline-default: #e5e7eb;
   --color-emphasis-low: #e5e7eb;
   --color-disabled-default: #9ca3af;
-  --color-brand-primary: #FFC300;
-  --color-brand-secondary: #FFD60A;
+  --color-brand-primary: #E8630A;
+  --color-brand-secondary: #FF8C2A;
   --color-navy-deep: #000814;
   --color-navy-dark: #001D3D;
   --color-navy: #003566;

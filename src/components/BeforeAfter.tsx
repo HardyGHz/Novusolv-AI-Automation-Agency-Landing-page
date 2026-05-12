@@ -102,7 +102,7 @@ export default function BeforeAfter() {
   return (
     <section id="results" className="w-full py-28 max-sm:py-16 relative z-[3] overflow-hidden">
       {/* Subtle bg glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full blur-[120px] bg-[#FFC300]/5 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full blur-[120px] bg-[#E8630A]/5 pointer-events-none" />
 
       <div className="container mx-auto px-4 relative z-10">
 
@@ -114,12 +114,12 @@ export default function BeforeAfter() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12 max-sm:mb-8"
         >
-          <p className="text-[#FFC300] font-semibold text-[13px] uppercase tracking-widest mb-3">
+          <p className="text-[#E8630A] font-semibold text-[13px] uppercase tracking-widest mb-3">
             {t('before_after.eyebrow')}
           </p>
           <h2 className="text-[48px] leading-[115%] max-sm:text-[32px] font-bold text-heading">
             {t('before_after.title_1')}{' '}
-            <span className="bg-gradient-to-r from-[#FFC300] to-[#FFD60A] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] bg-clip-text text-transparent">
               {t('before_after.title_2')}
             </span>
           </h2>
@@ -136,8 +136,8 @@ export default function BeforeAfter() {
               onClick={() => setActiveCase(c.id)}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-[14px] font-semibold transition-all duration-200 max-sm:px-3 max-sm:text-[13px] ${
                 activeCase === c.id
-                  ? 'bg-gradient-to-r from-[#FFC300] to-[#FFD60A] text-[#000814] shadow-lg shadow-[#FFC300]/25'
-                  : 'bg-surface-card border border-outline-default text-heading hover:border-[#FFC300]/50'
+                  ? 'bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] text-[#000814] shadow-lg shadow-[#E8630A]/25'
+                  : 'bg-surface-card border border-outline-default text-heading hover:border-[#E8630A]/50'
               }`}
             >
               <span>{c.icon}</span>
@@ -165,7 +165,7 @@ export default function BeforeAfter() {
             <div className="px-8 py-5 max-sm:px-5 max-sm:py-4 border-b border-outline-default flex items-start gap-3">
               <span className="text-2xl">{active.icon}</span>
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-[#FFC300]">
+                <span className="text-[11px] font-bold uppercase tracking-widest text-[#E8630A]">
                   {active.industry}
                 </span>
                 <p className="text-[15px] text-body leading-relaxed mt-0.5">{active.challenge}</p>
@@ -203,7 +203,7 @@ export default function BeforeAfter() {
               </div>
 
               {/* After */}
-              <div className="p-8 max-sm:p-5 bg-gradient-to-br from-[#FFC300]/5 to-[#FFD60A]/3 dark:from-[#FFC300]/10 dark:to-[#FFD60A]/5">
+              <div className="p-8 max-sm:p-5 bg-gradient-to-br from-[#E8630A]/5 to-[#FF8C2A]/3 dark:from-[#E8630A]/10 dark:to-[#FF8C2A]/5">
                 <div className="flex items-center gap-2 mb-5">
                   <div className="w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
                     <Check size={13} className="text-emerald-500" strokeWidth={3} />
@@ -230,7 +230,7 @@ export default function BeforeAfter() {
               <div className="flex items-center gap-8 max-sm:gap-6">
                 {active.metrics.map((m, i) => (
                   <div key={i} className="flex flex-col gap-0.5">
-                    <span className="text-[28px] max-sm:text-[22px] font-bold text-heading bg-gradient-to-r from-[#FFC300] to-[#FFD60A] bg-clip-text text-transparent">
+                    <span className="text-[28px] max-sm:text-[22px] font-bold text-heading bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] bg-clip-text text-transparent">
                       {m.value}
                     </span>
                     <span className="text-[12px] text-body leading-tight max-w-[90px]">{m.label}</span>
@@ -238,7 +238,7 @@ export default function BeforeAfter() {
                 ))}
               </div>
               <a href="#contact">
-                <button className="flex items-center gap-2 bg-gradient-to-r from-[#FFC300] to-[#FFD60A] text-[#000814] px-5 py-2.5 rounded-xl text-[14px] font-semibold hover:from-[#E5AF00] hover:to-[#E5C009] transition-all shadow-md shadow-[#FFC300]/20 group shrink-0">
+                <button className="flex items-center gap-2 bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] text-[#000814] px-5 py-2.5 rounded-xl text-[14px] font-semibold hover:from-[#D05A09] hover:to-[#E87020] transition-all shadow-md shadow-[#E8630A]/20 group shrink-0">
                   {t('before_after.cta')}
                   <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
                 </button>

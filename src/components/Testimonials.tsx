@@ -197,7 +197,7 @@ export default function Testimonials() {
         {/* CTA */}
         <div className="flex justify-center z-[2]">
           <a href="#contact">
-            <button className="font-medium flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#FFC300] to-[#FFD60A] hover:from-[#E5AF00] hover:to-[#E5C009] text-[#000814] py-2 px-4 h-[40px] rounded-xl transition-all shadow-lg shadow-[#FFC300]/30 group">
+            <button className="font-medium flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] hover:from-[#D05A09] hover:to-[#E87020] text-[#000814] py-2 px-4 h-[40px] rounded-xl transition-all shadow-lg shadow-[#E8630A]/30 group">
               <span className="text-[14px] leading-[150%]">{t('testimonials.cta')}</span>
               <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
             </button>

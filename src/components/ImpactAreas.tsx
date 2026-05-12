@@ -86,7 +86,7 @@ export default function ImpactAreas() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12 max-sm:mb-8"
         >
-          <p className="text-[#FFC300] font-semibold text-[13px] uppercase tracking-widest mb-3">
+          <p className="text-[#E8630A] font-semibold text-[13px] uppercase tracking-widest mb-3">
             {t('impact.eyebrow')}
           </p>
           <h2 className="text-[48px] leading-[115%] max-sm:text-[32px] font-bold text-heading">
@@ -106,7 +106,7 @@ export default function ImpactAreas() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="bg-surface-card border border-outline-default rounded-2xl p-6 flex flex-col gap-5 hover:border-[#FFC300]/30 dark:hover:border-[#FFC300]/30 hover:shadow-lg hover:shadow-[#FFC300]/5 transition-all duration-300 group"
+              className="bg-surface-card border border-outline-default rounded-2xl p-6 flex flex-col gap-5 hover:border-[#E8630A]/30 dark:hover:border-[#E8630A]/30 hover:shadow-lg hover:shadow-[#E8630A]/5 transition-all duration-300 group"
             >
               {/* Icon + area */}
               <div className="flex items-center gap-3">
@@ -146,7 +146,7 @@ export default function ImpactAreas() {
           className="flex justify-center mt-10"
         >
           <a href="#contact">
-            <button className="flex items-center gap-2 font-semibold bg-gradient-to-r from-[#FFC300] to-[#FFD60A] text-[#000814] hover:from-[#E5AF00] hover:to-[#E5C009] py-3 px-8 h-[52px] rounded-2xl transition-all shadow-xl shadow-[#FFC300]/25 hover:shadow-[#FFC300]/40 hover:scale-[1.02] group text-[16px]">
+            <button className="flex items-center gap-2 font-semibold bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] text-[#000814] hover:from-[#D05A09] hover:to-[#E87020] py-3 px-8 h-[52px] rounded-2xl transition-all shadow-xl shadow-[#E8630A]/25 hover:shadow-[#E8630A]/40 hover:scale-[1.02] group text-[16px]">
               {t('impact.cta')}
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </button>

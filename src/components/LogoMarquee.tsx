@@ -41,7 +41,7 @@ export default function LogoMarquee() {
     <div className="pt-24 pb-10 max-sm:pt-16 max-sm:pb-6 mb-24 max-sm:mb-16 w-full overflow-hidden relative z-10 bg-[#0a0a0a] border-b border-white/5">
       <div className="text-center flex flex-col max-w-[1920px] mx-auto">
         <div className="container flex flex-col gap-2">
-          <p className="text-[#FFC300] font-semibold text-[14px] uppercase tracking-wider">{t('integrations.title')}</p>
+          <p className="text-[#E8630A] font-semibold text-[14px] uppercase tracking-wider">{t('integrations.title')}</p>
           <h2 className="text-[28px] leading-[140%] max-sm:text-[22px] font-bold w-[600px] mx-auto max-sm:w-full text-white">
             {t('integrations.heading')}
           </h2>

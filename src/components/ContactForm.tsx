@@ -99,8 +99,8 @@ export default function ContactForm({ source = 'contact_form', onClose, isModal 
                 required
                 className={`flex-1 px-4 py-3 rounded-xl text-[14px] outline-none transition-all ${
                   isModal
-                    ? 'bg-gray-100 border border-gray-200 focus:border-[#FFC300] focus:ring-2 focus:ring-[#FFC300]/20 text-heading'
-                    : 'bg-white/10 border border-white/20 focus:border-[#FFC300] text-white placeholder:text-white/50'
+                    ? 'bg-gray-100 border border-gray-200 focus:border-[#E8630A] focus:ring-2 focus:ring-[#E8630A]/20 text-heading'
+                    : 'bg-white/10 border border-white/20 focus:border-[#E8630A] text-white placeholder:text-white/50'
                 }`}
               />
               <input
@@ -111,8 +111,8 @@ export default function ContactForm({ source = 'contact_form', onClose, isModal 
                 required
                 className={`flex-1 px-4 py-3 rounded-xl text-[14px] outline-none transition-all ${
                   isModal
-                    ? 'bg-gray-100 border border-gray-200 focus:border-[#FFC300] focus:ring-2 focus:ring-[#FFC300]/20 text-heading'
-                    : 'bg-white/10 border border-white/20 focus:border-[#FFC300] text-white placeholder:text-white/50'
+                    ? 'bg-gray-100 border border-gray-200 focus:border-[#E8630A] focus:ring-2 focus:ring-[#E8630A]/20 text-heading'
+                    : 'bg-white/10 border border-white/20 focus:border-[#E8630A] text-white placeholder:text-white/50'
                 }`}
               />
             </div>
@@ -124,8 +124,8 @@ export default function ContactForm({ source = 'contact_form', onClose, isModal 
               rows={3}
               className={`w-full px-4 py-3 rounded-xl text-[14px] outline-none resize-none transition-all ${
                 isModal
-                  ? 'bg-gray-100 border border-gray-200 focus:border-[#FFC300] focus:ring-2 focus:ring-[#FFC300]/20 text-heading'
-                  : 'bg-white/10 border border-white/20 focus:border-[#FFC300] text-white placeholder:text-white/50'
+                  ? 'bg-gray-100 border border-gray-200 focus:border-[#E8630A] focus:ring-2 focus:ring-[#E8630A]/20 text-heading'
+                  : 'bg-white/10 border border-white/20 focus:border-[#E8630A] text-white placeholder:text-white/50'
               }`}
             />
 
@@ -136,7 +136,7 @@ export default function ContactForm({ source = 'contact_form', onClose, isModal 
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="font-semibold flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#FFC300] to-[#FFD60A] text-[#000814] hover:from-[#E5AF00] hover:to-[#E5C009] py-3 px-6 h-[48px] rounded-xl transition-all shadow-lg shadow-[#FFC300]/20 hover:shadow-[#FFC300]/40 group disabled:opacity-60 disabled:cursor-not-allowed text-[15px]"
+              className="font-semibold flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] text-[#000814] hover:from-[#D05A09] hover:to-[#E87020] py-3 px-6 h-[48px] rounded-xl transition-all shadow-lg shadow-[#E8630A]/20 hover:shadow-[#E8630A]/40 group disabled:opacity-60 disabled:cursor-not-allowed text-[15px]"
             >
               {status === 'loading' ? (
                 <Loader2 size={18} className="animate-spin" />

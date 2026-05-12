@@ -47,7 +47,7 @@ function AnimatedCounter({
   return (
     <span
       ref={ref}
-      className="text-[28px] max-sm:text-[22px] font-bold tracking-tight bg-gradient-to-r from-[#FFC300] to-[#FFD60A] bg-clip-text text-transparent min-w-[100px] max-sm:min-w-0 text-center block"
+      className="text-[28px] max-sm:text-[22px] font-bold tracking-tight bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] bg-clip-text text-transparent min-w-[100px] max-sm:min-w-0 text-center block"
     >
       {count.toFixed(precision)}{suffix}
     </span>
@@ -148,7 +148,7 @@ export default function Hero() {
               >
                 {t('hero.title_1')}
                 <br />
-                <span className="bg-gradient-to-r from-[#FFC300] via-[#FFD60A] to-[#FFC300] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#E8630A] via-[#FF8C2A] to-[#E8630A] bg-clip-text text-transparent">
                   {t('hero.title_2')}
                 </span>
               </motion.h1>
@@ -173,7 +173,7 @@ export default function Hero() {
                       transition={{ duration: 0.3 }}
                       className="absolute inset-0"
                     >
-                      <span className="font-semibold bg-gradient-to-r from-[#FFC300] to-[#FFD60A] bg-clip-text text-transparent">
+                      <span className="font-semibold bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] bg-clip-text text-transparent">
                         {rotatingWords[currentWordIndex]}
                       </span>
                     </motion.div>
@@ -191,7 +191,7 @@ export default function Hero() {
             >
               <button
                 onClick={() => setShowContactForm(true)}
-                className="font-semibold flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#FFC300] to-[#FFD60A] text-[#000814] hover:from-[#E5AF00] hover:to-[#E5C009] py-3 px-8 h-[52px] rounded-xl transition-all shadow-xl shadow-[#FFC300]/25 hover:shadow-[#FFC300]/40 hover:-translate-y-0.5 group text-[16px] max-sm:w-full"
+                className="font-semibold flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] text-[#000814] hover:from-[#D05A09] hover:to-[#E87020] py-3 px-8 h-[52px] rounded-xl transition-all shadow-xl shadow-[#E8630A]/25 hover:shadow-[#E8630A]/40 hover:-translate-y-0.5 group text-[16px] max-sm:w-full"
               >
                 {t('hero.book_audit_btn')}
                 <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -235,7 +235,7 @@ export default function Hero() {
             className="relative hidden lg:flex items-center justify-center h-[560px]"
           >
             {/* Deep space background glow orbs */}
-            <div className="absolute w-72 h-72 rounded-full bg-[#FFC300]/10 blur-[80px]" />
+            <div className="absolute w-72 h-72 rounded-full bg-[#E8630A]/10 blur-[80px]" />
             <div className="absolute w-48 h-48 rounded-full bg-[#003566]/20 blur-[60px] translate-x-20 translate-y-10" />
 
             {/* Subtle star-field dots */}
@@ -261,7 +261,7 @@ export default function Hero() {
 
             {/* ── Floating Cards ── */}
             <FloatingCard
-              icon={<Database size={18} className="text-[#FFD60A]" />}
+              icon={<Database size={18} className="text-[#FF8C2A]" />}
               label="Lead Captured"
               sub="CRM updated via Webhook"
               color="bg-[#003566]/30"
@@ -272,10 +272,10 @@ export default function Hero() {
             />
 
             <FloatingCard
-              icon={<BrainCircuit size={18} className="text-[#FFC300]" />}
+              icon={<BrainCircuit size={18} className="text-[#E8630A]" />}
               label="AI Processing"
               sub="Intent scored — 0.4s"
-              color="bg-[#FFC300]/20"
+              color="bg-[#E8630A]/20"
               delay={0.4}
               x="42%"
               y="30%"

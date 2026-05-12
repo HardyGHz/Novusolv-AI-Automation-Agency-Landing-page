@@ -59,12 +59,12 @@ export default function NewsletterSignup() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t('newsletter.placeholder')}
               required
-              className="flex-1 px-4 py-3 rounded-xl text-[14px] bg-white/10 border border-white/20 focus:border-[#FFC300] text-white placeholder:text-white/50 outline-none transition-all"
+              className="flex-1 px-4 py-3 rounded-xl text-[14px] bg-white/10 border border-white/20 focus:border-[#E8630A] text-white placeholder:text-white/50 outline-none transition-all"
             />
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="font-semibold flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#FFC300] to-[#FFD60A] text-[#000814] hover:from-[#E5AF00] hover:to-[#E5C009] py-3 px-5 rounded-xl transition-all shadow-md shadow-[#FFC300]/20 group disabled:opacity-60 text-[14px] whitespace-nowrap"
+              className="font-semibold flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] text-[#000814] hover:from-[#D05A09] hover:to-[#E87020] py-3 px-5 rounded-xl transition-all shadow-md shadow-[#E8630A]/20 group disabled:opacity-60 text-[14px] whitespace-nowrap"
             >
               {status === 'loading' ? (
                 <Loader2 size={16} className="animate-spin" />

@@ -157,7 +157,7 @@ export default function Navbar() {
             </button>
             <button
               onClick={() => setShowBookCall(true)}
-              className="font-medium flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#FFC300] to-[#FFD60A] text-[#000814] hover:from-[#E5AF00] hover:to-[#E5C009] py-2.5 px-5 h-[42px] rounded-xl transition-all shadow-lg shadow-[#FFC300]/20 hover:shadow-[#FFC300]/40"
+              className="font-medium flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] text-[#000814] hover:from-[#D05A09] hover:to-[#E87020] py-2.5 px-5 h-[42px] rounded-xl transition-all shadow-lg shadow-[#E8630A]/20 hover:shadow-[#E8630A]/40"
             >
               <span className="text-[14px] leading-[150%]">{t('nav.book_call')}</span>
             </button>
@@ -211,7 +211,7 @@ export default function Navbar() {
 
               <button
                 onClick={() => { setShowBookCall(true); setMobileMenuOpen(false) }}
-                className="font-medium bg-gradient-to-r from-[#FFC300] to-[#FFD60A] text-[#000814] py-2.5 px-5 h-[42px] rounded-xl text-[14px] w-full cursor-pointer"
+                className="font-medium bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] text-[#000814] py-2.5 px-5 h-[42px] rounded-xl text-[14px] w-full cursor-pointer"
               >
                 {t('nav.book_call')}
               </button>
