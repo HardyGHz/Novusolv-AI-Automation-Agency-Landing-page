@@ -32,8 +32,8 @@ export default function ImpactAreas() {
     },
     {
       icon: <TrendingUp size={20} />,
-      color: 'text-yellow-400',
-      bgColor: 'bg-yellow-400/10',
+      color: 'text-emerald-400',
+      bgColor: 'bg-emerald-400/10',
       area: t('impact.sales_title'),
       examples: [
         t('impact.sales_1'),
