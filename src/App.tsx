@@ -6,6 +6,7 @@ import Hero from './components/Hero'
 import LogoMarquee from './components/LogoMarquee'
 
 const HowItWorks = lazy(() => import('./components/HowItWorks'))
+const OperatingPrinciples = lazy(() => import('./components/OperatingPrinciples'))
 const BeforeAfter = lazy(() => import('./components/BeforeAfter'))
 const ImpactAreas = lazy(() => import('./components/ImpactAreas'))
 const WebsiteBuilderCTA = lazy(() => import('./components/WebsiteBuilderCTA'))
@@ -42,6 +43,7 @@ function Home() {
         <LogoMarquee />
         <Suspense fallback={null}>
           <HowItWorks />
+          <OperatingPrinciples />
           <BeforeAfter />
           <ImpactAreas />
           <WebsiteBuilderCTA />
