@@ -163,7 +163,7 @@ export default function Hero() {
             >
               <div className="flex flex-wrap items-center max-sm:justify-center text-[20px] max-sm:text-[18px] leading-[140%]">
                 <span>{t('hero.subtitle_prefix')}</span>
-                <div className="relative overflow-hidden text-left h-[28px] max-sm:h-[25px] ml-1.5 min-w-[200px]">
+                <div className="relative overflow-hidden text-left h-[28px] max-sm:h-[25px] ml-1.5 min-w-[280px] max-sm:min-w-[220px]">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={currentWordIndex}
