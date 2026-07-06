@@ -4,6 +4,10 @@ import { useTranslation } from 'react-i18next'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import LogoMarquee from './components/LogoMarquee'
+import { initMetaPixel } from './lib/analytics'
+import { captureUtms } from './lib/utm'
+
+const AnalizaGratuita = lazy(() => import('./pages/AnalizaGratuita'))
 
 const HowItWorks = lazy(() => import('./components/HowItWorks'))
 const OperatingPrinciples = lazy(() => import('./components/OperatingPrinciples'))
@@ -64,11 +68,19 @@ function App() {
     document.documentElement.lang = i18n.language
   }, [i18n.language])
 
+  useEffect(() => {
+    // Store ad attribution on first landing
+    captureUtms()
+    // Returning visitor who already accepted marketing cookies → load pixel
+    initMetaPixel()
+  }, [])
+
   return (
     <BrowserRouter>
       <ScrollToHash />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/analiza-gratuita" element={<Suspense fallback={null}><AnalizaGratuita /></Suspense>} />
         <Route path="/privacy" element={<Suspense fallback={null}><Privacy /></Suspense>} />
         <Route path="/terms" element={<Suspense fallback={null}><Terms /></Suspense>} />
       </Routes>

@@ -44,7 +44,15 @@ export async function submitBookCall(data: {
   company: string
   phone: string
   email?: string
+  main_problem?: string
   source: string
+  utm_source?: string
+  utm_medium?: string
+  utm_campaign?: string
+  utm_content?: string
+  utm_term?: string
+  landing_page?: string
+  referrer?: string
 }) {
   const { error } = await supabase.from('call_bookings').insert([data])
   if (error) throw error

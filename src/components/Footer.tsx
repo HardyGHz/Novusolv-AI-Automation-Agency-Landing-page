@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import ContactForm from './ContactForm'
+import BookCallForm from './BookCallForm'
 import NewsletterSignup from './NewsletterSignup'
 import { useTranslation } from 'react-i18next'
 
@@ -59,8 +59,8 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Inline Contact Form */}
-          <ContactForm source="footer_cta" />
+          {/* Inline Book-a-Call Form */}
+          <BookCallForm source="footer_cta" isModal={false} />
 
           {/* Newsletter */}
           <div className="flex flex-col items-center gap-3 mt-4 w-full">

@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-
-const COOKIE_KEY = 'novusolv_cookie_consent'
+import { COOKIE_KEY, initMetaPixel } from '../lib/analytics'
 
 export default function CookieBanner() {
   const { t } = useTranslation()
@@ -20,6 +19,8 @@ export default function CookieBanner() {
   const accept = () => {
     localStorage.setItem(COOKIE_KEY, 'accepted')
     setVisible(false)
+    // Fire up the Meta Pixel immediately after consent (no reload needed)
+    initMetaPixel()
   }
 
   const decline = () => {

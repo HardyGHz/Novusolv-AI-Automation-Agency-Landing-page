@@ -3,7 +3,7 @@ import { ArrowRight, Zap, Database, MailCheck, ShieldCheck, BrainCircuit } from 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useInView } from '../hooks/useInView'
-import ContactForm from './ContactForm'
+import BookCallForm from './BookCallForm'
 
 // ─── Animated Stat Counter ─────────────────────────────────────────────────
 function AnimatedCounter({
@@ -319,27 +319,10 @@ export default function Hero() {
       </div>
       </section>
 
-      {/* Contact Form Modal */}
+      {/* Book-a-Call Modal */}
       <AnimatePresence>
         {showContactForm && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] flex items-center justify-center p-4"
-            onClick={() => setShowContactForm(false)}
-          >
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative z-10 w-full max-w-[500px]"
-            >
-              <ContactForm source="hero_main_cta" isModal onClose={() => setShowContactForm(false)} />
-            </motion.div>
-          </motion.div>
+          <BookCallForm source="hero_main_cta" onClose={() => setShowContactForm(false)} />
         )}
       </AnimatePresence>
     </>
