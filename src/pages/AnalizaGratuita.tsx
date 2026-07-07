@@ -12,9 +12,7 @@ import {
   Clock,
   Globe,
   Layers,
-  Wrench,
-  Scissors,
-  Stethoscope,
+  TrendingUp,
   Building2,
   Bot,
   Send,
@@ -48,86 +46,86 @@ const cardBase =
 
 // ─── Content data ───────────────────────────────────────────────────────────
 const PAIN_POINTS = [
-  { icon: PhoneCall, text: 'Clienții sună când echipa este ocupată.' },
-  { icon: MessagesSquare, text: 'Mesajele vin pe WhatsApp, Facebook, email și telefon.' },
-  { icon: Inbox, text: 'Unele solicitări rămân fără răspuns.' },
-  { icon: ClipboardList, text: 'Programările sau cererile sunt gestionate manual.' },
-  { icon: Repeat, text: 'Clienții întreabă aceleași lucruri în fiecare zi.' },
-  { icon: HelpCircle, text: 'Nu este clar câte cereri se pierd.' },
-  { icon: Clock, text: 'După program, firma nu mai răspunde.' },
-  { icon: Globe, text: 'Website-ul există, dar nu aduce solicitări clare.' },
-  { icon: Repeat, text: 'Echipa pierde timp cu mesaje repetitive.' },
-  { icon: Layers, text: 'Informațiile despre clienți sunt împrăștiate în mai multe locuri.' },
+  { icon: Inbox, text: 'Inboxul e plin de cereri care așteaptă răspuns.' },
+  { icon: MessagesSquare, text: 'Cererile vin din email, WhatsApp și formulare, fără un flux unificat.' },
+  { icon: ClipboardList, text: 'Taskurile repetitive ocupă timpul echipei în loc de muncă cu valoare.' },
+  { icon: HelpCircle, text: 'Nu este clar câte cereri se pierd sau întârzie.' },
+  { icon: Clock, text: 'Aprobările interne durează zile, nu ore.' },
+  { icon: Repeat, text: 'Aceleași procese se repetă manual, săptămână de săptămână.' },
+  { icon: Layers, text: 'Informațiile sunt împrăștiate în mai multe tooluri deconectate.' },
+  { icon: Globe, text: 'Rapoartele se fac manual, în loc să fie disponibile în timp real.' },
+  { icon: PhoneCall, text: 'Echipa e ocupată cu operațional, nu cu creșterea afacerii.' },
+  { icon: Building2, text: 'Nimeni nu are o imagine unificată asupra a ce se întâmplă în companie.' },
 ]
 
 const CATEGORIES = [
   {
-    icon: Wrench,
-    title: 'Service-uri auto și firme tehnice',
-    desc: 'Pentru firme unde clienții cer oferte, disponibilitate, programări sau informații tehnice, iar echipa pierde timp cu apeluri și mesaje repetitive.',
-    problems: ['cereri incomplete', 'multe apeluri', 'multe mesaje pe WhatsApp', 'timp pierdut cu întrebări repetitive', 'lipsă de urmărire clară a solicitărilor'],
+    icon: TrendingUp,
+    title: 'Companii care au crescut rapid',
+    desc: 'Echipa s-a extins, dar procesele au rămas aceleași ca la început.',
+    problems: ['volum de cereri în creștere', 'procese care nu mai scalează', 'muncă manuală care ține tot mai greu pasul', 'lipsă de vizibilitate asupra operațiunilor', 'echipă suprasolicitată cu taskuri repetitive'],
   },
   {
-    icon: Scissors,
-    title: 'Saloane, SPA și wellness',
-    desc: 'Pentru afaceri unde programările, întrebările despre servicii și mesajele clienților trebuie gestionate rapid și clar.',
-    problems: ['programări prin mesaje', 'întrebări despre prețuri și disponibilitate', 'clienți care scriu în afara programului', 'echipă ocupată în timpul zilei', 'lipsă de follow-up'],
+    icon: Layers,
+    title: 'Echipe cu sisteme deconectate',
+    desc: 'Datele și cererile sunt împrăștiate în mai multe tooluri care nu comunică între ele.',
+    problems: ['CRM, email, WhatsApp și foi de calcul separate', 'informații duplicate sau pierdute', 'rapoarte făcute manual din surse diferite', 'timp pierdut cu copiere de date între sisteme', 'lipsă de o sursă unică de adevăr'],
   },
   {
-    icon: Stethoscope,
-    title: 'Clinici, cabinete și servicii profesionale',
-    desc: 'Pentru firme unde clienții au întrebări înainte de programare, iar echipa are nevoie de un mod mai clar de a prelua solicitările.',
-    problems: ['întrebări repetitive', 'solicitări urgente amestecate cu mesaje simple', 'multe apeluri', 'programări gestionate manual', 'lipsă de centralizare'],
+    icon: ClipboardList,
+    title: 'Operațiuni blocate de aprobări și taskuri manuale',
+    desc: 'Cererile interne și externe așteaptă zile întregi pentru un răspuns sau o aprobare.',
+    problems: ['aprobări care durează zile, nu ore', 'taskuri repetitive fără automatizare', 'cereri care se pierd între departamente', 'echipa reacționează, nu anticipează', 'blocaje greu de identificat din exterior'],
   },
   {
     icon: Building2,
-    title: 'Firme locale cu multe solicitări',
-    desc: 'Pentru orice firmă locală care primește cereri prin mai multe canale și vrea să reducă haosul operațional.',
-    problems: ['WhatsApp, email, Facebook și telefon în paralel', 'cereri pierdute', 'răspunsuri întârziate', 'lipsă de evidență', 'clienți care trebuie contactați manual'],
+    title: 'Companii fără o infrastructură AI reală',
+    desc: 'Au încercat un chatbot sau un tool izolat, dar nimic nu s-a conectat la procesele reale.',
+    problems: ['AI folosit izolat, fără integrare', 'unelte care nu vorbesc cu sistemele existente', 'automatizări superficiale, fără impact măsurabil', 'lipsă de strategie clară pentru AI', 'nevoie de un partener, nu doar un tool'],
   },
 ]
 
 const SOLUTIONS = [
-  { icon: Globe, title: 'Website orientat spre cereri', desc: 'Un website construit pentru a transforma vizitatorii în solicitări clare, nu doar pentru prezență online.' },
-  { icon: ClipboardList, title: 'Formulare inteligente', desc: 'Formulare care colectează informațiile importante înainte ca echipa să piardă timp cu întrebări de bază.' },
-  { icon: Bot, title: 'AI assistant pentru întrebări frecvente', desc: 'Un assistant care poate răspunde la întrebări simple despre servicii, program, pași următori sau informații generale.' },
-  { icon: Send, title: 'Automatizări WhatsApp / email', desc: 'Solicitările pot ajunge automat la echipa dvs. într-un format mai clar și mai ușor de urmărit.' },
-  { icon: Users, title: 'Organizarea leadurilor', desc: 'Cererile pot fi centralizate, etichetate și urmărite mai bine, în loc să rămână împrăștiate în conversații.' },
-  { icon: Repeat, title: 'Fluxuri interne simple', desc: 'Reducem sarcinile repetitive prin automatizări mici, clare și utile pentru activitatea zilnică.' },
+  { icon: Globe, title: 'Vizibilitate operațională', desc: 'O imagine clară asupra proceselor reale: unde intră cererile, cine le procesează și unde se blochează.' },
+  { icon: ClipboardList, title: 'Fluxuri de aprobare automatizate', desc: 'Cererile interne și externe ajung direct la persoana potrivită, fără e-mailuri pierdute sau urmăriri manuale.' },
+  { icon: Bot, title: 'AI integrat în procesele reale', desc: 'Nu un chatbot izolat, ci AI conectat la datele și sistemele pe care le folosești deja.' },
+  { icon: Send, title: 'Automatizarea taskurilor repetitive', desc: 'Raportare, sincronizare de date și follow-up-uri care rulează automat, fără intervenție manuală.' },
+  { icon: Users, title: 'Organizarea cererilor și a leadurilor', desc: 'Solicitările sunt centralizate, etichetate și urmărite într-un singur loc, nu împrăștiate în conversații.' },
+  { icon: Repeat, title: 'Fluxuri interne simplificate', desc: 'Reducem sarcinile repetitive prin automatizări mici, clare, construite în jurul modului real de lucru al echipei.' },
 ]
 
 const BEFORE = [
-  'Cereri prin telefon, WhatsApp, Facebook și email',
-  'Răspunsuri întârziate',
-  'Întrebări repetitive',
-  'Programări sau solicitări gestionate manual',
-  'Informații împrăștiate',
-  'Website care nu ajută suficient la conversie',
+  'Cereri și taskuri împrăștiate în email, WhatsApp și foi de calcul',
+  'Aprobări și taskuri interne care durează zile',
+  'Rapoarte făcute manual, din surse diferite',
+  'Procese repetitive rezolvate manual, mereu de la zero',
+  'Informații împrăștiate, fără o sursă unică de adevăr',
+  'Echipa reacționează la haos, în loc să crească',
 ]
 
 const AFTER = [
-  'Cereri colectate mai clar',
-  'Răspunsuri mai rapide la întrebări simple',
-  'Solicitări trimise automat către echipă',
-  'Mai puțin timp pierdut cu mesaje repetitive',
-  'Leaduri mai ușor de urmărit',
-  'Website conectat la un flux real de lucru',
+  'Cereri colectate și direcționate automat',
+  'Aprobări și taskuri interne rezolvate în ore, nu zile',
+  'Rapoarte disponibile în timp real',
+  'Procese repetitive automatizate, cu AI integrat real',
+  'O sursă unică de adevăr pentru toată echipa',
+  'Echipa se concentrează pe creștere, nu pe operațional',
 ]
 
 const AUDIT_STEPS = [
-  { n: '1', title: 'Înțelegem procesul actual', desc: 'Cum primiți cereri: telefon, WhatsApp, Facebook, email, website sau alte canale.' },
-  { n: '2', title: 'Identificăm blocajele', desc: 'Unde apar întârzieri, cereri pierdute, întrebări repetitive sau muncă manuală inutilă.' },
-  { n: '3', title: 'Propunem un sistem realist', desc: 'Website, formular, AI assistant, automatizare sau organizare internă, doar dacă are sens pentru firma dvs.' },
+  { n: '1', title: 'Înțelegem procesul actual', desc: 'Cum circulă cererile și informația prin companie: email, formulare, taskuri interne, aprobări, rapoarte.' },
+  { n: '2', title: 'Identificăm blocajele', desc: 'Unde apar întârzieri, cereri pierdute, taskuri repetitive sau muncă manuală inutilă.' },
+  { n: '3', title: 'Propunem un sistem realist', desc: 'Automatizare, AI integrat, dashboard de vizibilitate sau reorganizare de proces, doar ce are sens real pentru compania dvs.' },
   { n: '4', title: 'Stabilim primul pas', desc: 'Nu automatizăm totul din prima. Alegem un proces mic, clar și cu impact potențial ridicat.' },
 ]
 
 const TRUST_BULLETS = [
-  'Abordare practică pentru firme locale',
-  'Fără promisiuni exagerate despre AI',
-  'Analiză înainte de implementare',
-  'Soluții construite în jurul procesului real',
-  'Website, AI și automatizare conectate într-un flux clar',
-  'Potrivit pentru firme fără echipă tehnică internă',
+  '100+ ore salvate în medie pe lună',
+  '20% reducere medie de costuri operaționale',
+  '99.9% acuratețe pe taskurile automatizate',
+  'Analiză înainte de implementare, fără promisiuni exagerate',
+  'Soluții construite în jurul procesului real, nu al unui tool generic',
+  'AI, automatizare și date conectate într-un flux unificat',
 ]
 
 // ─── Page ────────────────────────────────────────────────────────────────────
@@ -165,7 +163,7 @@ export default function AnalizaGratuita() {
               onClick={() => openForm('analiza_gratuita_navbar')}
               className="font-semibold flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] text-[#000814] hover:from-[#D05A09] hover:to-[#E87020] py-2.5 px-5 h-[42px] rounded-xl transition-all text-[14px] shadow-lg shadow-[#E8630A]/20"
             >
-              Cereți analiza gratuită
+              Evaluare operațională gratuită
             </button>
           </div>
         </div>
@@ -182,10 +180,11 @@ export default function AnalizaGratuita() {
             transition={{ duration: 0.6 }}
             className="text-[52px] lg:text-[60px] leading-[1.1] max-sm:text-[34px] font-bold tracking-tight"
           >
-            Firma dvs. pierde cereri pentru că
+            Majoritatea companiilor nu au nevoie
             <br />
+            de încă un tool AI. Au nevoie de{' '}
             <span className="bg-gradient-to-r from-[#E8630A] via-[#FF8C2A] to-[#E8630A] bg-clip-text text-transparent">
-              răspunde prea târziu?
+              claritate operațională.
             </span>
           </motion.h1>
           <motion.p
@@ -194,8 +193,8 @@ export default function AnalizaGratuita() {
             transition={{ duration: 0.6, delay: 0.15 }}
             className="text-[19px] max-sm:text-[17px] leading-[155%] text-white/75 max-w-[680px]"
           >
-            Novusolv ajută firmele de servicii să capteze cereri online, să organizeze solicitările venite din mai multe
-            canale și să reducă munca repetitivă prin website-uri, asistenți AI și automatizări simple.
+            Identificăm unde se pierde timp, unde se repetă taskurile și unde se blochează cererile. Apoi integrăm AI
+            în procesele reale.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -205,8 +204,28 @@ export default function AnalizaGratuita() {
             <CtaButtons onRequest={() => openForm('analiza_gratuita_hero')} waSource="analiza_gratuita_hero_wa" />
           </motion.div>
           <p className="text-[14px] text-white/50 max-w-[520px]">
-            Pentru firme locale care vor sisteme practice, nu prezentări complicate despre AI.
+            Pentru companii în creștere, unde procesele manuale au devenit blocajul principal.
           </p>
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex items-center gap-4 max-sm:gap-3 flex-wrap justify-center mt-2"
+          >
+            {[
+              ['100+h', 'salvate / lună'],
+              ['20%', 'reducere costuri'],
+              ['99.9%', 'acuratețe'],
+            ].map(([val, label], i) => (
+              <div key={val} className="flex items-center gap-4 max-sm:gap-3">
+                {i > 0 && <span className="text-white/20 max-sm:hidden">·</span>}
+                <div className="flex items-baseline gap-2">
+                  <span className="text-[22px] max-sm:text-[18px] font-bold text-white">{val}</span>
+                  <span className="text-[13px] max-sm:text-[12px] text-white/50">{label}</span>
+                </div>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -215,7 +234,7 @@ export default function AnalizaGratuita() {
         <div className="container">
           <SectionHeading
             eyebrow="Problema"
-            title="Dacă aveți o firmă de servicii, probabil recunoașteți aceste probleme"
+            title="Dacă operațiunile companiei dvs. arată așa, nu sunteți singurii"
           />
           <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 mt-12 max-sm:mt-8">
             {PAIN_POINTS.map(({ icon: Icon, text }, i) => (
@@ -233,9 +252,9 @@ export default function AnalizaGratuita() {
             ))}
           </div>
           <p className="text-center text-[18px] max-sm:text-[16px] text-white/70 mt-12 max-w-[720px] mx-auto leading-[150%]">
-            În multe firme, problema nu este lipsa de muncă.{' '}
+            În multe companii, problema nu este lipsa de resurse.{' '}
             <span className="text-white font-semibold">
-              Problema este că solicitările nu intră într-un sistem clar.
+              Problema este că operațiunile nu sunt conectate într-un sistem clar.
             </span>
           </p>
         </div>
@@ -246,8 +265,8 @@ export default function AnalizaGratuita() {
         <div className="container">
           <SectionHeading
             eyebrow="Pentru cine"
-            title="Pentru ce tipuri de firme este potrivit?"
-            subtitle="Novusolv este potrivit pentru firme de servicii care primesc solicitări, programări sau întrebări repetitive și vor să le gestioneze mai clar."
+            title="Pentru ce tip de companie este potrivit?"
+            subtitle="Novusolv este potrivit pentru companii aflate în creștere, unde volumul de cereri și procesele manuale au depășit capacitatea sistemelor actuale."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 max-sm:mt-8">
             {CATEGORIES.map(({ icon: Icon, title, desc, problems }, i) => (
@@ -330,7 +349,8 @@ export default function AnalizaGratuita() {
             </div>
           </div>
           <p className="text-center text-[13px] text-white/40 mt-6 max-w-[620px] mx-auto">
-            Rezultatul exact depinde de procesul actual al firmei. De aceea începem cu o analiză gratuită.
+            Rezultatul exact depinde de procesul actual al companiei. De aceea începem cu o evaluare operațională
+            gratuită.
           </p>
         </div>
       </section>
@@ -339,9 +359,9 @@ export default function AnalizaGratuita() {
       <section className="py-20 max-sm:py-12 relative bg-gradient-to-b from-transparent via-[#001D3D]/40 to-transparent">
         <div className="container">
           <SectionHeading
-            eyebrow="Analiza gratuită"
-            title="Analiză gratuită pentru firma dvs. de servicii"
-            subtitle="Vedem cum primiți cereri acum, unde se pierde timp și ce sistem ar avea cel mai mult sens pentru modul dvs. real de lucru."
+            eyebrow="Evaluare operațională"
+            title="Evaluare operațională gratuită pentru compania dvs."
+            subtitle="Vedem cum circulă cererile acum, unde se pierde timp și ce sistem ar avea cel mai mult sens pentru modul dvs. real de lucru."
           />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 max-sm:mt-8">
             {AUDIT_STEPS.map(({ n, title, desc }, i) => (
@@ -395,15 +415,16 @@ export default function AnalizaGratuita() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#001D3D]/60 to-[#000814]" />
         <div className="container relative z-10 flex flex-col items-center text-center gap-6 max-w-[760px]">
           <h2 className="text-[40px] max-sm:text-[28px] font-bold leading-[115%]">
-            Vreți să vedeți dacă firma dvs. poate lucra mai clar?
+            Vreți claritate operațională în compania dvs.?
           </h2>
           <p className="text-[18px] max-sm:text-[16px] text-white/70 leading-[155%]">
-            Solicitați o analiză gratuită și identificăm unde se pierd cereri, timp sau energie în procesul actual. Dacă
-            AI-ul sau automatizarea are sens, vă arătăm concret cum ar putea fi implementată.
+            Solicitați o evaluare operațională gratuită și identificăm unde se pierde timp, unde se repetă taskurile
+            și unde se blochează cererile. Dacă AI-ul are sens, vă arătăm concret cum ar putea fi integrat în
+            procesele reale.
           </p>
           <CtaButtons onRequest={() => openForm('analiza_gratuita_final_cta')} waSource="analiza_gratuita_final_wa" className="mt-2" />
           <p className="text-[14px] text-white/45 mt-2">
-            Fără obligații. Fără promisiuni exagerate. Doar o discuție clară despre procesul firmei dvs.
+            Fără obligații. Fără promisiuni exagerate. Doar o discuție clară despre procesul companiei dvs.
           </p>
         </div>
       </section>

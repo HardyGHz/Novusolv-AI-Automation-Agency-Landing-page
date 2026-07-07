@@ -33,7 +33,7 @@ export default function CtaButtons({ onRequest, waSource, variant = 'default', c
         onClick={onRequest}
         className="font-semibold flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] text-[#000814] hover:from-[#D05A09] hover:to-[#E87020] py-3 px-8 h-[52px] rounded-xl transition-all shadow-xl shadow-[#E8630A]/25 hover:shadow-[#E8630A]/40 hover:-translate-y-0.5 group text-[16px] max-sm:w-full"
       >
-        Cereți analiza gratuită
+        Cere o evaluare operațională gratuită
         <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
       </button>
       <a
