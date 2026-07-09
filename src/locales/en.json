@@ -271,6 +271,12 @@
     "accept": "Accept",
     "decline": "Decline"
   },
+  "real_system": {
+    "eyebrow": "Real systems, not demos",
+    "title": "From order to notification, zero manual work.",
+    "subtitle": "Every order reaches the right store automatically.",
+    "caption": "Shopify order → rule-based routing → instant Telegram alert per location"
+  },
   "website_builder": {
     "eyebrow": "Also from Novusolv",
     "title": "Curious how your website could look?",

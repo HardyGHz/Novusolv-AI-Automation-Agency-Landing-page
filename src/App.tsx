@@ -10,6 +10,7 @@ import { captureUtms } from './lib/utm'
 const AnalizaGratuita = lazy(() => import('./pages/AnalizaGratuita'))
 
 const HowItWorks = lazy(() => import('./components/HowItWorks'))
+const RealSystemShowcase = lazy(() => import('./components/RealSystemShowcase'))
 const OperatingPrinciples = lazy(() => import('./components/OperatingPrinciples'))
 const BeforeAfter = lazy(() => import('./components/BeforeAfter'))
 const ImpactAreas = lazy(() => import('./components/ImpactAreas'))
@@ -47,6 +48,7 @@ function Home() {
         <LogoMarquee />
         <Suspense fallback={null}>
           <HowItWorks />
+          <RealSystemShowcase />
           <OperatingPrinciples />
           <BeforeAfter />
           <ImpactAreas />

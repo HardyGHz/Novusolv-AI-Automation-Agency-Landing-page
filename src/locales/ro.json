@@ -271,6 +271,12 @@
     "accept": "Accept",
     "decline": "Refuz"
   },
+  "real_system": {
+    "eyebrow": "Sisteme reale, nu demo-uri",
+    "title": "De la comandă la notificare, fără lucru manual.",
+    "subtitle": "Comenzile ajung automat la magazinul potrivit.",
+    "caption": "Comandă Shopify → rutare pe reguli → alertă Telegram instant, per locație"
+  },
   "website_builder": {
     "eyebrow": "Un alt serviciu Novusolv",
     "title": "Cum ar arăta website-ul tău?",
