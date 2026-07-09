@@ -1,9 +1,11 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, lazy, Suspense } from 'react'
 import { ChevronDown, Menu, X, Globe, Sun, Moon } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
-import BookCallForm from './BookCallForm'
 import { useTheme } from '../contexts/ThemeContext'
+
+// Lazy: keeps the Supabase client out of the initial bundle until the modal opens
+const BookCallForm = lazy(() => import('./BookCallForm'))
 
 export default function Navbar() {
   const { t, i18n } = useTranslation()
@@ -237,7 +239,9 @@ export default function Navbar() {
     {/* Book a Call Modal */}
     <AnimatePresence>
       {showBookCall && (
-        <BookCallForm onClose={() => setShowBookCall(false)} />
+        <Suspense fallback={null}>
+          <BookCallForm onClose={() => setShowBookCall(false)} />
+        </Suspense>
       )}
     </AnimatePresence>
   </>

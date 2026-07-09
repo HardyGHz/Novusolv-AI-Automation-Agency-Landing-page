@@ -1,9 +1,11 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, lazy, Suspense } from 'react'
 import { ArrowRight, Zap, Database, MailCheck, ShieldCheck, BrainCircuit } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useInView } from '../hooks/useInView'
-import BookCallForm from './BookCallForm'
+
+// Lazy: keeps the Supabase client out of the initial bundle until the modal opens
+const BookCallForm = lazy(() => import('./BookCallForm'))
 
 // ─── Animated Stat Counter ─────────────────────────────────────────────────
 function AnimatedCounter({
@@ -130,7 +132,6 @@ export default function Hero() {
       {/* Background ambience */}
       <div className="absolute top-[-10%] right-[-5%] w-[55vw] h-[55vw] rounded-full blur-[160px] bg-[#001D3D]/40 pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-5%] w-[45vw] h-[45vw] rounded-full blur-[160px] bg-[#003566]/30 pointer-events-none" />
-      <div className="absolute inset-0 w-full h-full bg-[url('/noise.png')] opacity-[0.03] pointer-events-none mix-blend-overlay" />
 
       <div className="container relative z-10 my-auto py-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
@@ -322,7 +323,9 @@ export default function Hero() {
       {/* Book-a-Call Modal */}
       <AnimatePresence>
         {showContactForm && (
-          <BookCallForm source="hero_main_cta" onClose={() => setShowContactForm(false)} />
+          <Suspense fallback={null}>
+            <BookCallForm source="hero_main_cta" onClose={() => setShowContactForm(false)} />
+          </Suspense>
         )}
       </AnimatePresence>
     </>

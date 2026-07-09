@@ -47,8 +47,12 @@ export default function RealSystemShowcase() {
           {/* Wide image scrolls horizontally on small screens */}
           <div className="overflow-x-auto">
             <img
-              src="/workflow-order-routing.png"
+              src="/workflow-order-routing.webp"
               alt={t('real_system.caption')}
+              width={1514}
+              height={589}
+              loading="lazy"
+              decoding="async"
               className="block min-w-[900px] w-full h-auto"
             />
           </div>

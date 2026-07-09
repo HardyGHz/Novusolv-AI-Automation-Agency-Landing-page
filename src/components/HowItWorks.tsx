@@ -258,7 +258,7 @@ export default function HowItWorks() {
                 {/* Sticky image */}
                 <div className="max-sm:hidden relative flex justify-center items-center w-[558px] max-xl:w-[300px] h-[300px] lg:h-[600px] lg:sticky lg:top-[18vh] order-2 lg:order-1">
                   <div className="w-full max-lg:max-w-[300px] max-w-[500px] h-full relative rounded-2xl overflow-hidden shadow-2xl shadow-[#E8630A]/10">
-                    <img src="/feature-1.png" alt="AI Automation Dashboard" className="w-full h-full object-cover" />
+                    <img src="/feature-1.webp" alt="AI Automation Dashboard" width={1000} height={1333} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                     {/* Subtle gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                   </div>

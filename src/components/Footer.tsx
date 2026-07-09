@@ -28,8 +28,12 @@ export default function Footer() {
       {/* Parallax Background Image */}
       <img
         ref={bgRef}
-        src="/footer-bg.png"
+        src="/footer-bg.webp"
         alt=""
+        width={640}
+        height={640}
+        loading="lazy"
+        decoding="async"
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-100 ease-out will-change-transform"
         style={{ transform: 'translateY(0) scale(1.15)' }}
       />
