@@ -50,8 +50,8 @@ function Home() {
           <OperatingPrinciples />
           <BeforeAfter />
           <ImpactAreas />
-          <WebsiteBuilderCTA />
           <FAQ />
+          <WebsiteBuilderCTA />
         </Suspense>
       </main>
       <Suspense fallback={null}>

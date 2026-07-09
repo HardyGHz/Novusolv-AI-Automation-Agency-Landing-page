@@ -88,7 +88,7 @@
     "subtitle": "Vezi ce se schimbă când treci la Metoda Novusolv.",
     "before_label": "Metoda Veche",
     "after_label": "Metoda Novusolv",
-    "real_proof_badge": "Dovadă Reală",
+    "real_proof_badge": "Cel mai bun rezultat",
     "cta": "Vreau Aceleași Rezultate",
 
     "case1_industry": "Bijuterii & E-Commerce",
@@ -272,9 +272,10 @@
     "decline": "Refuz"
   },
   "website_builder": {
-    "title": "Ai nevoie întâi de un website uimitor?",
-    "subtitle": "Înainte să îți automatizăm procesele, asigură-te că prezența ta online convertește. Planifică și construiește cu Site Crafter — instrumentul nostru dedicat.",
-    "cta": "Deschide Site Crafter"
+    "eyebrow": "Un alt serviciu Novusolv",
+    "title": "Cum ar arăta website-ul tău?",
+    "subtitle": "Site Crafter e planificatorul nostru gratuit: răspunzi la câteva întrebări despre afacerea ta și vezi un concept de website în câteva minute.",
+    "cta": "Încearcă Site Crafter"
   },
   "ai_assistant": {
     "name": "Novu",

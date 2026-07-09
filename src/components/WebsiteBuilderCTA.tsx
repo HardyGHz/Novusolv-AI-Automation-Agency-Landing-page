@@ -6,9 +6,9 @@ export default function WebsiteBuilderCTA() {
   const { t } = useTranslation()
 
   return (
-    <section className="py-[120px] max-md:py-[80px] relative overflow-hidden flex items-center justify-center">
+    <section className="pt-[80px] pb-[120px] max-md:pt-[56px] max-md:pb-[80px] border-t border-outline-default relative overflow-hidden flex items-center justify-center">
       <div className="absolute w-[60vw] h-[60vh] rounded-full blur-[140px] bg-[#E8630A]/10 mix-blend-multiply dark:mix-blend-lighten pointer-events-none z-0"></div>
-      
+
       <div className="container relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -24,7 +24,7 @@ export default function WebsiteBuilderCTA() {
             <div className="flex flex-col gap-4 md:w-2/3">
               <div className="flex items-center gap-2 mb-2">
                 <Sparkles size={18} className="text-[#E8630A]" />
-                <span className="text-sm font-semibold uppercase tracking-wider text-[#E8630A]">Website Builder</span>
+                <span className="text-sm font-semibold uppercase tracking-wider text-[#E8630A]">{t('website_builder.eyebrow')}</span>
               </div>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-heading">
                 {t('website_builder.title')}

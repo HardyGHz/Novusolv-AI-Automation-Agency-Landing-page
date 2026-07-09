@@ -88,7 +88,7 @@
     "subtitle": "See what changes when you switch to the Novusolv Way.",
     "before_label": "The Old Way",
     "after_label": "The Novusolv Way",
-    "real_proof_badge": "Live Proof",
+    "real_proof_badge": "Best Performer",
     "cta": "Start Getting Results",
 
     "case1_industry": "Jewelry E-Commerce",
@@ -272,9 +272,10 @@
     "decline": "Decline"
   },
   "website_builder": {
-    "title": "Need a stunning website first?",
-    "subtitle": "Before we automate your workflows, make sure your digital storefront converts. Plan and build with Site Crafter — our dedicated website planning tool.",
-    "cta": "Open Site Crafter"
+    "eyebrow": "Also from Novusolv",
+    "title": "Curious how your website could look?",
+    "subtitle": "Site Crafter is our free planner — answer a few questions about your business and see a website concept in minutes.",
+    "cta": "Try Site Crafter"
   },
   "ai_assistant": {
     "name": "Novu",

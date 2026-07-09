@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, X, Check, Zap } from 'lucide-react'
+import { ArrowRight, X, Check, Trophy } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { TFunction } from 'i18next'
 
@@ -144,7 +144,7 @@ export default function BeforeAfter() {
               <span>{c.label}</span>
               {c.realProof && (
                 <span className="bg-white/20 text-[10px] px-1.5 py-0.5 rounded-full font-bold tracking-wide">
-                  LIVE
+                  TOP
                 </span>
               )}
             </button>
@@ -172,7 +172,7 @@ export default function BeforeAfter() {
               </div>
               {active.realProof && (
                 <span className="ml-auto shrink-0 flex items-center gap-1.5 text-[12px] font-semibold text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20 dark:text-emerald-400 px-3 py-1 rounded-full border border-emerald-200 dark:border-emerald-800">
-                  <Zap size={12} />
+                  <Trophy size={12} />
                   {t('before_after.real_proof_badge')}
                 </span>
               )}
