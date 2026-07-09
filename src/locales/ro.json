@@ -283,6 +283,11 @@
     "subtitle": "Site Crafter e planificatorul nostru gratuit: răspunzi la câteva întrebări despre afacerea ta și vezi un concept de website în câteva minute.",
     "cta": "Încearcă Site Crafter"
   },
+  "not_found": {
+    "title": "Pagina nu a fost găsită",
+    "subtitle": "Pagina pe care o cauți nu există sau a fost mutată.",
+    "cta": "Înapoi la pagina principală"
+  },
   "ai_assistant": {
     "name": "Novu",
     "status": "Strateg AI Online",

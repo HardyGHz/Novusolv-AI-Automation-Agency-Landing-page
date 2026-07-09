@@ -19,6 +19,7 @@ const FAQ = lazy(() => import('./components/FAQ'))
 const Footer = lazy(() => import('./components/Footer'))
 const Privacy = lazy(() => import('./components/Privacy'))
 const Terms = lazy(() => import('./components/Terms'))
+const NotFound = lazy(() => import('./components/NotFound'))
 const CookieBanner = lazy(() => import('./components/CookieBanner'))
 
 function ScrollToHash() {
@@ -85,6 +86,7 @@ function App() {
         <Route path="/analiza-gratuita" element={<Suspense fallback={null}><AnalizaGratuita /></Suspense>} />
         <Route path="/privacy" element={<Suspense fallback={null}><Privacy /></Suspense>} />
         <Route path="/terms" element={<Suspense fallback={null}><Terms /></Suspense>} />
+        <Route path="*" element={<Suspense fallback={null}><NotFound /></Suspense>} />
       </Routes>
       <Suspense fallback={null}>
         <CookieBanner />

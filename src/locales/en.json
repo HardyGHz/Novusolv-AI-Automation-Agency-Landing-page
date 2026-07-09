@@ -283,6 +283,11 @@
     "subtitle": "Site Crafter is our free planner — answer a few questions about your business and see a website concept in minutes.",
     "cta": "Try Site Crafter"
   },
+  "not_found": {
+    "title": "Page not found",
+    "subtitle": "The page you're looking for doesn't exist or has been moved.",
+    "cta": "Back to homepage"
+  },
   "ai_assistant": {
     "name": "Novu",
     "status": "AI Strategist Online",
