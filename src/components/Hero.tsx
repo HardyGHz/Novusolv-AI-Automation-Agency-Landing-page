@@ -1,8 +1,17 @@
 import { useState, useEffect, useRef, lazy, Suspense } from 'react'
 import { ArrowRight, Zap, Database, MailCheck, ShieldCheck, BrainCircuit } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  useMotionValue,
+  useSpring,
+  useReducedMotion,
+} from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useInView } from '../hooks/useInView'
+import NetworkCanvas from './NetworkCanvas'
 
 // Lazy: keeps the Supabase client out of the initial bundle until the modal opens
 const BookCallForm = lazy(() => import('./BookCallForm'))
@@ -117,6 +126,34 @@ export default function Hero() {
   const [currentWordIndex, setCurrentWordIndex] = useState(0)
   const [showContactForm, setShowContactForm] = useState(false)
 
+  // ─── Scroll parallax: ambience layers drift as the hero scrolls out ───
+  const reduceMotion = useReducedMotion()
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+  const orbTopY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 140])
+  const orbBottomY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : -100])
+  const cardsY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 70])
+
+  // ─── Mouse tilt: the floating-cards scene leans toward the cursor ───
+  const tiltX = useMotionValue(0)
+  const tiltY = useMotionValue(0)
+  const tiltXSpring = useSpring(tiltX, { stiffness: 120, damping: 18 })
+  const tiltYSpring = useSpring(tiltY, { stiffness: 120, damping: 18 })
+
+  const handleTilt = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (reduceMotion) return
+    const rect = e.currentTarget.getBoundingClientRect()
+    tiltX.set(((e.clientY - rect.top) / rect.height - 0.5) * -8)
+    tiltY.set(((e.clientX - rect.left) / rect.width - 0.5) * 8)
+  }
+  const resetTilt = () => {
+    tiltX.set(0)
+    tiltY.set(0)
+  }
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWordIndex((prev) => (prev + 1) % rotatingWords.length)
@@ -127,11 +164,19 @@ export default function Hero() {
   return (
     <>
       <section
+        ref={sectionRef}
         className="min-h-screen max-w-[1920px] mx-auto flex flex-col w-full relative justify-center overflow-hidden pt-20 pb-10"
       >
-      {/* Background ambience */}
-      <div className="absolute top-[-10%] right-[-5%] w-[55vw] h-[55vw] rounded-full blur-[160px] bg-[#001D3D]/40 pointer-events-none" />
-      <div className="absolute bottom-[-10%] left-[-5%] w-[45vw] h-[45vw] rounded-full blur-[160px] bg-[#003566]/30 pointer-events-none" />
+      {/* Background ambience — parallax layers */}
+      <motion.div
+        style={{ y: orbTopY }}
+        className="absolute top-[-10%] right-[-5%] w-[55vw] h-[55vw] rounded-full blur-[160px] bg-[#001D3D]/40 pointer-events-none"
+      />
+      <motion.div
+        style={{ y: orbBottomY }}
+        className="absolute bottom-[-10%] left-[-5%] w-[45vw] h-[45vw] rounded-full blur-[160px] bg-[#003566]/30 pointer-events-none"
+      />
+      <NetworkCanvas />
 
       <div className="container relative z-10 my-auto py-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
@@ -233,8 +278,15 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.3 }}
+            onMouseMove={handleTilt}
+            onMouseLeave={resetTilt}
+            style={{ perspective: 1200, y: cardsY }}
             className="relative hidden lg:flex items-center justify-center h-[560px]"
           >
+           <motion.div
+            style={{ rotateX: tiltXSpring, rotateY: tiltYSpring, transformStyle: 'preserve-3d' }}
+            className="absolute inset-0 flex items-center justify-center"
+           >
             {/* Deep space background glow orbs */}
             <div className="absolute w-72 h-72 rounded-full bg-[#E8630A]/10 blur-[80px]" />
             <div className="absolute w-48 h-48 rounded-full bg-[#003566]/20 blur-[60px] translate-x-20 translate-y-10" />
@@ -315,6 +367,7 @@ export default function Hero() {
               y="2%"
               rotate={1}
             />
+           </motion.div>
           </motion.div>
         </div>
       </div>
