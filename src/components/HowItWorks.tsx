@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Sparkles } from 'lucide-react'
 import { useInView } from '../hooks/useInView'
+import CapabilityScene from './CapabilityScene'
 import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
 import { TFunction } from 'i18next'
@@ -253,14 +254,15 @@ export default function HowItWorks() {
                 </div>
               </div>
 
-              {/* Feature cards with image */}
+              {/* Feature cards with live scene */}
               <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
-                {/* Sticky image */}
+                {/* Sticky capability scene */}
                 <div className="max-sm:hidden relative flex justify-center items-center w-[558px] max-xl:w-[300px] h-[300px] lg:h-[600px] lg:sticky lg:top-[18vh] order-2 lg:order-1">
-                  <div className="w-full max-lg:max-w-[300px] max-w-[500px] h-full relative rounded-2xl overflow-hidden shadow-2xl shadow-[#E8630A]/10">
-                    <img src="/feature-1.webp" alt="AI Automation Dashboard" width={1000} height={1333} loading="lazy" decoding="async" className="w-full h-full object-cover" />
-                    {/* Subtle gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  <div className="w-full max-lg:max-w-[300px] max-w-[500px] h-full relative">
+                    <CapabilityScene
+                      active={activeSection}
+                      label={sections.find((s) => s.id === activeSection)?.navLabel ?? ''}
+                    />
                   </div>
                 </div>
 
