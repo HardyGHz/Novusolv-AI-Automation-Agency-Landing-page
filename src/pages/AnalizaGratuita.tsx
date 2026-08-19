@@ -138,6 +138,17 @@ export default function AnalizaGratuita() {
     i18n.changeLanguage('ro')
   }, [i18n])
 
+  // Ad-only landing page, no organic entry point → keep it out of search results
+  useEffect(() => {
+    const meta = document.createElement('meta')
+    meta.name = 'robots'
+    meta.content = 'noindex, nofollow'
+    document.head.appendChild(meta)
+    return () => {
+      document.head.removeChild(meta)
+    }
+  }, [])
+
   const openForm = (source: string) => setFormSource(source)
   const closeForm = () => setFormSource(null)
 
