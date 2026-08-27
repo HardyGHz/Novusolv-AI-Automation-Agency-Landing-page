@@ -6,9 +6,14 @@ import Hero from './components/Hero'
 import LogoMarquee from './components/LogoMarquee'
 import { initMetaPixel } from './lib/analytics'
 import { captureUtms } from './lib/utm'
+import { resolveLanguage } from './lib/languages'
+import { ROUTES } from './lib/constants'
 
-const AnalizaGratuita = lazy(() => import('./pages/AnalizaGratuita'))
+const EvaluareOperationala = lazy(() => import('./pages/EvaluareOperationala'))
+const Pachete = lazy(() => import('./pages/Pachete'))
+const WebsitePage = lazy(() => import('./pages/WebsitePage'))
 
+const TwoDoors = lazy(() => import('./components/TwoDoors'))
 const HowItWorks = lazy(() => import('./components/HowItWorks'))
 const RealSystemShowcase = lazy(() => import('./components/RealSystemShowcase'))
 const OperatingPrinciples = lazy(() => import('./components/OperatingPrinciples'))
@@ -26,15 +31,27 @@ function ScrollToHash() {
   const { hash } = useLocation()
 
   useEffect(() => {
-    if (hash) {
-      const id = hash.replace('#', '')
+    if (!hash) return
+
+    const id = hash.replace('#', '')
+    let frame = 0
+    // Sections below the fold are lazy, so the target often does not exist yet
+    // when the route settles. Keep looking for a short while before giving up.
+    const deadline = performance.now() + 4000
+
+    const findAndScroll = () => {
       const element = document.getElementById(id)
       if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }, 100)
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        return
+      }
+      if (performance.now() < deadline) {
+        frame = requestAnimationFrame(findAndScroll)
       }
     }
+
+    frame = requestAnimationFrame(findAndScroll)
+    return () => cancelAnimationFrame(frame)
   }, [hash])
 
   return null
@@ -48,6 +65,7 @@ function Home() {
         <Hero />
         <LogoMarquee />
         <Suspense fallback={null}>
+          <TwoDoors />
           <HowItWorks />
           <RealSystemShowcase />
           <OperatingPrinciples />
@@ -68,7 +86,8 @@ function App() {
   const { i18n } = useTranslation()
 
   useEffect(() => {
-    document.documentElement.lang = i18n.language
+    // Keep <html lang> on a shipped locale, not i18next's regional variant
+    document.documentElement.lang = resolveLanguage(i18n.language)
   }, [i18n.language])
 
   useEffect(() => {
@@ -83,7 +102,9 @@ function App() {
       <ScrollToHash />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/analiza-gratuita" element={<Suspense fallback={null}><AnalizaGratuita /></Suspense>} />
+        <Route path={ROUTES.assessment} element={<Suspense fallback={null}><EvaluareOperationala /></Suspense>} />
+        <Route path={ROUTES.packages} element={<Suspense fallback={null}><Pachete /></Suspense>} />
+        <Route path={ROUTES.website} element={<Suspense fallback={null}><WebsitePage /></Suspense>} />
         <Route path="/privacy" element={<Suspense fallback={null}><Privacy /></Suspense>} />
         <Route path="/terms" element={<Suspense fallback={null}><Terms /></Suspense>} />
         <Route path="*" element={<Suspense fallback={null}><NotFound /></Suspense>} />

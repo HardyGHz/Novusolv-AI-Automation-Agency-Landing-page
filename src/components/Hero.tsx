@@ -17,15 +17,27 @@ import NetworkCanvas from './NetworkCanvas'
 const BookCallForm = lazy(() => import('./BookCallForm'))
 
 // ─── Animated Stat Counter ─────────────────────────────────────────────────
+const STAT_VALUE_CLASS =
+  'text-[28px] max-sm:text-[22px] font-bold tracking-tight bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] bg-clip-text text-transparent min-w-[100px] max-sm:min-w-0 text-center block'
+
+// Values that are not a number we can count up to (ranges, for example)
+function StaticStat({ children }: { children: React.ReactNode }) {
+  return <span className={STAT_VALUE_CLASS}>{children}</span>
+}
+
 function AnimatedCounter({
   endValue,
+  prefix = '',
   suffix = '',
   precision = 0,
+  grouped = false,
   duration = 2000,
 }: {
   endValue: number
+  prefix?: string
   suffix?: string
   precision?: number
+  grouped?: boolean
   duration?: number
 }) {
   const { ref, isInView } = useInView<HTMLSpanElement>({ once: true, threshold: 0.1 })
@@ -55,12 +67,16 @@ function AnimatedCounter({
     }
   }, [isInView, endValue, duration])
 
+  const rendered = grouped
+    ? count.toLocaleString('ro-RO', {
+        minimumFractionDigits: precision,
+        maximumFractionDigits: precision,
+      })
+    : count.toFixed(precision)
+
   return (
-    <span
-      ref={ref}
-      className="text-[28px] max-sm:text-[22px] font-bold tracking-tight bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] bg-clip-text text-transparent min-w-[100px] max-sm:min-w-0 text-center block"
-    >
-      {count.toFixed(precision)}{suffix}
+    <span ref={ref} className={STAT_VALUE_CLASS}>
+      {prefix}{rendered}{suffix}
     </span>
   )
 }
@@ -257,18 +273,13 @@ export default function Hero() {
               className="flex justify-start max-sm:justify-between gap-10 max-sm:gap-0 w-full mt-6 pt-6 border-t border-outline-default/50"
             >
               <div className="flex flex-col items-center gap-1 text-center max-sm:flex-1">
-                <AnimatedCounter endValue={20} suffix="%" duration={2000} />
+                <StaticStat>3-5</StaticStat>
                 <span className="text-body text-[13px] max-sm:text-[11px] font-medium">{t('hero.stat_1_label')}</span>
               </div>
               <div className="w-px h-12 bg-outline-default/50" />
               <div className="flex flex-col items-center gap-1 text-center max-sm:flex-1">
-                <AnimatedCounter endValue={100} suffix="+" duration={2200} />
+                <AnimatedCounter endValue={30} duration={1800} />
                 <span className="text-body text-[13px] max-sm:text-[11px] font-medium">{t('hero.stat_2_label')}</span>
-              </div>
-              <div className="w-px h-12 bg-outline-default/50" />
-              <div className="flex flex-col items-center gap-1 text-center max-sm:flex-1">
-                <AnimatedCounter endValue={99.9} suffix="%" precision={1} duration={2500} />
-                <span className="text-body text-[13px] max-sm:text-[11px] font-medium">{t('hero.stat_3_label')}</span>
               </div>
             </motion.div>
           </div>

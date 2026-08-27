@@ -3,6 +3,8 @@ import { motion } from 'framer-motion'
 import BookCallForm from './BookCallForm'
 import NewsletterSignup from './NewsletterSignup'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
+import { ROUTES } from '../lib/constants'
 
 export default function Footer() {
   const { t } = useTranslation()
@@ -75,13 +77,30 @@ export default function Footer() {
         </motion.div>
       </div>
 
+      {/* Site navigation */}
+      <div className="container relative z-[2]">
+        <nav className="py-6 border-t border-white/10 flex flex-wrap gap-x-8 gap-y-3 justify-center text-[14px] text-white/60">
+          {[
+            { to: ROUTES.assessment, label: t('nav.assessment') },
+            { to: ROUTES.packages, label: t('nav.packages') },
+            { to: ROUTES.website, label: t('nav.website') },
+            { to: '/#results', label: t('nav.case_studies') },
+            { to: '/#faq', label: t('nav.faq') },
+          ].map((item) => (
+            <Link key={item.to} to={item.to} className="hover:text-white transition-colors">
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
+
       {/* Footer bottom */}
       <div className="container relative z-[2]">
         <div className="py-6 flex max-sm:flex-col max-sm:gap-4 justify-between items-center border-t border-white/10">
           {/* Logo */}
-          <a href="/" className="flex items-center cursor-pointer">
+          <Link to={ROUTES.home} className="flex items-center cursor-pointer">
             <img src="/logo-white.png" alt="Novusolv Logo" className="h-24 w-auto object-contain" />
-          </a>
+          </Link>
 
           {/* Social links */}
           <div className="flex items-center gap-4">
@@ -112,8 +131,8 @@ export default function Footer() {
 
           {/* Legal */}
           <div className="flex items-center gap-4 text-white/50 text-[13px]">
-            <a href="/terms" className="hover:text-white transition-colors">{t('footer.terms')}</a>
-            <a href="/privacy" className="hover:text-white transition-colors">{t('footer.privacy')}</a>
+            <Link to={ROUTES.terms} className="hover:text-white transition-colors">{t('footer.terms')}</Link>
+            <Link to={ROUTES.privacy} className="hover:text-white transition-colors">{t('footer.privacy')}</Link>
             <span>{t('footer.copyright')}</span>
           </div>
         </div>

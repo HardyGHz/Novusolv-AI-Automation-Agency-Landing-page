@@ -1,33 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ro">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary SEO -->
-    <title>Novusolv | AI Systems That Run Your Operations — Cluj-Napoca & Europe</title>
-    <meta name="description" content="Novusolv builds custom AI systems that automate your operations, cut manual work by 100+ hours/month, and scale without hiring. Book your free audit today." />
-    <meta name="keywords" content="AI automation agency, Cluj-Napoca, Kolozsvár, Romania, workflow automation, AI chatbot, business automation, artificial intelligence" />
+    <title>Novusolv | Avantaj operațional prin sisteme inteligente, Cluj-Napoca</title>
+    <meta name="description" content="Construim sisteme AI care preiau munca operațională repetitivă din echipa ta. Cluj-Napoca, pentru companii din România și Europa. Începe cu o evaluare operațională." />
+    <meta name="keywords" content="automatizare AI, Cluj-Napoca, România, automatizare procese, sisteme AI, consultanță AI, evaluare operațională" />
     <meta name="author" content="Novusolv SRL" />
-    <link rel="canonical" href="https://novusolv.com" />
-    <link rel="alternate" hreflang="en" href="https://novusolv.com" />
-    <link rel="alternate" hreflang="ro" href="https://novusolv.com/?lng=ro" />
-    <link rel="alternate" hreflang="x-default" href="https://novusolv.com" />
+    <link rel="canonical" href="https://novusolv.com/" />
+    <link rel="alternate" hreflang="ro" href="https://novusolv.com/" />
+    <link rel="alternate" hreflang="en" href="https://novusolv.com/?lng=en" />
+    <link rel="alternate" hreflang="hu" href="https://novusolv.com/?lng=hu" />
+    <link rel="alternate" hreflang="x-default" href="https://novusolv.com/" />
     <!-- Open Graph (Facebook, LinkedIn) -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://novusolv.com" />
-    <meta property="og:title" content="Novusolv | AI Systems That Run Your Operations" />
-    <meta property="og:description" content="We build custom AI systems that automate your workflows, eliminate manual work, and scale your operations. Based in Cluj-Napoca, serving businesses across Europe." />
+    <meta property="og:title" content="Novusolv | Avantaj operațional prin sisteme inteligente" />
+    <meta property="og:description" content="Construim sisteme AI care preiau munca operațională repetitivă din echipa ta. Cluj-Napoca, pentru companii din România și Europa." />
     <meta property="og:image" content="https://novusolv.com/og-image.png" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content="ro_RO" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="hu_HU" />
     <meta property="og:site_name" content="Novusolv" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@novusolv" />
-    <meta name="twitter:title" content="Novusolv | AI Systems That Run Your Operations" />
-    <meta name="twitter:description" content="Custom AI systems that eliminate manual work and scale your operations. Save 100+ hours/month. Book a free audit." />
+    <meta name="twitter:title" content="Novusolv | Avantaj operațional prin sisteme inteligente" />
+    <meta name="twitter:description" content="Sisteme AI care preiau munca operațională repetitivă din echipa ta. Cluj-Napoca, și în toată Europa." />
     <meta name="twitter:image" content="https://novusolv.com/og-image.png" />
 
     <!-- Fonts -->
@@ -42,61 +45,131 @@
       "@graph": [
         {
           "@type": "Organization",
+          "@id": "https://novusolv.com/#organization",
           "name": "Novusolv",
           "legalName": "Novusolv SRL",
           "url": "https://novusolv.com",
           "logo": "https://novusolv.com/favicon.png",
           "email": "hello@novusolv.com",
-          "foundingDate": "2024",
+          "foundingDate": "2025",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Cluj-Napoca",
             "addressCountry": "RO"
           },
+          "areaServed": [
+            "RO",
+            "EU"
+          ],
+          "knowsLanguage": [
+            "ro",
+            "en",
+            "hu"
+          ],
           "sameAs": [
             "https://www.linkedin.com/company/novusolv",
             "https://x.com/novusolv",
             "https://www.instagram.com/novusolv/"
           ],
-          "description": "Novusolv is an AI automation agency based in Cluj-Napoca, Romania, building custom AI systems for growing businesses across Europe."
+          "description": "Novusolv construiește sisteme AI care preiau munca operațională repetitivă, pentru companii din România și Europa. Sediul în Cluj-Napoca."
+        },
+        {
+          "@type": "Service",
+          "@id": "https://novusolv.com/evaluare-operationala#service",
+          "name": "Evaluare operațională",
+          "serviceType": "Evaluare operațională",
+          "provider": {
+            "@id": "https://novusolv.com/#organization"
+          },
+          "areaServed": [
+            "RO",
+            "EU"
+          ],
+          "url": "https://novusolv.com/evaluare-operationala",
+          "description": "Trei până la cinci zile lucrătoare. La final vezi exact pe unde scapă timpul și banii din firmă, și rămâi cu un raport care spune ce merită făcut și în ce ordine.",
+          "offers": {
+            "@type": "Offer",
+            "price": "3500",
+            "priceCurrency": "RON",
+            "url": "https://novusolv.com/evaluare-operationala",
+            "availability": "https://schema.org/InStock"
+          }
         },
         {
           "@type": "FAQPage",
+          "@id": "https://novusolv.com/#faq",
           "mainEntity": [
             {
               "@type": "Question",
-              "name": "What exactly does Novusolv do?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Novusolv is an AI automation agency based in Cluj-Napoca. We partner with growing businesses to map their existing workflows, identify where time and money are being lost, and build custom AI-driven systems that handle the repetitive work." }
+              "name": "Cum diferă asta față de a folosi ChatGPT noi înșine?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "ChatGPT este un instrument. Ceea ce construim noi este un sistem. Conectăm AI-ul la datele, procesele și software-ul tău existent, astfel încât munca să fie executată automat în loc să fie doar răspunsă într-o fereastră de chat. Diferența este aceeași ca între a avea un ciocan și a avea o fabrică."
+              }
             },
             {
               "@type": "Question",
-              "name": "How quickly can I see results?",
-              "acceptedAnswer": { "@type": "Answer", "text": "For most engagements, the first automations go live within 2 to 4 weeks. Simpler setups like support bots or CRM integrations can often be done faster. Custom AI model training takes 6 to 8 weeks." }
+              "name": "Cui vă adresați?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Lucrăm cu afaceri care deja funcționează și vor să scaleze fără să adauge oameni la fiecare pas. Industria contează mai puțin. Contează că operațiunile au ajuns la un punct unde creșterea aduce cu ea mai multă muncă, nu mai multă libertate."
+              }
             },
             {
               "@type": "Question",
-              "name": "Is our data safe with you?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. We build within your secure environment and use zero data-retention APIs. Your data is never used to train public AI models. We sign NDAs from day one." }
+              "name": "Cum arată prima lună în realitate?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Începe cu o evaluare operațională de 3-5 zile lucrătoare. Îți vezi procesele puse pe hârtie, afli unde se pierde timp și bani, și primești un raport cu pași concreți, prioritizați, prezentat live. Taxa se deduce din proiectul următor dacă începi în 30 de zile. După evaluare știi exact ce se construiește și în ce ordine, iar implementarea merge incremental, testată lângă procesul existent."
+              }
             },
             {
               "@type": "Question",
-              "name": "What ROI can we realistically expect?",
-              "acceptedAnswer": { "@type": "Answer", "text": "Our clients typically reclaim 100+ hours per month in manual labour within the first 30 days. AI-powered lead systems have helped clients double their qualified pipeline." }
+              "name": "Ce se întâmplă dacă AI-ul greșește?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Fiecare sistem include puncte de control uman pentru acțiunile critice. AI-ul gestionează volumul, oamenii gestionează judecata. Performanța este monitorizată continuu, iar problemele sunt identificate înainte să devină probleme operaționale."
+              }
             },
             {
               "@type": "Question",
-              "name": "Do we need a technical team to work with you?",
-              "acceptedAnswer": { "@type": "Answer", "text": "No. We plug the automations into the tools you already use — Slack, email, your CRM, or whatever's in your stack. Everything is designed to run in the background." }
+              "name": "Lucrați cu afaceri din afara României?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Da. Majoritatea relațiilor cu clienții sunt complet remote și asincrone. Livrăm la fel cum am face-o față în față."
+              }
             },
             {
               "@type": "Question",
-              "name": "What if our software is old or doesn't have an API?",
-              "acceptedAnswer": { "@type": "Answer", "text": "If there's no API, we deploy RPA bots that interact with the interface exactly like a human would — with zero need for software upgrades." }
+              "name": "Trebuie să schimbăm software-ul existent?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nu. Ne integrăm cu instrumentele pe care le folosești deja. Dacă o platformă expune un API, ne conectăm direct. Dacă nu, implementăm agenți de automatizare care interacționează cu software-ul exact cum ar face-o un operator uman."
+              }
             },
             {
               "@type": "Question",
-              "name": "How do we get started?",
-              "acceptedAnswer": { "@type": "Answer", "text": "It starts with a free 30-minute discovery call. We'll audit your current workflows, identify the highest-leverage automation opportunities, and deliver a clear implementation roadmap. No commitment required." }
+              "name": "Ce facem dacă nu știm ce ar trebui automatizat primul?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Majoritatea afacerilor știu deja unde este fricțiunea. Întârzieri în raportare, muncă administrativă repetitivă, sisteme deconectate, handoff-uri lente între echipe. Identificăm care procese creează cel mai mare drag operațional și prioritizăm în funcție de ROI, viteza de implementare și complexitate."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Va perturba asta operațiunile noastre actuale?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nu. Sistemele sunt implementate incremental și testate alături de fluxurile existente înainte de a fi complet active. Obiectivul este să îmbunătățim operațiunile fără să le întrerupem."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Cum măsurați succesul?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Măsurăm impactul operațional. Timp economisit, mai puține sarcini manuale, erori reduse, raportare mai rapidă, timpi de răspuns mai scurți și o mai bună vizibilitate asupra afacerii. Obiectivul nu este mai mult AI. Obiectivul este operațiuni mai fluide."
+              }
             }
           ]
         }
@@ -106,9 +179,9 @@
   </head>
   <body>
     <noscript>
-      <h1>Novusolv — AI Automation Agency</h1>
-      <p>We build custom AI systems that automate your workflows, customer support, and data operations. Based in Cluj-Napoca, serving businesses across Europe.</p>
-      <p>Contact us: <a href="mailto:hello@novusolv.com">hello@novusolv.com</a></p>
+      <h1>Novusolv, sisteme AI pentru operațiuni</h1>
+      <p>Construim sisteme AI care preiau munca operațională repetitivă: procese interne, fluxuri de date, răspunsuri către clienți. Cluj-Napoca, pentru companii din România și Europa.</p>
+      <p>Contact: <a href="mailto:hello@novusolv.com">hello@novusolv.com</a></p>
     </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

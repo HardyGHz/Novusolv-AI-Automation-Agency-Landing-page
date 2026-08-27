@@ -8,8 +8,6 @@ interface ImpactArea {
   bgColor: string
   area: string
   examples: string[]
-  metric: string
-  metricLabel: string
 }
 
 export default function ImpactAreas() {
@@ -27,8 +25,6 @@ export default function ImpactAreas() {
         t('impact.marketing_3'),
         t('impact.marketing_4'),
       ],
-      metric: '40%',
-      metricLabel: t('impact.marketing_metric'),
     },
     {
       icon: <TrendingUp size={20} />,
@@ -41,8 +37,6 @@ export default function ImpactAreas() {
         t('impact.sales_3'),
         t('impact.sales_4'),
       ],
-      metric: '3x',
-      metricLabel: t('impact.sales_metric'),
     },
     {
       icon: <Settings size={20} />,
@@ -55,8 +49,6 @@ export default function ImpactAreas() {
         t('impact.ops_3'),
         t('impact.ops_4'),
       ],
-      metric: '80h',
-      metricLabel: t('impact.ops_metric'),
     },
     {
       icon: <Headphones size={20} />,
@@ -69,8 +61,6 @@ export default function ImpactAreas() {
         t('impact.support_3'),
         t('impact.support_4'),
       ],
-      metric: '80%',
-      metricLabel: t('impact.support_metric'),
     },
   ]
 
@@ -125,14 +115,6 @@ export default function ImpactAreas() {
                   </li>
                 ))}
               </ul>
-
-              {/* Metric */}
-              <div className={`border-t border-outline-default pt-4 flex items-end justify-between`}>
-                <div>
-                  <p className={`text-[32px] font-bold leading-none ${area.color}`}>{area.metric}</p>
-                  <p className="text-[11px] text-body mt-1 leading-tight max-w-[100px]">{area.metricLabel}</p>
-                </div>
-              </div>
             </motion.div>
           ))}
         </div>

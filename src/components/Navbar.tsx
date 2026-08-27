@@ -2,25 +2,35 @@ import { useState, useEffect, useRef, lazy, Suspense } from 'react'
 import { ChevronDown, Menu, X, Globe, Sun, Moon } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
+import { Link, useLocation } from 'react-router-dom'
 import { useTheme } from '../contexts/ThemeContext'
+import { ROUTES } from '../lib/constants'
+import { LANGUAGES, resolveLanguage } from '../lib/languages'
 
 // Lazy: keeps the Supabase client out of the initial bundle until the modal opens
 const BookCallForm = lazy(() => import('./BookCallForm'))
 
-export default function Navbar() {
+export default function Navbar({ solid = false }: { solid?: boolean }) {
   const { t, i18n } = useTranslation()
   const { theme, toggle: toggleTheme } = useTheme()
   const [scrolled, setScrolled] = useState(false)
+  // Subpages have no dark hero, so the bar must stay readable from the top
+  const opaque = solid || scrolled
   const [hidden, setHidden] = useState(false)
   const lastScrollY = useRef(0)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [showBookCall, setShowBookCall] = useState(false)
+  const [langOpen, setLangOpen] = useState(false)
   const dropdownRef = useRef<HTMLLIElement>(null)
+  const langRef = useRef<HTMLDivElement>(null)
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language.startsWith('en') ? 'ro' : 'en'
-    i18n.changeLanguage(newLang)
+  const { pathname } = useLocation()
+  const activeLang = resolveLanguage(i18n.language)
+
+  const selectLanguage = (code: string) => {
+    i18n.changeLanguage(code)
+    setLangOpen(false)
   }
 
   useEffect(() => {
@@ -44,6 +54,9 @@ export default function Navbar() {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setServicesOpen(false)
       }
+      if (langRef.current && !langRef.current.contains(event.target as Node)) {
+        setLangOpen(false)
+      }
     }
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
@@ -54,7 +67,7 @@ export default function Navbar() {
     <nav
       className={`
         fixed z-[100] top-0 left-0 w-full transition-all duration-300 ease-out items-center flex max-sm:py-4 shrink-0
-        ${scrolled
+        ${opaque
           ? `py-1 min-h-[72px] ${theme === 'dark' ? 'bg-[#000814]/95 backdrop-blur-xl border-b border-white/10' : 'bg-white/80 backdrop-blur-[80px]'}`
           : 'py-5 min-h-[72px] bg-transparent'
         }
@@ -64,18 +77,18 @@ export default function Navbar() {
       <div className="container flex justify-between items-center">
         {/* Logo — bigger */}
         <div className="w-[30%] max-sm:w-auto">
-          <a href="/" aria-label="Novusolv Home" className="relative flex items-center gap-2">
+          <Link to={ROUTES.home} aria-label="Novusolv Home" className="relative flex items-center gap-2">
             <img
               src={theme === 'light' ? "/logo-black.png" : "/logo-white.png"}
               alt="Novusolv Logo"
               className="h-28 max-sm:h-25 w-auto object-contain transition-all duration-300"
             />
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Nav */}
         <nav className={`px-5 py-[10px] rounded-2xl max-sm:hidden transition-all duration-300 ${
-          scrolled
+          opaque
             ? (theme === 'dark' ? 'bg-[#001D3D]/80 border border-white/10' : 'bg-gray-100/80')
             : 'bg-black/20 backdrop-blur-md border border-white/5'
         }`}>
@@ -83,7 +96,7 @@ export default function Navbar() {
             <li className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setServicesOpen(!servicesOpen)}
-                className={`text-[14px] leading-[150%] opacity-90 hover:opacity-100 cursor-pointer flex items-center gap-1 font-semibold transition-all ${scrolled ? 'text-heading' : 'text-white'}`}
+                className={`text-[14px] leading-[150%] opacity-90 hover:opacity-100 cursor-pointer flex items-center gap-1 font-semibold transition-all ${opaque ? 'text-heading' : 'text-white'}`}
               >
                 {t('nav.services')} <ChevronDown size={14} className={`transition-transform duration-200 ${servicesOpen ? 'rotate-180' : ''}`} />
               </button>
@@ -98,59 +111,95 @@ export default function Navbar() {
                     }`}
                   >
                     {[
-                      { href: '/#custom-models', label: t('nav.custom_models') },
-                      { href: '/#workflow-automation', label: t('nav.workflow') },
-                      { href: '/#customer-support', label: t('nav.customer_support') },
-                      { href: '/#data-insights', label: t('nav.data_insights') },
+                      { to: '/#custom-models', label: t('nav.custom_models') },
+                      { to: '/#workflow-automation', label: t('nav.workflow') },
+                      { to: '/#customer-support', label: t('nav.customer_support') },
+                      { to: '/#data-insights', label: t('nav.data_insights') },
                     ].map((item) => (
-                      <a
-                        key={item.href}
-                        href={item.href}
+                      <Link
+                        key={item.to}
+                        to={item.to}
                         onClick={() => setServicesOpen(false)}
                         className={`block px-4 py-2.5 text-sm transition-colors font-medium ${
                           theme === 'dark' ? 'hover:bg-white/5 text-gray-200' : 'hover:bg-gray-50 text-gray-700'
                         }`}
                       >
                         {item.label}
-                      </a>
+                      </Link>
                     ))}
                   </motion.div>
                 )}
               </AnimatePresence>
             </li>
-            <li>
-              <a
-                href="/#results"
-                className={`text-[14px] leading-[150%] opacity-70 hover:opacity-100 font-medium cursor-pointer transition-opacity ${scrolled ? 'text-heading' : 'text-white'}`}
-              >
-                {t('nav.case_studies')}
-              </a>
-            </li>
-            <li>
-              <a
-                href="/#faq"
-                className={`text-[14px] leading-[150%] opacity-70 hover:opacity-100 font-medium cursor-pointer transition-opacity ${scrolled ? 'text-heading' : 'text-white'}`}
-              >
-                {t('nav.faq')}
-              </a>
-            </li>
+            {[
+              { to: ROUTES.assessment, label: t('nav.assessment') },
+              { to: ROUTES.packages, label: t('nav.packages') },
+              { to: ROUTES.website, label: t('nav.website') },
+            ].map((item) => (
+              <li key={item.to}>
+                <Link
+                  to={item.to}
+                  className={`text-[14px] leading-[150%] font-medium cursor-pointer transition-opacity ${
+                    pathname === item.to ? 'opacity-100 font-semibold' : 'opacity-70 hover:opacity-100'
+                  } ${opaque ? 'text-heading' : 'text-white'}`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </nav>
 
           {/* Lang, Theme & CTA Button */}
           <div className="max-sm:hidden flex items-center gap-3 justify-end w-[30%]">
-            <button 
-              onClick={toggleLanguage}
-              className={`flex items-center gap-1.5 text-[13px] font-medium opacity-80 hover:opacity-100 transition-opacity ${scrolled ? 'text-heading' : 'text-white'}`}
-            >
-              <Globe size={14} />
-              {i18n.language.startsWith('en') ? 'EN' : 'RO'}
-            </button>
+            <div className="relative" ref={langRef}>
+              <button
+                onClick={() => setLangOpen(!langOpen)}
+                aria-haspopup="listbox"
+                aria-expanded={langOpen}
+                className={`flex items-center gap-1.5 text-[13px] font-medium opacity-80 hover:opacity-100 transition-opacity ${opaque ? 'text-heading' : 'text-white'}`}
+              >
+                <Globe size={14} />
+                {LANGUAGES.find((l) => l.code === activeLang)?.short}
+                <ChevronDown size={12} className={`transition-transform ${langOpen ? 'rotate-180' : ''}`} />
+              </button>
+              <AnimatePresence>
+                {langOpen && (
+                  <motion.ul
+                    role="listbox"
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.15 }}
+                    className={`absolute right-0 top-full mt-2 min-w-[140px] rounded-xl border shadow-lg overflow-hidden ${
+                      theme === 'dark' ? 'bg-[#000814] border-white/10' : 'bg-white border-gray-100'
+                    }`}
+                  >
+                    {LANGUAGES.map((lang) => (
+                      <li key={lang.code} role="option" aria-selected={lang.code === activeLang}>
+                        <button
+                          onClick={() => selectLanguage(lang.code)}
+                          className={`w-full text-left px-4 py-2.5 text-[13px] transition-colors ${
+                            lang.code === activeLang
+                              ? 'font-semibold text-[#E8630A]'
+                              : theme === 'dark'
+                                ? 'text-gray-200 hover:bg-white/5'
+                                : 'text-gray-800 hover:bg-gray-50'
+                          }`}
+                        >
+                          {lang.label}
+                        </button>
+                      </li>
+                    ))}
+                  </motion.ul>
+                )}
+              </AnimatePresence>
+            </div>
             <button
               onClick={toggleTheme}
               aria-label="Toggle dark mode"
               className={`w-9 h-9 flex items-center justify-center rounded-full transition-all hover:scale-110 ${
-                scrolled
+                opaque
                   ? (theme === 'dark' ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-gray-100 hover:bg-gray-200 text-heading')
                   : 'bg-white/10 hover:bg-white/20 text-white'
               }`}
@@ -167,11 +216,11 @@ export default function Navbar() {
 
         {/* Mobile menu toggle */}
         <button
-          className={`hidden max-sm:flex items-center justify-center w-[32px] h-[32px] rounded-lg ${scrolled ? 'bg-gray-100' : 'bg-white/10 backdrop-blur-[80px]'}`}
+          className={`hidden max-sm:flex items-center justify-center w-[32px] h-[32px] rounded-lg ${opaque ? 'bg-gray-100' : 'bg-white/10 backdrop-blur-[80px]'}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
         >
-          {mobileMenuOpen ? <X size={16} className={scrolled ? '' : 'text-white'} /> : <Menu size={16} className={scrolled ? '' : 'text-white'} />}
+          {mobileMenuOpen ? <X size={16} className={opaque ? '' : 'text-white'} /> : <Menu size={16} className={opaque ? '' : 'text-white'} />}
         </button>
       </div>
 
@@ -187,20 +236,41 @@ export default function Navbar() {
             }`}
           >
             <div className="container py-4 flex flex-col gap-4">
-              <a href="/#custom-models" className={`text-[15px] font-medium py-3 border-b border-gray-100/10 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'}`}>{t('nav.services')}</a>
-              <a href="/#results" className={`text-[15px] font-medium py-3 border-b border-gray-100/10 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'}`}>{t('nav.case_studies')}</a>
-              <a href="/#faq" className={`text-[15px] font-medium py-3 border-b border-gray-100/10 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'}`}>{t('nav.faq')}</a>
-              
+              {[
+                { to: ROUTES.assessment, label: t('nav.assessment') },
+                { to: ROUTES.packages, label: t('nav.packages') },
+                { to: ROUTES.website, label: t('nav.website') },
+                { to: '/#custom-models', label: t('nav.services') },
+                { to: '/#results', label: t('nav.case_studies') },
+                { to: '/#faq', label: t('nav.faq') },
+              ].map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`text-[15px] font-medium py-3 border-b border-gray-100/10 ${theme === 'dark' ? 'text-gray-200' : 'text-gray-800'}`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+
               <div className="flex items-center justify-between py-2 border-t border-gray-100 mt-2 pt-4">
-                <div className="flex items-center gap-3">
-                  <span className="text-[14px] font-medium text-gray-500">Language</span>
-                  <button 
-                    onClick={toggleLanguage}
-                    className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
-                  >
-                    <Globe size={14} />
-                    {i18n.language.startsWith('en') ? 'English' : 'Română'}
-                  </button>
+                <div className="flex items-center gap-2">
+                  <Globe size={14} className="text-gray-500" />
+                  {LANGUAGES.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => selectLanguage(lang.code)}
+                      aria-pressed={lang.code === activeLang}
+                      className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                        lang.code === activeLang
+                          ? 'bg-[#E8630A] text-[#000814]'
+                          : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
+                      }`}
+                    >
+                      {lang.short}
+                    </button>
+                  ))}
                 </div>
                 <button
                   onClick={toggleTheme}
