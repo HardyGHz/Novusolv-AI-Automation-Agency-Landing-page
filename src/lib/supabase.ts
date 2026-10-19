@@ -14,25 +14,30 @@ const apiKey = supabaseAnonKey || 'dummy-anon-key'
 
 export const supabase = createClient(apiUrl, apiKey)
 
+async function protectedSubmission(kind: 'lead' | 'newsletter' | 'booking', data: Record<string, unknown>, token: string) {
+  if (!token) throw { code: 'CAPTCHA_REQUIRED' }
+  const response = await fetch(`${apiUrl}/functions/v1/website-submit`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json', 'apikey': apiKey, 'Authorization': `Bearer ${apiKey}` },
+    body: JSON.stringify({ kind, data, token }), signal: AbortSignal.timeout(30000),
+  })
+  const result = await response.json()
+  if (!response.ok || result.ok !== true) throw { code: result.code || 'TEMPORARILY_UNAVAILABLE' }
+  return true
+}
+
 // Lead submission
 export async function submitLead(data: {
   name: string
   email: string
   message?: string
   source: string
-}) {
-  const { error } = await supabase.from('leads').insert([leadPayload(data)])
-  if (error) throw error
-  return true
+}, token: string) {
+  return protectedSubmission('lead', leadPayload(data), token)
 }
 
 // Newsletter subscription
-export async function subscribeNewsletter(email: string) {
-  const { error } = await supabase.from('newsletter_subscribers').insert([{ email: normalizeEmail(email)! }])
-  // The DB guard suppresses duplicates without emitting another n8n event.
-  // Also keep older deployments' UNIQUE errors indistinguishable to the visitor.
-  if (error && error.code !== '23505') throw error
-  return true
+export async function subscribeNewsletter(email: string, token: string) {
+  return protectedSubmission('newsletter', { email: normalizeEmail(email)! }, token)
 }
 
 // Book a Call submission
@@ -52,8 +57,6 @@ export async function submitBookCall(data: {
   utm_term?: string
   landing_page?: string
   referrer?: string
-}) {
-  const { error } = await supabase.from('call_bookings').insert([bookingPayload(data)])
-  if (error) throw error
-  return true
+}, token: string) {
+  return protectedSubmission('booking', bookingPayload(data), token)
 }

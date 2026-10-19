@@ -1,9 +1,11 @@
-import { useState, FormEvent } from 'react'
+import { useRef, useState, FormEvent } from 'react'
 import { ArrowRight, Check, Loader2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { subscribeNewsletter } from '../lib/supabase'
 import { useTranslation } from 'react-i18next'
-import { FORM_LIMITS, isRateLimited } from '../lib/submissionValidation'
+import { FORM_LIMITS } from '../lib/submissionValidation'
+import { submissionErrorKey } from '../lib/botProtection'
+import TurnstileChallenge from './TurnstileChallenge'
 
 export default function NewsletterSignup() {
   const { t } = useTranslation()
@@ -11,12 +13,17 @@ export default function NewsletterSignup() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
   const [website, setWebsite] = useState('')
+  const [captchaToken, setCaptchaToken] = useState('')
+  const [captchaAttempt, setCaptchaAttempt] = useState(0)
+  const [started, setStarted] = useState(false)
+  const sending = useRef(false)
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
-    if (status === 'loading') return
+    if (sending.current) return
     if (website) { setStatus('success'); return }
     if (!email.trim()) return
+    if (!captchaToken) { setStarted(true); setStatus('error'); setErrorMsg(t('security.captcha_retry')); return }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email.trim())) {
@@ -26,13 +33,18 @@ export default function NewsletterSignup() {
     }
 
     setStatus('loading')
+    sending.current = true
     try {
-      await subscribeNewsletter(email)
+      await subscribeNewsletter(email, captchaToken)
       setStatus('success')
       setEmail('')
     } catch (err) {
       setStatus('error')
-      setErrorMsg(t(isRateLimited(err) ? 'security.rate_limit' : 'newsletter.error_general'))
+      setErrorMsg(t(submissionErrorKey(err, 'newsletter.error_general')))
+    } finally {
+      sending.current = false
+      setCaptchaToken('')
+      setCaptchaAttempt(n => n + 1)
     }
   }
 
@@ -55,13 +67,16 @@ export default function NewsletterSignup() {
           <motion.form
             key="form"
             onSubmit={handleSubmit}
-            className="flex gap-2 max-sm:flex-col"
+            className="flex flex-col gap-3"
           >
+            <div className="flex gap-2 max-sm:flex-col">
             <div className="hidden" aria-hidden="true">
               <label>Website<input name="website_url" value={website} onChange={(e) => setWebsite(e.target.value)} tabIndex={-1} autoComplete="off" /></label>
             </div>
             <input
               type="email"
+              aria-label={t('newsletter.placeholder')}
+              onFocus={() => setStarted(true)}
               maxLength={FORM_LIMITS.email}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -71,7 +86,7 @@ export default function NewsletterSignup() {
             />
             <button
               type="submit"
-              disabled={status === 'loading'}
+              disabled={status === 'loading' || (started && !captchaToken)}
               className="font-semibold flex items-center justify-center cursor-pointer bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] text-[#000814] hover:from-[#D05A09] hover:to-[#E87020] py-3 px-5 rounded-xl transition-all shadow-md shadow-[#E8630A]/20 group disabled:opacity-60 text-[14px] whitespace-nowrap"
             >
               {status === 'loading' ? (
@@ -83,11 +98,13 @@ export default function NewsletterSignup() {
                 </>
               )}
             </button>
+            </div>
+            {started && <TurnstileChallenge key={captchaAttempt} action="newsletter" onToken={setCaptchaToken} />}
           </motion.form>
         )}
       </AnimatePresence>
       {status === 'error' && (
-        <p className="text-red-400 text-[12px] mt-2 text-center">{errorMsg}</p>
+        <p role="alert" className="text-red-400 text-[12px] mt-2 text-center">{errorMsg}</p>
       )}
     </div>
   )

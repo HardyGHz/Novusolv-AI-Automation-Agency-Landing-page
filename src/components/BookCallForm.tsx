@@ -5,7 +5,9 @@ import { submitBookCall } from '../lib/supabase'
 import { useTranslation } from 'react-i18next'
 import { getStoredUtms } from '../lib/utm'
 import { trackPixelEvent } from '../lib/analytics'
-import { FORM_LIMITS, PROBLEM_OPTIONS, TIMELINE_OPTIONS, isRateLimited } from '../lib/submissionValidation'
+import { FORM_LIMITS, PROBLEM_OPTIONS, TIMELINE_OPTIONS } from '../lib/submissionValidation'
+import { submissionErrorKey } from '../lib/botProtection'
+import TurnstileChallenge from './TurnstileChallenge'
 
 interface BookCallFormProps {
   onClose?: () => void
@@ -34,6 +36,8 @@ export default function BookCallForm({ onClose, source = 'book_call_modal', isMo
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
   const [website, setWebsite] = useState('')
+  const [captchaToken, setCaptchaToken] = useState('')
+  const [captchaAttempt, setCaptchaAttempt] = useState(0)
 
   useEffect(() => {
     if (!isModal) return
@@ -67,6 +71,7 @@ export default function BookCallForm({ onClose, source = 'book_call_modal', isMo
       return
     }
     if (website) { setStatus('success'); return }
+    if (!captchaToken) { setStatus('error'); setErrorMsg(t('security.captcha_retry')); return }
     if (!name.trim() || !company.trim() || !phone.trim() || !problem) return
     const digits = phone.replace(/\D/g, '')
     if (!/^[+0-9 ().-]{6,40}$/.test(phone.trim()) || digits.length < 6 || digits.length > 20) {
@@ -98,14 +103,16 @@ export default function BookCallForm({ onClose, source = 'book_call_modal', isMo
         project_details: details || undefined,
         source,
         ...getStoredUtms(),
-      })
+      }, captchaToken)
       setStatus('success')
       trackPixelEvent('Lead', { source })
     } catch (error) {
       setStatus('error')
-      setErrorMsg(t(isRateLimited(error) ? 'security.rate_limit' : 'book_call_form.error_general'))
+      setErrorMsg(t(submissionErrorKey(error, 'book_call_form.error_general')))
     } finally {
       sending.current = false
+      setCaptchaToken('')
+      setCaptchaAttempt(n => n + 1)
     }
   }
 
@@ -207,6 +214,7 @@ export default function BookCallForm({ onClose, source = 'book_call_modal', isMo
               className={inputClass}
             />
             <p className="text-body text-[12px]">{t('book_call_form.privacy_note')} <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline">{t('book_call_form.privacy_link')}</a></p>
+            <TurnstileChallenge key={captchaAttempt} action="booking" onToken={setCaptchaToken} />
             </>}
 
             {status === 'error' && (
@@ -216,7 +224,7 @@ export default function BookCallForm({ onClose, source = 'book_call_modal', isMo
             {step === 2 && <button type="button" disabled={status === 'loading'} onClick={() => { setStep(1); setStatus('idle'); requestAnimationFrame(() => formRef.current?.querySelector<HTMLSelectElement>('select')?.focus()) }} className="flex items-center gap-1 text-body text-[13px] cursor-pointer"><ArrowLeft size={16} />{t('book_call_form.back')}</button>}
             <button
               type="submit"
-              disabled={status === 'loading'}
+              disabled={status === 'loading' || (step === 2 && !captchaToken)}
               className="mt-1 font-semibold flex items-center justify-center gap-2 cursor-pointer bg-gradient-to-r from-[#E8630A] to-[#FF8C2A] text-[#000814] hover:from-[#D05A09] hover:to-[#E87020] py-3 px-6 rounded-xl transition-all shadow-lg shadow-[#E8630A]/20 hover:shadow-[#E8630A]/40 group disabled:opacity-60 text-[14px]"
             >
               {status === 'loading' ? (

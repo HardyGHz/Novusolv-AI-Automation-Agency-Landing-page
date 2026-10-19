@@ -11,7 +11,7 @@ export default function Privacy() {
           <ArrowLeft size={16} /> {t('common.back_to_home')}
         </a>
         <h1 className="text-4xl font-bold text-gray-900 mb-2">Privacy Policy</h1>
-        <p className="text-gray-500 text-sm mb-10">Last updated: March 26, 2026</p>
+        <p className="text-gray-500 text-sm mb-10">Last updated: October 19, 2026</p>
 
         <div className="prose prose-gray max-w-none space-y-8 text-gray-700 leading-relaxed">
           <section>
@@ -23,11 +23,11 @@ export default function Privacy() {
             <h2 className="text-xl font-semibold text-gray-900 mb-3">2. Data We Collect</h2>
             <p>We collect information you voluntarily provide when filling out our contact or booking form:</p>
             <ul className="list-disc ml-6 mt-2 space-y-1">
-              <li>Full name and email address</li>
+              <li>Full name, phone number and optional email address for call requests</li>
               <li>Company name and business description</li>
-              <li>Any message content you submit</li>
+              <li>Your main challenge, preferred timeframe and any message content you submit</li>
             </ul>
-            <p className="mt-3">We do not collect sensitive personal data and we do not use tracking cookies beyond what is strictly necessary for the website to function.</p>
+            <p className="mt-3">Please do not submit passwords or sensitive customer data. Marketing analytics through Meta Pixel are loaded only after you accept marketing cookies.</p>
           </section>
 
           <section>
@@ -58,6 +58,12 @@ export default function Privacy() {
           <section>
             <h2 className="text-xl font-semibold text-gray-900 mb-3">7. Third-Party Services</h2>
             <p>Our website is hosted on Vercel (USA). Form submissions may be stored via our backend service (Supabase). Both providers are GDPR-compliant and process data under standard contractual clauses.</p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-gray-900 mb-3">Form security and abuse prevention</h2>
+            <p>We use Cloudflare Turnstile to check form submissions for automated abuse. Cloudflare processes technical browser and network signals, including your IP address, for this security check. See the <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" className="text-[#E8630A] underline">Cloudflare Privacy Policy</a>.</p>
+            <p className="mt-3">Our application uses a keyed hash of your IP address (or IPv6 network) to limit submission attempts. It does not store the raw IP in the form record or send it to Airtable or Slack. Rate-limit records older than two days are removed when subsequent submissions are processed. Hosting providers may retain separate security logs under their own policies.</p>
           </section>
 
           <section>

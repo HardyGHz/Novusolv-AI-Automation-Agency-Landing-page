@@ -494,6 +494,10 @@
     "cta": "Back to homepage"
   },
   "security": {
-    "rate_limit": "Too many submissions. Please try again later."
+    "rate_limit": "Too many submissions. Please try again later.",
+    "captcha_retry": "Complete the security check again, then submit the form.",
+    "captcha_unavailable": "The security check could not load. Check your connection or email hello@novusolv.com.",
+    "retry": "Try again",
+    "captcha_notice": "This form is protected by Cloudflare Turnstile."
   }
 }

@@ -494,6 +494,10 @@
     "cta": "Vissza a főoldalra"
   },
   "security": {
-    "rate_limit": "Túl sok beküldés történt. Kérjük, próbáld újra később."
+    "rate_limit": "Túl sok beküldés történt. Kérjük, próbáld újra később.",
+    "captcha_retry": "Végezd el újra a biztonsági ellenőrzést, majd küldd el az űrlapot.",
+    "captcha_unavailable": "A biztonsági ellenőrzés nem tölthető be. Ellenőrizd a kapcsolatot, vagy írj a hello@novusolv.com címre.",
+    "retry": "Újrapróbálom",
+    "captcha_notice": "Az űrlapot a Cloudflare Turnstile védi."
   }
 }

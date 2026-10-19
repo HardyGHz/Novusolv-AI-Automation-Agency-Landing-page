@@ -494,6 +494,10 @@
     "cta": "Înapoi la pagina principală"
   },
   "security": {
-    "rate_limit": "Au fost trimise prea multe cereri. Te rugăm să încerci din nou mai târziu."
+    "rate_limit": "Au fost trimise prea multe cereri. Te rugăm să încerci din nou mai târziu.",
+    "captcha_retry": "Repetă verificarea de securitate, apoi trimite formularul.",
+    "captcha_unavailable": "Verificarea de securitate nu se încarcă. Verifică conexiunea sau scrie-ne la hello@novusolv.com.",
+    "retry": "Reîncearcă",
+    "captcha_notice": "Formular protejat de Cloudflare Turnstile."
   }
 }
