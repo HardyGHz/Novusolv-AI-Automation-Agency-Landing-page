@@ -198,7 +198,7 @@
   "newsletter": {
     "placeholder": "Enter your email",
     "btn": "Subscribe",
-    "success": "You're subscribed! Welcome aboard 🎉",
+    "success": "Thank you, we have received your request.",
     "error_email": "Please enter a valid email address.",
     "error_general": "Something went wrong."
   },
@@ -471,5 +471,8 @@
     "title": "Page not found",
     "subtitle": "The page you're looking for doesn't exist or has been moved.",
     "cta": "Back to homepage"
+  },
+  "security": {
+    "rate_limit": "Too many submissions. Please try again later."
   }
 }

@@ -198,7 +198,7 @@
   "newsletter": {
     "placeholder": "Az email címed",
     "btn": "Feliratkozom",
-    "success": "Feliratkoztál! Üdv a fedélzeten 🎉",
+    "success": "Köszönjük, megkaptuk a kérésed.",
     "error_email": "Kérjük adj meg egy érvényes email címet.",
     "error_general": "Valami nem sikerült."
   },
@@ -471,5 +471,8 @@
     "title": "Az oldal nem található",
     "subtitle": "A keresett oldal nem létezik, vagy áthelyeztük.",
     "cta": "Vissza a főoldalra"
+  },
+  "security": {
+    "rate_limit": "Túl sok beküldés történt. Kérjük, próbáld újra később."
   }
 }

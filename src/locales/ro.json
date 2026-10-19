@@ -198,7 +198,7 @@
   "newsletter": {
     "placeholder": "Adresa ta de email",
     "btn": "Abonează-te",
-    "success": "Ești abonat! Bine ai venit 🎉",
+    "success": "Mulțumim, am primit solicitarea ta.",
     "error_email": "Te rugăm să introduci o adresă de email validă.",
     "error_general": "Ceva nu a mers bine."
   },
@@ -471,5 +471,8 @@
     "title": "Pagina nu a fost găsită",
     "subtitle": "Pagina pe care o cauți nu există sau a fost mutată.",
     "cta": "Înapoi la pagina principală"
+  },
+  "security": {
+    "rate_limit": "Au fost trimise prea multe cereri. Te rugăm să încerci din nou mai târziu."
   }
 }

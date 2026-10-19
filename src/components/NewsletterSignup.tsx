@@ -3,19 +3,23 @@ import { ArrowRight, Check, Loader2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { subscribeNewsletter } from '../lib/supabase'
 import { useTranslation } from 'react-i18next'
+import { FORM_LIMITS, isRateLimited } from '../lib/submissionValidation'
 
 export default function NewsletterSignup() {
   const { t } = useTranslation()
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
+  const [website, setWebsite] = useState('')
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+    if (status === 'loading') return
+    if (website) { setStatus('success'); return }
     if (!email.trim()) return
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(email.trim())) {
       setStatus('error')
       setErrorMsg(t('newsletter.error_email'))
       return
@@ -26,9 +30,9 @@ export default function NewsletterSignup() {
       await subscribeNewsletter(email)
       setStatus('success')
       setEmail('')
-    } catch (err: any) {
+    } catch (err) {
       setStatus('error')
-      setErrorMsg(err?.message || t('newsletter.error_general'))
+      setErrorMsg(t(isRateLimited(err) ? 'security.rate_limit' : 'newsletter.error_general'))
     }
   }
 
@@ -53,8 +57,12 @@ export default function NewsletterSignup() {
             onSubmit={handleSubmit}
             className="flex gap-2 max-sm:flex-col"
           >
+            <div className="hidden" aria-hidden="true">
+              <label>Website<input name="website_url" value={website} onChange={(e) => setWebsite(e.target.value)} tabIndex={-1} autoComplete="off" /></label>
+            </div>
             <input
               type="email"
+              maxLength={FORM_LIMITS.email}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t('newsletter.placeholder')}

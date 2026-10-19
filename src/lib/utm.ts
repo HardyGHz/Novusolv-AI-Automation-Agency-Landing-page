@@ -56,7 +56,15 @@ export function captureUtms(): void {
 export function getStoredUtms(): UtmData {
   try {
     const raw = sessionStorage.getItem(UTM_STORAGE_KEY)
-    return raw ? (JSON.parse(raw) as UtmData) : {}
+    const parsed: unknown = raw ? JSON.parse(raw) : {}
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return {}
+    const data: UtmData = {}
+    for (const key of [...UTM_KEYS, 'landing_page', 'referrer'] as const) {
+      const value = (parsed as Record<string, unknown>)[key]
+      const max = key === 'landing_page' || key === 'referrer' ? 2048 : 500
+      if (typeof value === 'string' && value.length <= max) data[key] = value
+    }
+    return data
   } catch {
     return {}
   }

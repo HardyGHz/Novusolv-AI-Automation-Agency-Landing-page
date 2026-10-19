@@ -5,6 +5,7 @@ import { submitBookCall } from '../lib/supabase'
 import { useTranslation } from 'react-i18next'
 import { getStoredUtms } from '../lib/utm'
 import { trackPixelEvent } from '../lib/analytics'
+import { FORM_LIMITS, PROBLEM_OPTIONS, isRateLimited } from '../lib/submissionValidation'
 
 interface BookCallFormProps {
   onClose?: () => void
@@ -13,15 +14,6 @@ interface BookCallFormProps {
   /** When false, renders inline (no fixed overlay/backdrop). Default true. */
   isModal?: boolean
 }
-
-const PROBLEM_OPTIONS = [
-  'problem_lost_leads',
-  'problem_slow_reply',
-  'problem_manual_work',
-  'problem_weak_website',
-  'problem_scattered',
-  'problem_unsure',
-] as const
 
 export default function BookCallForm({ onClose, source = 'book_call_modal', isModal = true }: BookCallFormProps) {
   const { t } = useTranslation()
@@ -32,14 +24,17 @@ export default function BookCallForm({ onClose, source = 'book_call_modal', isMo
   const [problem, setProblem] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
+  const [website, setWebsite] = useState('')
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
+    if (status === 'loading') return
+    if (website) { setStatus('success'); return }
     if (!name.trim() || !company.trim() || !phone.trim() || !problem) return
 
     if (email.trim()) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-      if (!emailRegex.test(email)) {
+      if (!emailRegex.test(email.trim())) {
         setStatus('error')
         setErrorMsg(t('book_call_form.error_email'))
         return
@@ -59,9 +54,9 @@ export default function BookCallForm({ onClose, source = 'book_call_modal', isMo
       })
       setStatus('success')
       trackPixelEvent('Lead', { source })
-    } catch {
+    } catch (error) {
       setStatus('error')
-      setErrorMsg(t('book_call_form.error_general'))
+      setErrorMsg(t(isRateLimited(error) ? 'security.rate_limit' : 'book_call_form.error_general'))
     }
   }
 
@@ -91,8 +86,12 @@ export default function BookCallForm({ onClose, source = 'book_call_modal', isMo
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+            <div className="hidden" aria-hidden="true">
+              <label>Website<input name="website_url" value={website} onChange={(e) => setWebsite(e.target.value)} tabIndex={-1} autoComplete="off" /></label>
+            </div>
             <input
               type="text"
+              maxLength={FORM_LIMITS.name}
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder={t('book_call_form.placeholder_name')}
@@ -102,6 +101,7 @@ export default function BookCallForm({ onClose, source = 'book_call_modal', isMo
             <input
               type="text"
               value={company}
+              maxLength={FORM_LIMITS.company}
               onChange={(e) => setCompany(e.target.value)}
               placeholder={t('book_call_form.placeholder_company')}
               required
@@ -109,6 +109,7 @@ export default function BookCallForm({ onClose, source = 'book_call_modal', isMo
             />
             <input
               type="tel"
+              maxLength={FORM_LIMITS.phone}
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder={t('book_call_form.placeholder_phone')}
@@ -117,6 +118,7 @@ export default function BookCallForm({ onClose, source = 'book_call_modal', isMo
             />
             <input
               type="email"
+              maxLength={FORM_LIMITS.email}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t('book_call_form.placeholder_email')}

@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import { bookingPayload, leadPayload, normalizeEmail } from './submissionValidation'
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
@@ -20,21 +21,17 @@ export async function submitLead(data: {
   message?: string
   source: string
 }) {
-  const { error } = await supabase.from('leads').insert([data])
+  const { error } = await supabase.from('leads').insert([leadPayload(data)])
   if (error) throw error
   return true
 }
 
 // Newsletter subscription
 export async function subscribeNewsletter(email: string) {
-  const { error } = await supabase.from('newsletter_subscribers').insert([{ email }])
-  if (error) {
-    // Handle duplicate email gracefully
-    if (error.code === '23505') {
-      throw new Error('You are already subscribed!')
-    }
-    throw error
-  }
+  const { error } = await supabase.from('newsletter_subscribers').insert([{ email: normalizeEmail(email)! }])
+  // The DB guard suppresses duplicates without emitting another n8n event.
+  // Also keep older deployments' UNIQUE errors indistinguishable to the visitor.
+  if (error && error.code !== '23505') throw error
   return true
 }
 
@@ -54,7 +51,7 @@ export async function submitBookCall(data: {
   landing_page?: string
   referrer?: string
 }) {
-  const { error } = await supabase.from('call_bookings').insert([data])
+  const { error } = await supabase.from('call_bookings').insert([bookingPayload(data)])
   if (error) throw error
   return true
 }
