@@ -42,6 +42,8 @@ export async function submitBookCall(data: {
   phone: string
   email?: string
   main_problem?: string
+  timeline?: string
+  project_details?: string
   source: string
   utm_source?: string
   utm_medium?: string

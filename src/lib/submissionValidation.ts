@@ -1,4 +1,5 @@
-export const FORM_LIMITS = { name: 120, company: 200, phone: 40, email: 254, message: 5000 } as const
+export const FORM_LIMITS = { name: 120, company: 200, phone: 40, email: 254, message: 5000, details: 500 } as const
+export const TIMELINE_OPTIONS = ['asap', 'one_to_three_months', 'exploring'] as const
 export const PROBLEM_OPTIONS = ['problem_lost_leads', 'problem_slow_reply', 'problem_manual_work', 'problem_weak_website', 'problem_scattered', 'problem_unsure'] as const
 const attributionFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'landing_page', 'referrer'] as const
 
@@ -41,7 +42,9 @@ export function bookingPayload(data: Record<string, unknown>) {
     const value = text(data[key], key === 'referrer' || key === 'landing_page' ? 2048 : 500)
     if (value) attribution[key] = value
   }
-  return { ...attribution, name: text(data.name, FORM_LIMITS.name, true)!, company: text(data.company, FORM_LIMITS.company, true)!, phone, email: normalizeEmail(data.email, false), main_problem: problem, source: source(data.source) }
+  const timeline = text(data.timeline, 40)
+  if (timeline && !(TIMELINE_OPTIONS as readonly string[]).includes(timeline)) throw new Error('Invalid timeline')
+  return { ...attribution, name: text(data.name, FORM_LIMITS.name, true)!, company: text(data.company, FORM_LIMITS.company, true)!, phone, email: normalizeEmail(data.email, false), main_problem: problem, timeline, project_details: text(data.project_details, FORM_LIMITS.details), source: source(data.source) }
 }
 
 export function isRateLimited(error: unknown): boolean {
