@@ -7,7 +7,7 @@ export default function WebsiteBuilderCTA() {
   const { t } = useTranslation()
 
   return (
-    <section className="pt-[80px] pb-[120px] max-md:pt-[56px] max-md:pb-[80px] border-t border-outline-default relative overflow-hidden flex items-center justify-center">
+    <section className="pt-[80px] pb-[120px] max-md:pt-[56px] max-md:pb-[80px] relative overflow-hidden flex items-center justify-center">
       <div className="absolute w-[60vw] h-[60vh] rounded-full blur-[140px] bg-[#E8630A]/10 mix-blend-multiply dark:mix-blend-lighten pointer-events-none z-0"></div>
 
       <div className="container relative z-10">

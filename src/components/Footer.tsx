@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import BookingFlow from './BookingFlow'
 import NewsletterSignup from './NewsletterSignup'
@@ -8,40 +7,9 @@ import { ROUTES } from '../lib/constants'
 
 export default function Footer() {
   const { t } = useTranslation()
-  const bgRef = useRef<HTMLImageElement>(null)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (bgRef.current) {
-        const rect = bgRef.current.parentElement?.getBoundingClientRect()
-        if (rect) {
-          const scrollProgress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height)
-          const translateY = Math.max(-80, Math.min(0, (scrollProgress - 0.3) * -120))
-          bgRef.current.style.transform = `translateY(${translateY}px) scale(1.15)`
-        }
-      }
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   return (
-    <footer id="contact" className="flex flex-col justify-between pt-20 max-w-[1920px] mx-auto overflow-hidden relative max-h-full min-h-[1100px] 2xl:min-h-[1300px] max-sm:min-h-[1000px]">
-      {/* Parallax Background Image */}
-      <img
-        ref={bgRef}
-        src="/footer-bg.webp"
-        alt=""
-        width={640}
-        height={640}
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-100 ease-out will-change-transform"
-        style={{ transform: 'translateY(0) scale(1.15)' }}
-      />
-      {/* Dark overlay gradient */}
-      <div className="absolute inset-0 w-full h-full bg-gradient-to-b from-[#000814]/90 via-[#001D3D]/80 to-[#000814]/90" />
-
+    <footer id="contact" className="nv-site-footer flex flex-col justify-between pt-16 max-w-[1920px] mx-auto overflow-hidden relative">
       {/* CTA + Contact Form Section */}
       <div className="container relative z-[2] flex-1 flex items-center justify-center">
         <motion.div
@@ -70,7 +38,6 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div className="flex flex-col items-center gap-3 mt-4 w-full">
-            <div className="w-16 h-px bg-white/10" />
             <p className="text-white/50 text-[13px]">{t('footer.stay_in_loop')}</p>
             <NewsletterSignup />
           </div>
@@ -79,7 +46,7 @@ export default function Footer() {
 
       {/* Site navigation */}
       <div className="container relative z-[2]">
-        <nav className="py-6 border-t border-white/10 flex flex-wrap gap-x-8 gap-y-3 justify-center text-[14px] text-white/60">
+        <nav className="py-6 flex flex-wrap gap-x-8 gap-y-3 justify-center text-[14px] text-white/60">
           {[
             { to: ROUTES.assessment, label: t('nav.assessment') },
             { to: ROUTES.packages, label: t('nav.packages') },
@@ -96,7 +63,7 @@ export default function Footer() {
 
       {/* Footer bottom */}
       <div className="container relative z-[2]">
-        <div className="py-6 flex max-sm:flex-col max-sm:gap-4 justify-between items-center border-t border-white/10">
+        <div className="py-6 flex max-sm:flex-col max-sm:gap-4 justify-between items-center">
           {/* Logo */}
           <Link to={ROUTES.home} className="flex items-center cursor-pointer">
             <img src="/logo-white.png" alt="Novusolv Logo" className="h-24 w-auto object-contain" />

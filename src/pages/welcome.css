@@ -30,3 +30,13 @@
 .nv-embedded .nv-stage h3{font-size:clamp(30px,3vw,44px);line-height:1.12}
 .nv-embedded .nv-body-success{padding-bottom:48px}
 @media(max-width:680px){.nv-embedded{border-radius:20px}.nv-embedded .nv-body{width:calc(100% - 40px);padding:28px 0}.nv-embedded .nv-stage h3{font-size:30px}.nv-embedded .nv-actions{gap:14px}.nv-embedded .nv-continue{min-width:140px}}
+
+.nv-site-footer{background:linear-gradient(155deg,#00244a 0%,#001327 42%,#000814 82%)}
+.nv-site-footer .nv-embedded{background:#06192c;--nv-text:#f4f3ef}
+.nv-site-footer .nv-embedded .nv-choice{background:#0a223b;border-color:#28445f;color:#e1eaf2}
+.nv-site-footer .nv-embedded .nv-choice:hover{background:#102d4a;border-color:#6c8da8}
+.nv-site-footer .nv-embedded .nv-choice.is-selected{background:#30231b;border-color:#f48b4c;color:#fff}
+.nv-site-footer .nv-embedded .nv-intro{color:#a6b8c9}
+.nv-site-footer .nv-embedded .nv-actions{border-top:0}
+.nv-site-footer .nv-logo-hero{background:#06192c}
+.nv-site-footer .nv-logo-hero video{mix-blend-mode:screen}
