@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
-import BookCallForm from './BookCallForm'
+import BookingFlow from './BookingFlow'
 import NewsletterSignup from './NewsletterSignup'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -66,7 +66,7 @@ export default function Footer() {
           </div>
 
           {/* Inline Book-a-Call Form */}
-          <BookCallForm source="footer_cta" isModal={false} />
+          <BookingFlow source="footer_cta" embedded />
 
           {/* Newsletter */}
           <div className="flex flex-col items-center gap-3 mt-4 w-full">

@@ -9,6 +9,7 @@ import { captureUtms } from './lib/utm'
 import { resolveLanguage } from './lib/languages'
 import { ROUTES } from './lib/constants'
 
+const Welcome = lazy(() => import('./pages/Welcome'))
 const EvaluareOperationala = lazy(() => import('./pages/EvaluareOperationala'))
 const Pachete = lazy(() => import('./pages/Pachete'))
 const WebsitePage = lazy(() => import('./pages/WebsitePage'))
@@ -102,6 +103,7 @@ function App() {
       <ScrollToHash />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/welcome" element={<Suspense fallback={null}><Welcome /></Suspense>} />
         <Route path={ROUTES.assessment} element={<Suspense fallback={null}><EvaluareOperationala /></Suspense>} />
         <Route path={ROUTES.packages} element={<Suspense fallback={null}><Pachete /></Suspense>} />
         <Route path={ROUTES.website} element={<Suspense fallback={null}><WebsitePage /></Suspense>} />

@@ -25,7 +25,7 @@ export default function Privacy() {
             <ul className="list-disc ml-6 mt-2 space-y-1">
               <li>Full name, phone number and optional email address for call requests</li>
               <li>Company name and business description</li>
-              <li>Your main challenge, preferred timeframe and any message content you submit</li>
+              <li>Selected services, your main challenge, preferred timeframe and any message content you submit</li>
             </ul>
             <p className="mt-3">Please do not submit passwords or sensitive customer data. Marketing analytics through Meta Pixel are loaded only after you accept marketing cookies.</p>
           </section>

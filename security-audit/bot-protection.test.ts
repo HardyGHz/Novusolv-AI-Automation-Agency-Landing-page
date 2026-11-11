@@ -60,3 +60,16 @@ test('all three form contracts and sanitized database errors are supported',asyn
   const f=fixture({insert:async()=>{throw {code:'PT429'}}})
   assert.equal((await f.handler(f.request())).status,429)
 })
+
+test('gateway preserves multiple services and rejects forged choices before CAPTCHA', async () => {
+  const f = fixture()
+  const response = await f.handler(f.request({ kind: 'booking', token: 'valid', data: { ...booking, requested_services: ['website','marketing'] } }))
+  assert.equal(response.status, 201)
+  assert.deepEqual((f.writes[0] as {data:{requested_services:string[]}}).data.requested_services, ['marketing','website'])
+  for (const values of [['forged'], ['marketing','marketing'], [], 'marketing']) {
+    const invalid = fixture()
+    assert.equal((await invalid.handler(invalid.request({kind:'booking',token:'valid',data:{...booking,requested_services:values}}))).status,400)
+    assert.equal(invalid.writes.length,0)
+    assert.equal(invalid.tokens.length,0)
+  }
+})

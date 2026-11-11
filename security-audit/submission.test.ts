@@ -31,3 +31,12 @@ test('tampered attribution storage cannot override identity, source, or internal
   Object.defineProperty(globalThis, 'sessionStorage', { value: { getItem: () => '[1,2]' }, configurable: true })
   assert.deepEqual(getStoredUtms(), {})
 })
+
+test('multi-service selection is structured, canonical and backwards compatible', () => {
+  const base = { name: 'Test', company: 'Company', phone: '0700000000', source: 'welcome_page' }
+  assert.deepEqual(bookingPayload({ ...base, requested_services: ['website', 'marketing'] }).requested_services, ['marketing', 'website'])
+  assert.equal('requested_services' in bookingPayload(base), false)
+  for (const values of [[], ['invalid'], ['marketing','marketing'], ['marketing',null], 'marketing', null, [1], Array(7).fill('marketing')]) {
+    assert.throws(() => bookingPayload({ ...base, requested_services: values }))
+  }
+})
